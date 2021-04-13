@@ -18,7 +18,7 @@
 @section('csrf')
 <meta name="csrf-token" content="{{ csrf_token() }}">    
 @endsection
-@section('title', 'Artikel - Pimpinan Daerah Muhammadiyah Sragen')
+@section('title', 'Artikel Baru - Pimpinan Daerah Muhammadiyah Sragen')
 @section('content')
 <div class="row">
     <div class="col-md-12 col-sm-12 ">
