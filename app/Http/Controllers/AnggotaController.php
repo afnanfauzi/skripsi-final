@@ -81,7 +81,7 @@ class AnggotaController extends Controller
             ]);
         
             
-            return view('admin.anggota.index');
+            return redirect()->route('anggota.index');
 }
     
     /**

@@ -5,7 +5,7 @@
 <!-- Select2 -->
 <link href="{{ asset('dashboard/vendors/select2/dist/css/select2.min.css') }}" rel="stylesheet">
 <!-- ckEditor -->
-<script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/4.16.0/basic/ckeditor.js"></script>
 <!-- Parsley -->
 <script src="{{ asset('dashboard/vendors/parsleyjs/dist/parsley.min.js') }}"></script>
 
@@ -64,7 +64,8 @@
                         <div class="item form-group">
                             <label for="rencana_kegiatan" class="col-form-label col-md-3 col-sm-3 label-align">Rencana Kegiatan</label>
                             <div class="col-md-6 col-sm-6 ">
-                                <textarea class="form-control" id="rencana_kegiatan" name="rencana_kegiatan" maxlength="500" placeholder="">{{ $post->rencana_kegiatan }}</textarea>
+                                {{-- <textarea class="form-control" id="rencana_kegiatan" name="rencana_kegiatan" maxlength="500" placeholder="">{{ $post->rencana_kegiatan }}</textarea> --}}
+                                <textarea class="form-control" id="rencana_kegiatan" name="rencana_kegiatan">{{ $post->rencana_kegiatan }}</textarea>
                             </div>
                         </div>
                         <div class="item form-group">
@@ -117,6 +118,10 @@
         
 {{-- </div> --}}
 
+
+<script>
+    CKEDITOR.replace( 'rencana_kegiatan' );
+</script>
 
 @endsection
 

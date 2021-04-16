@@ -320,7 +320,7 @@
             $(".modal-body #id_info").val(data[0].id);
             $(".modal-body #kpi_info").text(data[0].kpi);
             $(".modal-body #unit_info").text( data[0].units['nama_unit'] );
-            $(".modal-body #rencana_info").text( data[0].rencana_kegiatan );
+            $(".modal-body #rencana_info").html( data[0].rencana_kegiatan );
             $(".modal-body #tahun_info").text( data[0].tahun);
             $(".modal-body #target_info").text( data[0].target);
             $(".modal-body #waktu_info").text( data[0].waktu );
