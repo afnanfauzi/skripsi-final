@@ -19,7 +19,7 @@ class CreateArtikelTable extends Migration
             $table->string('slug', 200);
             $table->string('isi', 500);
             $table->string('thumbnail')->nullable();
-            $table->string('statuspublikasi_id', 10);
+            $table->string('statuspublikasi');
             $table->foreignId('kategori_id');
             $table->foreignId('anggota_id');
             $table->timestamps();

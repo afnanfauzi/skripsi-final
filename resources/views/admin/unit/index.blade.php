@@ -30,7 +30,7 @@
                         <th></th>
                         <th>No</th>
                         <th>Nama Unit</th>
-                        <th>No Telp</th>
+                        {{-- <th>No Telp</th> --}}
                         <th>Aksi</th>
 
                     </tr>
@@ -66,25 +66,25 @@
                                 <input type="text" class="form-control" id="nama_unit" name="nama_unit" placeholder="" value="" maxlength="50" required="">
                                 </div>
                               </div> 
-                              <div class="form-group">
+                              {{-- <div class="form-group">
                                 <label for="no_telp" class="col-sm-12 control-label">No Telp</label>
                                 <div class="col-sm-12">
                                 <input type="text" class="form-control" id="no_telp" name="no_telp" placeholder="" value="" maxlength="50" required="">
                                 </div>
-                              </div> 
-                          </div>
-
-                          <div class="col-sm-offset-2 col-sm-12" style="padding-top: 30px">
-                              <button type="submit" class="btn btn-primary btn-block" id="tombol-simpan"
-                                  value="create">Simpan
-                              </button>
+                              </div>  --}}
                           </div>
                       </div>
 
-                  </form>
+                  
               </div>
               <div class="modal-footer">
+                <div class="col-sm-offset-2 col-sm-12" >
+                    <button type="submit" class="btn btn-primary btn-block" id="tombol-simpan"
+                        value="create">Simpan
+                    </button>
+                </div>
               </div>
+            </form>
           </div>
       </div>
   </div>
@@ -166,10 +166,10 @@
                         data: 'nama_unit', 
                         name: 'nama_unit' 
                     },
-                    {
-                        data: 'no_telp', 
-                        name: 'no_telp' 
-                    },
+                    // {
+                    //     data: 'no_telp', 
+                    //     name: 'no_telp' 
+                    // },
                     {
                         data: 'action',
                         name: 'action'
@@ -193,12 +193,12 @@
             // of an input field. Validation rules are defined
             // on the right side
             nama_unit: "required",
-            no_telp: "required",
+            // no_telp: "required",
             },
              // Specify validation error messages
             messages: {
                 nama_unit: "Silahkan masukkan nama unit terlebih dahulu",
-                no_telp: "Silahkan masukkan nomor telepon dahulu",
+                // no_telp: "Silahkan masukkan nomor telepon dahulu",
             },
               submitHandler: function (form) {
                   var actionType = $('#tombol-simpan').val();
@@ -244,10 +244,10 @@
                 //set value masing-masing id berdasarkan data yg diperoleh dari ajax get request diatas               
                 $('#id').val(data.id);
                 $('#nama_unit').val(data.nama_unit);
-                $('#unit_id').val(data.unit_id);
-                $('#akun_id').val(data.akun_id);
-                $('#no_telp').val(data.no_telp);
-                $('#alamat').val(data.alamat);
+                // $('#unit_id').val(data.unit_id);
+                // $('#akun_id').val(data.akun_id);
+                // $('#no_telp').val(data.no_telp);
+                // $('#alamat').val(data.alamat);
             })
         });
   

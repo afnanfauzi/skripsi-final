@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Artikel;
 use App\Kategori;
-use App\StatusPublikasi;
+// use App\StatusPublikasi;
 use App\Tags;
 use Illuminate\Http\Request;
 use Illuminate\Support\MessageBag;
@@ -46,10 +46,10 @@ class ArtikelController extends Controller
      */
     public function create()
     {
-        $status = StatusPublikasi::all();
+        // $status = StatusPublikasi::all();
         $tags = Tags::all();
         $kategori = Kategori::all();
-        return view('admin.artikel.artikel-baru', compact('kategori', 'tags', 'status'));
+        return view('admin.artikel.artikel-baru', compact('kategori', 'tags'));
     }
 
     /**
@@ -77,7 +77,7 @@ class ArtikelController extends Controller
             'slug' => Str::slug($request->judul),
             'isi' =>$request->isi,
             'thumbnail' =>$request->thumbnail,
-            'statuspublikasi_id' =>$request->nama_status,
+            'statuspublikasi' =>$request->nama_status,
             'kategori_id' =>$request->kategori_id,
             'anggota_id' =>'1',
             // 'tags' => Str::slug($request->tags_1),
@@ -111,14 +111,14 @@ class ArtikelController extends Controller
      */
     public function edit($id)
     {
-        $status = StatusPublikasi::all();
+        // $status = StatusPublikasi::all();
         $kategori = Kategori::all();
         $tags = Tags::all();
         $where = array('id' => $id);
         $post  = Artikel::where($where)->first();
        
         // return $post;
-        return view('admin.artikel.artikel-edit', compact('kategori', 'tags','post', 'status'));
+        return view('admin.artikel.artikel-edit', compact('kategori', 'tags','post'));
         // return view('artikel.artikel-edit', compact('kategori', 'tags'), ['post' => $request->post])->render();
        
         
@@ -162,7 +162,7 @@ class ArtikelController extends Controller
             'slug' => Str::slug($request->judul),
             'isi' =>$request->isi,
             'thumbnail' =>$request->thumbnail,
-            'statuspublikasi_id' =>$request->nama_status,
+            'statuspublikasi' =>$request->nama_status,
             'kategori_id' =>$request->kategori_id,
             'anggota_id' =>'1',
             // 'tags' => Str::slug($request->tags_1),

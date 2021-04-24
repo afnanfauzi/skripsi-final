@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStatuspublikasiTable extends Migration
+class CreateRantingTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,13 @@ class CreateStatuspublikasiTable extends Migration
      */
     public function up()
     {
-        Schema::create('statuspublikasi', function (Blueprint $table) {
+        Schema::create('ranting', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nama_status');
+            $table->string('nama_ranting');
+            $table->string('anggota_id');
+            $table->string('jmlh_anggota')->nullable();
+            $table->string('status_ranting');
+            $table->string('cabang_id');
             $table->timestamps();
         });
     }
@@ -27,6 +31,6 @@ class CreateStatuspublikasiTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('statuspublikasi');
+        Schema::dropIfExists('ranting');
     }
 }

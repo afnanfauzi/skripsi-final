@@ -59,7 +59,7 @@
         <div class="col-md-3 left_col menu_fixed">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><span><p>Pimpinan Daerah Muhammadiyah Sragen<p></span></a>
+              <a href="{{route('kegiatan.index')}}" class="site_title"><span><p>Pimpinan Daerah Muhammadiyah Sragen<p></span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -94,6 +94,8 @@
                     <ul class="nav child_menu">
                       <li><a href="{{route('anggota.index')}}">Daftar Anggota</a></li>
                       <li><a href="{{route('unit.index')}}">Daftar Unit</a></li>
+                      <li><a href="{{route('cabang.index')}}">Daftar Cabang</a></li>
+                      <li><a href="">Daftar Ranting</a></li>
                       <li><a href="{{route('jabatan.index')}}">List Jabatan</a></li>
                     </ul>
                   </li>

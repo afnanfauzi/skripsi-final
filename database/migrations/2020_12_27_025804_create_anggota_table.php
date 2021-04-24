@@ -17,13 +17,17 @@ class CreateAnggotaTable extends Migration
             $table->bigIncrements('id');
             $table->string('nama_anggota');
             $table->date('tgl_lahir');
+            $table->string('pekerjaan');
+            $table->string('nik');
             $table->string('no_telp')->nullable();
             $table->text('alamat')->nullable();
             $table->string('jenkel')->nullable();
             $table->string('gambar')->nullable();
             $table->foreignId('unit_id');
-            $table->foreignId('akun_id');
+            $table->foreignId('akun_id')->nullable();
             $table->foreignId('jabatan_id');
+            $table->foreignId('ranting_id');
+            $table->foreignId('cabang_id');
             $table->timestamps();
         });
     }

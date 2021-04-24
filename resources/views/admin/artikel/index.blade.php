@@ -126,8 +126,8 @@
                         name: 'created_at' 
                     },
                     {
-                        data: 'status.nama_status', 
-                        name: 'status.nama_status' 
+                        data: 'statuspublikasi', 
+                        name: 'statuspublikasi' 
                     },
                     {
                         data: 'action',

@@ -1,32 +1,37 @@
 <!-- jQuery -->
 <script src="{{ asset('dashboard/vendors/jquery/dist/jquery.min.js') }}"></script>
+<link href="{{ asset('css/table-custom.css') }}" rel="stylesheet">
 @extends('layouts.master')
 @section('csrf')
 <meta name="csrf-token" content="{{ csrf_token() }}">    
 @endsection
-@section('title', 'List Jabatan - Pimpinan Daerah Muhammadiyah Sragen')
+@section('title', 'Daftar Cabang - Pimpinan Daerah Muhammadiyah Sragen')
 @section('content')
 <div class="row">
   <div class="col-md-12 col-sm-12 ">
             <div class="x_panel">
             <div class="x_title">
-                <h2>List Jabatan</h2>
+                <h2>Daftar Cabang</h2>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="card-box table-responsive">
-                        <div class="col-md-12">
-                            <a href="javascript:void(0)" class="btn btn-primary btn-sm" id="tambah-jabatan"><i class="fa fa-plus"></i> Tambah Jabatan</a>
-                        </div>
+                            <div class="col-md-10">
+                                <p>Berikut adalah daftar cabang di Pimpinan Daerah Muhammadiyah Sragen</p>
+                              </div>
+                              <div class="col-md-2" style="text-align: right;">
+                                <a href="javascript:void(0)" class="btn btn-primary btn-sm" id="tambah-cabang"><i class="fa fa-plus"></i> Tambah Cabang</a>
+                              </div>
         
-                        <table class="table table-striped table-bordered dt-responsive nowrap" id="table-jabatan" style="width:100%">
+                        <table class="table table-striped table-bordered dt-responsive nowrap" id="table-cabang" style="width:100%">
                             <thead>
                             <tr>
                                 <th></th>
                                 <th>No</th>
-                                <th>Nama Jabatan</th>
+                                <th>Nama Cabang</th>
+                                <th>Nama Ketua Cabang</th>
                                 <th>Aksi</th>
 
                             </tr>
@@ -57,9 +62,20 @@
                               <input type="hidden" name="id" id="id">
 
                               <div class="form-group">
-                                <label for="name" class="col-sm-12 control-label">Nama Jabatan</label>
+                                <label for="nama_cabang" class="col-sm-12 control-label">Nama Cabang</label>
                                 <div class="col-sm-12">
-                                <input type="text" class="form-control" id="nama_jabatan" name="nama_jabatan" placeholder="" value="" maxlength="50" required="">
+                                    <input type="text" class="form-control" id="nama_cabang" name="nama_cabang" placeholder="" value="" required="">
+                                </div>
+                              </div> 
+                              <div class="form-group">
+                                <label for="anggota_id" class="col-sm-12 control-label">Nama Ketua Cabang</label>
+                                <div class="col-sm-12">
+                                    <select name="anggota_id" id="anggota_id" class="form-control">
+                                        <option value="" holder>Pilih Ketua Cabang</option>
+                                        @foreach ($anggota as $anggota)
+                                            <option value="{{ $anggota->id }}">{{ $anggota->nama_anggota }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                               </div> 
 
@@ -69,7 +85,7 @@
                   
               </div>
               <div class="modal-footer">
-                <div class="col-sm-offset-2 col-sm-12" style="padding-top: 30px">
+                <div class="col-sm-offset-2 col-sm-12">
                     <button type="submit" class="btn btn-primary btn-block" id="tombol-simpan"
                         value="create">Simpan
                     </button>
@@ -93,7 +109,7 @@
                   </button>
               </div>
               <div class="modal-body">
-                  <p><b>Jika menghapus data jabatan ini maka data tersebut akan hilang selamanya, apakah anda yakin?</b></p>
+                  <p><b>Jika menghapus data cabang ini maka data tersebut akan hilang selamanya, apakah anda yakin?</b></p>
               </div>
               <div class="modal-footer bg-whitesmoke br">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -105,6 +121,50 @@
   </div>
 
   <!-- AKHIR MODAL -->
+
+
+ <!-- MULAI MODAL FORM INFO-->
+ <div class="modal fade" id="tampilkan-info" aria-hidden="true">
+    <div class="modal-dialog modal-lg ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal-judul-info"></h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="column-kegiatan">
+                        <input type="hidden" name="id_info" id="id_info" value="">
+                      <table style="font-size: 15px;">
+                        <tr>
+                            <td width="200px" style="vertical-align: top;"><label for="cabang_info" class="control-label">Nama Cabang</label></td>
+                            <td width="5px" style="vertical-align: top;"><label for="cabang_info" class="control-label">:</label></td>
+                            <td><label for="kpi_info" class="control-label" id="cabang_info"></label></td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: top;"><label for="anggota_id_info" class="control-label">Ketua Cabang</label></td>
+                            <td style="vertical-align: top;"><label for="anggota_id_info" class="control-label">:</label></td>
+                            <td><label for="unit_info" class="control-label" id="anggota_id_info"></label></td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: top;"><label for="status_cabang_info" class="control-label">Status Cabang</label></td>
+                            <td style="vertical-align: top;"><label for="status_cabang_info" class="control-label">:</label></td>
+                            <td><label for="rencana_info" class="control-label" id="status_cabang_info" ></label></td>
+
+                        </tr>
+                      </table>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+   </div>
+<!-- AKHIR MODAL -->
 @endsection
 
 
@@ -121,12 +181,12 @@
             });
         
         //TOMBOL TAMBAH DATA
-        //jika tambah-jabatan diklik maka
-        $('#tambah-jabatan').click(function () {
+        //jika tambah-cabang diklik maka
+        $('#tambah-cabang').click(function () {
             $('#tombol-simpan').val("create-post"); //valuenya menjadi create-post
             $('#id').val(''); //valuenya menjadi kosong
             $('#form-tambah-edit').trigger("reset"); //mereset semua input dll didalamnya
-            $('#modal-judul').html("Tambah jabatan"); //valuenya tambah jabatan baru
+            $('#modal-judul').html("Tambah cabang"); //valuenya tambah cabang baru
             $('#tambah-edit-modal').modal('show'); //modal tampil
         });
         
@@ -138,11 +198,11 @@
         //MULAI DATATABLE
         //script untuk memanggil data json dari server dan menampilkannya berupa datatable
         $(document).ready(function () {
-            $('#table-jabatan').DataTable({
+            $('#table-cabang').DataTable({
                 processing: true,
                 serverSide: true, //aktifkan server-side 
                 ajax: {
-                    url: "{{ route('jabatan.index') }}",
+                    url: "{{ route('cabang.index') }}",
                     type: 'GET'
                 },
                 columns: [{
@@ -154,8 +214,12 @@
                         name: 'DT_RowIndex', orderable: false,searchable: false
                     },
                     {
-                        data: 'nama_jabatan', 
-                        name: 'nama_jabatan' 
+                        data: 'nama_cabang', 
+                        name: 'nama_cabang' 
+                    },
+                    {
+                        data: 'nama_cabang', 
+                        name: 'nama_cabang' 
                     },
                     {
                         data: 'action',
@@ -179,11 +243,11 @@
             // The key name on the left side is the name attribute
             // of an input field. Validation rules are defined
             // on the right side
-            nama_jabatan: "required",
+            nama_cabang: "required",
             },
              // Specify validation error messages
             messages: {
-                nama_jabatan: "Silahkan masukkan nama jabatan terlebih dahulu",
+                nama_cabang: "Silahkan masukkan nama cabang terlebih dahulu",
             },
               submitHandler: function (form) {
                   var actionType = $('#tombol-simpan').val();
@@ -191,14 +255,14 @@
 
                   $.ajax({
                       data: $('#form-tambah-edit').serialize(), //function yang dipakai agar value pada form-control seperti input, textarea, select dll dapat digunakan pada URL query string ketika melakukan ajax request
-                      url: "{{ route('jabatan.store') }}", //url simpan data
+                      url: "{{ route('cabang.store') }}", //url simpan data
                       type: "POST", //karena simpan kita pakai method POST
                       dataType: 'json', //data tipe kita kirim berupa JSON
                       success: function (data) { //jika berhasil 
                           $('#form-tambah-edit').trigger("reset"); //form reset
                           $('#tambah-edit-modal').modal('hide'); //modal hide
                           $('#tombol-simpan').html('Simpan'); //tombol simpan
-                          var oTable = $('#table-jabatan').dataTable(); //inialisasi datatable
+                          var oTable = $('#table-cabang').dataTable(); //inialisasi datatable
                           oTable.fnDraw(false); //reset datatable
                           iziToast.success({ //tampilkan iziToast dengan notif data berhasil disimpan pada posisi kanan bawah
                               title: 'Data Berhasil Disimpan',
@@ -216,22 +280,47 @@
           })
       }
     
-        //TOMBOL EDIT DATA PER jabatan DAN TAMPIKAN DATA BERDASARKAN ID jabatan KE MODAL
+        //TOMBOL EDIT DATA PER cabang DAN TAMPIKAN DATA BERDASARKAN ID cabang KE MODAL
         //ketika class edit-post yang ada pada tag body di klik maka
         $('body').on('click', '.edit-post', function () {
             var data_id = $(this).data('id');
-            $.get('jabatan/' + data_id + '/edit', function (data) {
+            $.get('cabang/' + data_id + '/edit', function (data) {
                 // alert("Data: " + data);
-                $('#modal-judul').html("Edit jabatan");
+                $('#modal-judul').html("Edit Cabang");
                 $('#tombol-simpan').val("edit-post");
                 $('#tambah-edit-modal').modal('show');
   
                 //set value masing-masing id berdasarkan data yg diperoleh dari ajax get request diatas               
                 $('#id').val(data.id);
-                $('#nama_jabatan').val(data.nama_jabatan);
+                $('#nama_cabang').val(data.nama_cabang);
+                $('#anggota_id').val(data.anggota_id);
             })
         });
   
+
+
+
+        //TOMBOL INFO DAN TAMPIKAN DATA BERDASARKAN ID kegiatan KE MODAL
+      $(document).on("click", ".open-info", function () {
+        var info_id = $(this).data('id');
+        $.get('cabang/' + info_id, function(data){
+            $(".modal-body #id_info").val(data[0].id);
+            $(".modal-body #nama_cabang_info").val(data[0].nama_cabang);
+            $(".modal-body #ketua_cabang_info").val(data[0].anggota_id);
+
+            // As pointed out in comments, 
+            // it is unnecessary to have to manually call the modal.
+            $('#tampilkan-info').modal('show');
+            $('#modal-judul-info').html("Info Cabang");
+            // $("#bodyModal").html(html);
+            
+            });
+        });
+
+
+
+
+
         //jika klik class delete (yang ada pada tombol delete) maka tampilkan modal konfirmasi hapus maka
         $(document).on('click', '.delete', function () {
             dataId = $(this).attr('id');
@@ -242,7 +331,7 @@
         $('#tombol-hapus').click(function () {
             $.ajax({
   
-                url: "jabatan/" + dataId, //eksekusi ajax ke url ini
+                url: "cabang/" + dataId, //eksekusi ajax ke url ini
                 type: 'delete',
                 beforeSend: function () {
                     $('#tombol-hapus').text('Hapus Data'); //set text untuk tombol hapus
@@ -250,7 +339,7 @@
                 success: function (data) { //jika sukses
                     setTimeout(function () {
                         $('#konfirmasi-modal').modal('hide'); //sembunyikan konfirmasi modal
-                        var oTable = $('#table-jabatan').dataTable();
+                        var oTable = $('#table-cabang').dataTable();
                         oTable.fnDraw(false); //reset datatable
                     });
                     iziToast.warning({ //tampilkan izitoast warning

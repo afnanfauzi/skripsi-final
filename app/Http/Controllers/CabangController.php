@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Unit;
 use Illuminate\Http\Request;
+use App\Cabang;
+use App\Anggota;
 
-class UnitController extends Controller
+class CabangController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,14 +15,17 @@ class UnitController extends Controller
      */
     public function index(Request $request)
     {
-        // $unitmodal = Unit::all();
-        $unit = Unit::with('anggota')->get();
+        $cabang = Cabang::with('ranting')->get();
+        $anggota = Anggota::where('jabatan_id', '=', 1)->get();
+    
         if($request->ajax()){
-            return datatables()->of($unit)
+            return datatables()->of($cabang)
                         ->addColumn('action', function($data){
-                            $button = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$data->id.'" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post" title="Edit Data"><i class="fa fa-edit fa-sm"></i></a>';
-                            // $button .= '&nbsp;&nbsp;';
-                            // $button .= '<button type="button" name="delete" id="'.$data->id.'" class="delete btn btn-danger btn-sm" title="Hapus Data"><i class="fa fa-trash fa-sm"></i></button>';       
+                            $button = '<a href="javascript:void(0)" data-toggle="modal" data-id="'.$data->id.'" title="Lihat Detail Cabang" class="open-info btn btn-info"><i class="fa fa-info fa-sm"></i></a>';
+                            $button .= '&nbsp;&nbsp;';
+                            $button .= '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$data->id.'" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post" title="Edit Data"><i class="fa fa-edit fa-sm" style="padding:6px"></i></a>';
+                            $button .= '&nbsp;&nbsp;';
+                            $button .= '<button type="button" name="delete" id="'.$data->id.'" class="delete btn btn-danger btn-sm" title="Hapus Data"><i class="fa fa-trash fa-sm" style="padding:6px"></i></button>';                               
                             return $button;
                         })
                         ->rawColumns(['action'])
@@ -29,7 +33,7 @@ class UnitController extends Controller
                         ->make(true);
         }
     
-            return view('admin.unit.index');
+        return view('admin.cabang.index', compact('anggota'));
     }
 
     /**
@@ -39,7 +43,10 @@ class UnitController extends Controller
      */
     public function create()
     {
-        //
+        // $cabang = Cabang::all();
+        // $anggota = Anggota::where('jabatan_id', '=', 1)->get();
+
+        // return view('admin.cabang.cabang-baru', compact('cabang', 'anggota'));
     }
 
     /**
@@ -52,10 +59,10 @@ class UnitController extends Controller
     {
         $id = $request->id;
         
-        $post   =   Unit::updateOrCreate(['id' => $id],
+        $post   =   Cabang::updateOrCreate(['id' => $id],
                     [
-                        'nama_unit' => $request->nama_unit,
-                        // 'no_telp' => $request->no_telp,
+                        'nama_cabang' => $request->nama_cabang,
+                        'anggota_id' => $request->anggota_id,
                     ]); 
 
         return response()->json($post);
@@ -69,7 +76,11 @@ class UnitController extends Controller
      */
     public function show($id)
     {
-        //
+        $where = array('id' => $id);
+        $post  =  Cabang::with('ranting')->where($where)->get();
+        $result = $post->toArray();
+     
+        return response()->json($result);
     }
 
     /**
@@ -81,9 +92,10 @@ class UnitController extends Controller
     public function edit($id)
     {
         $where = array('id' => $id);
-        $post  = Unit::where($where)->first();
-     
+        $post  = Cabang::where($where)->first();
+
         return response()->json($post);
+
     }
 
     /**
@@ -106,7 +118,7 @@ class UnitController extends Controller
      */
     public function destroy($id)
     {
-        $post = Unit::where('id',$id)->delete();
+        $post = Cabang::where('id',$id)->delete();
      
         return response()->json($post);
     }

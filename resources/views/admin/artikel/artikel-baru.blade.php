@@ -63,10 +63,9 @@
                     <div class="col-md-2 col-sm-2" style="text-align: right;">
                         <select name="nama_status" id="nama_status" class="form-control">
                             <option value="" holder>Pilih Status</option>
-                            @foreach ($status as $s)
-                                <option value="{{ $s->id }}" {{ (collect(old('nama_status'))->contains($s->id)) ? 'selected':'' }}>{{ $s->nama_status }}</option>
-                            @endforeach
-                          </select>
+                            <option value="Ya">Ya</option>
+                            <option value="Tidak">Tidak</option>
+                        </select>
                     </div>
                     <label class="control-label col-md-1 col-sm-1" style="padding-top: 10px; font-size: 15px; text-align: right;">Tags:</label>
                         <div class="col-md-2 col-sm-2"> 
