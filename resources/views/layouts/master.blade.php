@@ -95,7 +95,7 @@
                       <li><a href="{{route('anggota.index')}}">Daftar Anggota</a></li>
                       <li><a href="{{route('unit.index')}}">Daftar Unit</a></li>
                       <li><a href="{{route('cabang.index')}}">Daftar Cabang</a></li>
-                      <li><a href="">Daftar Ranting</a></li>
+                      <li><a href="{{route('ranting.index')}}">Daftar Ranting</a></li>
                       <li><a href="{{route('jabatan.index')}}">List Jabatan</a></li>
                     </ul>
                   </li>

@@ -1,9 +1,8 @@
 <!-- jQuery -->
 <script src="{{ asset('dashboard/vendors/jquery/dist/jquery.min.js') }}"></script>
-<!-- Select2 -->
+{{-- Custom select --}}
+<link href="{{ asset('dashboard/vendors/select2/dist/css/select2.min.css') }}" rel="stylesheet" />
 <script src="{{ asset('dashboard/vendors/select2/dist/js/select2.full.min.js') }}"></script>
-<!-- Select2 -->
-<link href="{{ asset('dashboard/vendors/select2/dist/css/select2.min.css') }}" rel="stylesheet">
 <!-- ckEditor -->
 <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
 <!-- Parsley -->
@@ -58,36 +57,10 @@
                                 <input type="text" id="akun_id" name="akun_id" class="form-control">
                             </div>
                         </div>
-
-                        <div class="item form-group">
-                            <label for="unit" class="col-form-label col-md-3 col-sm-3 label-align">Cabang <span class="required">*</span></label>
-                            <div class="col-md-6 col-sm-6 ">
-                                <select name="cabang_id" id="cabang_id" class="form-control" required="required">
-                                    <option value="" holder>Pilih Unit</option>
-                                    {{-- @foreach ($unit as $unit)
-                                        <option value="{{ $unit->id }}">{{ $unit->nama_unit }}</option>
-                                    @endforeach --}}
-                                </select>
-                            </div>
-                        </div>
-                        <div class="item form-group">
-                            <label for="jabatan_id" class="col-form-label col-md-3 col-sm-3 label-align">Ranting <span class="required">*</span></label>
-                            <div class="col-md-6 col-sm-6 ">
-                                <select name="ranting_id" id="ranting_id" class="form-control" required="required">
-                                    <option value="" holder>Pilih Jabatan</option>
-                                    {{-- @foreach ($jabatan as $jabatan)
-                                        <option value="{{ $jabatan->id }}">{{ $jabatan->nama_jabatan }}</option>
-                                    @endforeach --}}
-                                </select>
-                            </div>
-                        </div>
-
-
-
                         <div class="item form-group">
                             <label for="unit" class="col-form-label col-md-3 col-sm-3 label-align">Pengurus <span class="required">*</span></label>
                             <div class="col-md-6 col-sm-6 ">
-                                <select name="pengurus" id="pengurus" class="form-control" required="required">
+                                <select name="status_kepengurusan" id="status_kepengurusan" class="custom-select" required="required" style="width: 100%;">
                                     <option value="" holder>Silahkan Pilih</option>
                                     <option value="Ya">Ya</option>
                                     <option value="Tidak">Tidak</option>
@@ -96,9 +69,9 @@
                         </div>
                         <div id="opsi_pengurus" style="display:none">
                             <div class="item form-group">
-                                <label for="unit" class="col-form-label col-md-3 col-sm-3 label-align">Level <span class="required">*</span></label>
+                                <label for="level_kepengurusan" class="col-form-label col-md-3 col-sm-3 label-align">Level <span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <select name="level" id="level" class="form-control" required="required">
+                                    <select name="level_kepengurusan" id="level_kepengurusan" class="custom-select" style="width: 100%;">
                                         <option value="" holder>Pilih Level</option>
                                         <option value="Kabupaten">Kabupaten</option>
                                         <option value="Cabang">Cabang</option>
@@ -107,26 +80,48 @@
                                 </div>
                             </div>
                             <div class="item form-group">
-                                <label for="unit" class="col-form-label col-md-3 col-sm-3 label-align">Unit <span class="required">*</span></label>
-                                <div class="col-md-6 col-sm-6 ">
-                                    <select name="unit_id" id="unit_id" class="form-control" required="required">
-                                        <option value="" holder>Pilih Unit</option>
-                                        @foreach ($unit as $unit)
-                                            <option value="{{ $unit->id }}">{{ $unit->nama_unit }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="item form-group">
                                 <label for="jabatan_id" class="col-form-label col-md-3 col-sm-3 label-align">Jabatan <span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6 ">
-                                    <select name="jabatan_id" id="jabatan_id" class="form-control" required="required">
+                                    <select name="jabatan_id" id="jabatan_id" class="custom-select" style="width: 100%;">
                                         <option value="" holder>Pilih Jabatan</option>
                                         @foreach ($jabatan as $jabatan)
                                             <option value="{{ $jabatan->id }}">{{ $jabatan->nama_jabatan }}</option>
                                         @endforeach
                                     </select>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label for="unit" class="col-form-label col-md-3 col-sm-3 label-align">Unit <span class="required">*</span></label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <select name="unit_id" id="unit_id" class="custom-select" style="width: 100%;">
+                                    <option value="" holder>Pilih Unit</option>
+                                    @foreach ($unit as $unit)
+                                        <option value="{{ $unit->id }}">{{ $unit->nama_unit }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label for="unit" class="col-form-label col-md-3 col-sm-3 label-align">Cabang <span class="required">*</span></label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <select name="cabang_id" id="cabang_id" class="custom-select"  style="width: 100%;">
+                                    <option value="" holder>Pilih Cabang</option>
+                                    @foreach ($cabang as $cabang)
+                                        <option value="{{ $cabang->id }}">{{ $cabang->nama_cabang }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label for="jabatan_id" class="col-form-label col-md-3 col-sm-3 label-align">Ranting <span class="required">*</span></label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <select name="ranting_id" id="ranting_id" class="custom-select"  style="width: 100%;">
+                                    <option value="" holder>Pilih Ranting</option>
+                                    @foreach ($ranting as $ranting)
+                                        <option value="{{ $ranting->id }}">{{ $ranting->nama_ranting }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="item form-group">
@@ -153,15 +148,6 @@
                                     <input type="radio" class="flat" name="jenkel" id="laki-laki" value="Laki-Laki" /> Laki-Laki
                                     <input type="radio" class="flat" name="jenkel" id="perempuan" value="Perempuan" /> Perempuan
                                 </div>
-                                
-                                {{-- <div id="jenkel" class="btn-group" data-toggle="buttons" >
-                                    <label class="btn btn-secondary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                        <input type="radio" name="jenkel" value="Laki-Laki" class="join-btn"> &nbsp; Laki-Laki &nbsp;
-                                    </label>
-                                    <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                        <input type="radio" name="jenkel" value="Perempuan" class="join-btn"> Perempuan
-                                    </label>
-                                </div> --}}
                             </div>
                         </div>
                         <div class="item form-group">
@@ -199,7 +185,8 @@
                             </div>
                         </div>
                         <div class="item form-group">
-                            <div class="col-md-9 col-sm-9" style="padding-left: 313px;">
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="kosong"></label>
+                            <div class="col-md-6 col-sm-6">
                                 <div id="upload_prev">
                                     <img id="preview" src="" width="130" style="border: 3px solid #6c757d" />
                                 </div>
@@ -209,8 +196,7 @@
                         <div class="item form-group">
                             <div class="col-md-6 col-sm-6 offset-md-3">
                                 <button type="submit" class="btn btn-success">Simpan</button>
-                                <button class="btn btn-primary" type="reset">Reset</button>
-                                <a href="{{ route('anggota.index') }}" class="btn btn-info" type="button">Kembali</a>
+                                <a href="{{ route('anggota.index') }}" class="btn btn-primary" type="button">Kembali</a>
                             </div>
                         </div>
 
@@ -222,6 +208,7 @@
     </div>
         
 {{-- </div> --}}
+
 
 
 <script>
@@ -243,7 +230,7 @@
 
 
         $(document).ready(function(){
-            $('#pengurus').on('change', function() {
+            $('#status_kepengurusan').on('change', function() {
                 if ( this.value == 'Ya')
                     {
                         $("#opsi_pengurus").show();
@@ -253,6 +240,10 @@
                         $("#opsi_pengurus").hide();
                     }
             });
+        });
+
+        $(document).ready(function() {
+            $('.custom-select').select2();
         });
     </script>
 

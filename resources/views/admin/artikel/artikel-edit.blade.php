@@ -1,9 +1,9 @@
 <!-- jQuery -->
 <script src="{{ asset('dashboard/vendors/jquery/dist/jquery.min.js') }}"></script>
-<!-- Select2 -->
+{{-- <!-- Select2 -->
 <script src="{{ asset('dashboard/vendors/select2/dist/js/select2.full.min.js') }}"></script>
 <!-- Select2 -->
-<link href="{{ asset('dashboard/vendors/select2/dist/css/select2.min.css') }}" rel="stylesheet">
+<link href="{{ asset('dashboard/vendors/select2/dist/css/select2.min.css') }}" rel="stylesheet"> --}}
 <!-- ckEditor -->
 <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
 
@@ -58,13 +58,8 @@
                     <div class="col-md-2 col-sm-2" style="text-align: right;">
                         <select name="nama_status" id="nama_status" class="form-control">
                             <option value="" holder>Pilih Status</option>
-                            @foreach ($status as $s)
-                                <option value="{{ $s->id }}"
-                                @if ($post->statuspublikasi_id == $s->id)
-                                    selected
-                                @endif    
-                                >{{ $s->nama_status }}</option>
-                            @endforeach
+                            <option value="Ya" @if ($post->statuspublikasi == "Ya") {{ 'selected' }} @endif>Ya</option>
+                            <option value="Tidak" @if ($post->statuspublikasi == "Tidak") {{ 'selected' }} @endif>Tidak</option>
                           </select>
                     </div>
                     <label class="control-label col-md-1 col-sm-1" style="padding-top: 10px; font-size: 15px; text-align: right;">Tags:</label>

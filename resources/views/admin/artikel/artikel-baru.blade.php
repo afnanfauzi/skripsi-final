@@ -1,9 +1,9 @@
 <!-- jQuery -->
 <script src="{{ asset('dashboard/vendors/jquery/dist/jquery.min.js') }}"></script>
-<!-- Select2 -->
+{{-- <!-- Select2 -->
 <script src="{{ asset('dashboard/vendors/select2/dist/js/select2.full.min.js') }}"></script>
 <!-- Select2 -->
-<link href="{{ asset('dashboard/vendors/select2/dist/css/select2.min.css') }}" rel="stylesheet">
+<link href="{{ asset('dashboard/vendors/select2/dist/css/select2.min.css') }}" rel="stylesheet"> --}}
 <!-- ckEditor -->
 <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
 

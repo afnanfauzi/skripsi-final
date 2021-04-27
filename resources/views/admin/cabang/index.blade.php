@@ -1,6 +1,9 @@
 <!-- jQuery -->
 <script src="{{ asset('dashboard/vendors/jquery/dist/jquery.min.js') }}"></script>
 <link href="{{ asset('css/table-custom.css') }}" rel="stylesheet">
+{{-- Custom select --}}
+<link href="{{ asset('dashboard/vendors/select2/dist/css/select2.min.css') }}" rel="stylesheet" />
+<script src="{{ asset('dashboard/vendors/select2/dist/js/select2.full.min.js') }}"></script>
 @extends('layouts.master')
 @section('csrf')
 <meta name="csrf-token" content="{{ csrf_token() }}">    
@@ -70,8 +73,8 @@
                               <div class="form-group">
                                 <label for="anggota_id" class="col-sm-12 control-label">Nama Ketua Cabang</label>
                                 <div class="col-sm-12">
-                                    <select name="anggota_id" id="anggota_id" class="form-control">
-                                        <option value="" holder>Pilih Ketua Cabang</option>
+                                    <select name="anggota_id" id="anggota_id" class="custom-select" style="width: 100%; height: 38px;">
+                                        {{-- <option value="" holder>Pilih Ketua Cabang</option> --}}
                                         @foreach ($anggota as $anggota)
                                             <option value="{{ $anggota->id }}">{{ $anggota->nama_anggota }}</option>
                                         @endforeach
@@ -125,7 +128,7 @@
 
  <!-- MULAI MODAL FORM INFO-->
  <div class="modal fade" id="tampilkan-info" aria-hidden="true">
-    <div class="modal-dialog modal-lg ">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modal-judul-info"></h5>
@@ -135,7 +138,11 @@
                 <div class="row">
                     <div class="column-kegiatan">
                         <input type="hidden" name="id_info" id="id_info" value="">
-                      <table style="font-size: 15px;">
+                        {{-- <input type="text" name="ranting" id="ranting" value="{{ $jumlah }}"> --}}
+                      <table style="font-size: 15px;" border="0">
+                        <tr>
+                            <td width="200px" style="vertical-align: top;"><label for="detail_cabang" class="control-label"><b>Detail Cabang</b></label></td>
+                        </tr>
                         <tr>
                             <td width="200px" style="vertical-align: top;"><label for="cabang_info" class="control-label">Nama Cabang</label></td>
                             <td width="5px" style="vertical-align: top;"><label for="cabang_info" class="control-label">:</label></td>
@@ -147,11 +154,34 @@
                             <td><label for="unit_info" class="control-label" id="anggota_id_info"></label></td>
                         </tr>
                         <tr>
-                            <td style="vertical-align: top;"><label for="status_cabang_info" class="control-label">Status Cabang</label></td>
-                            <td style="vertical-align: top;"><label for="status_cabang_info" class="control-label">:</label></td>
-                            <td><label for="rencana_info" class="control-label" id="status_cabang_info" ></label></td>
-
+                            <td style="vertical-align: top;"><label for="jmlh_ranting" class="control-label">Jumlah Ranting</label></td>
+                            <td style="vertical-align: top;"><label for="jmlh_ranting" class="control-label">:</label></td>
+                            <td><label for="rencana_info" class="control-label" id="jmlh_ranting" ></label></td>
                         </tr>
+                        <tr>
+                            <td width="200px" style="vertical-align: top; padding-top:25px;"><label for="cabang_info" class="control-label"><b>Status Ranting Di Cabang</b></label></td>
+                        </tr>
+                        <tr>
+                            <td><label for="aktif" class="control-label">Ranting Aktif</label></td>
+                            <td><label for="aktif" class="control-label">:</label></td>
+                            <td><label for="aktif" class="control-label" id="aktif" ></label></td>
+                        </tr>
+                        <tr>
+                            <td><label for="kurang" class="control-label">Ranting Aktif Sebagian</label></td>
+                            <td><label for="kurang" class="control-label">:</label></td>
+                            <td><label for="kurang" class="control-label" id="kurang" ></label></td>
+                        </tr>
+                        <tr>
+                            <td><label for="tidakAktif" class="control-label">Ranting Tidak Aktif</label></td>
+                            <td><label for="tidakAktif" class="control-label">:</label></td>
+                            <td><label for="tidakAktif" class="control-label" id="tidakAktif" ></label></td>
+                        </tr>
+                        <tr>
+                            <td><label for="tidakAda" class="control-label">Belum Ada Ranting</label></td>
+                            <td><label for="tidakAda" class="control-label">:</label></td>
+                            <td><label for="tidakAda" class="control-label" id="tidakAda" ></label></td>
+                        </tr>
+                        
                       </table>
                     </div>
                 </div>
@@ -165,6 +195,12 @@
     </div>
    </div>
 <!-- AKHIR MODAL -->
+
+<script>
+    $(document).ready(function() {
+    $('.custom-select').select2();
+});
+</script>
 @endsection
 
 
@@ -218,8 +254,8 @@
                         name: 'nama_cabang' 
                     },
                     {
-                        data: 'nama_cabang', 
-                        name: 'nama_cabang' 
+                        data: 'anggota_id', 
+                        name: 'anggota_id' 
                     },
                     {
                         data: 'action',
@@ -293,7 +329,8 @@
                 //set value masing-masing id berdasarkan data yg diperoleh dari ajax get request diatas               
                 $('#id').val(data.id);
                 $('#nama_cabang').val(data.nama_cabang);
-                $('#anggota_id').val(data.anggota_id);
+                $('#anggota_id').val(data.anggota_id); 
+                $('#anggota_id').trigger('change'); // Notify any JS components that the value changed
             })
         });
   
@@ -304,9 +341,15 @@
       $(document).on("click", ".open-info", function () {
         var info_id = $(this).data('id');
         $.get('cabang/' + info_id, function(data){
-            $(".modal-body #id_info").val(data[0].id);
-            $(".modal-body #nama_cabang_info").val(data[0].nama_cabang);
-            $(".modal-body #ketua_cabang_info").val(data[0].anggota_id);
+            // alert("Data "+data.post);
+            $(".modal-body #id_info").val(data.post[0].id);
+            $(".modal-body #cabang_info").text(data.post[0].nama_cabang);
+            $(".modal-body #anggota_id_info").text(data.post[0].anggota_id);
+            $(".modal-body #jmlh_ranting").text(data.ranting);
+            $(".modal-body #aktif").text(data.aktif);
+            $(".modal-body #kurang").text(data.kurang);
+            $(".modal-body #tidakAktif ").text(data.tidakAktif);
+            $(".modal-body #tidakAda").text(data.tidakAda);
 
             // As pointed out in comments, 
             // it is unnecessary to have to manually call the modal.

@@ -29,7 +29,7 @@
                         <th>Judul Artikel</th>
                         <th>Kategori</th>
                         <th>Penulis</th>
-                        <th>Dipublikasikan</th>
+                        <th>Dibuat</th>
                         <th>Publikasi</th>
                         <th>Aksi</th>
 

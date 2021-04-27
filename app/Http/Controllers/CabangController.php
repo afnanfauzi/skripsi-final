@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Cabang;
 use App\Anggota;
+use App\Ranting;
 
 class CabangController extends Controller
 {
@@ -17,6 +18,7 @@ class CabangController extends Controller
     {
         $cabang = Cabang::with('ranting')->get();
         $anggota = Anggota::where('jabatan_id', '=', 1)->get();
+
     
         if($request->ajax()){
             return datatables()->of($cabang)
@@ -76,11 +78,39 @@ class CabangController extends Controller
      */
     public function show($id)
     {
+
         $where = array('id' => $id);
+        $where2 = array('cabang_id' => $id);
+        $where3 = array('status_ranting' => 'Aktif');
+        $where4 = array('status_ranting' => 'Kurang Aktif');
+        $where5 = array('status_ranting' => 'Tidak Aktif');
+        $where6 = array('status_ranting' => 'Tidak Ada Ranting');
+
         $post  =  Cabang::with('ranting')->where($where)->get();
-        $result = $post->toArray();
+        $ranting = Ranting::where($where2)->count();
+        $aktif = Ranting::where($where2)->where($where3)->count();
+        $kurang = Ranting::where($where2)->where($where4)->count();
+        $tidakAktif = Ranting::where($where2)->where($where5)->count();
+        $tidakAda = Ranting::where($where2)->where($where6)->count();
+        
+        
+       
+
+        
+       
+        return response()->json(array(
+            'post' => $post,
+            'ranting' => $ranting,
+            'aktif' => $aktif,
+            'kurang' => $kurang,
+            'tidakAktif' => $tidakAktif,
+            'tidakAda' => $tidakAda,
+        ));
+
+
+         // $result = $post->toArray();
      
-        return response()->json($result);
+        // return response()->json($result);
     }
 
     /**

@@ -16,7 +16,7 @@ class CreateRantingTable extends Migration
         Schema::create('ranting', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama_ranting');
-            $table->string('anggota_id');
+            $table->string('anggota_id')->nullable();
             $table->string('jmlh_anggota')->nullable();
             $table->string('status_ranting');
             $table->string('cabang_id');

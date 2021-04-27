@@ -20,7 +20,7 @@ class ArtikelController extends Controller
     public function index(Request $request)
     {
         
-        $artikel = Artikel::with('kategori','anggota','status')->get();
+        $artikel = Artikel::with('kategori','anggota')->get();
         // print_r($artikel);
         // die();
         if($request->ajax()){

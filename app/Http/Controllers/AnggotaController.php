@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Validator;
 use App\Anggota;
+use App\Cabang;
 use App\Jabatan;
 use App\Unit;
 use Illuminate\Http\Request;
 use App\CustomHelpers\ImageHelper;
+use App\Ranting;
 use Illuminate\Support\Carbon; 
 use File;
 
@@ -16,7 +18,8 @@ class AnggotaController extends Controller
 {
     public function index(Request $request)
     {
-   
+    // $rantingmodal = Ranting::all();
+    // $cabangmodal = Cabang::all();
     $unitmodal = Unit::all();
     $jabatanmodal = Jabatan::all();
     $anggota = Anggota::with('units')->get();
@@ -71,16 +74,25 @@ class AnggotaController extends Controller
             $kirim = Anggota::create([
                 'gambar' => $imageName,
                 'nama_anggota' => $request->nama_anggota,
+                'nik' => $request->nik,
                 'akun_id' => $request->akun_id,
-                'no_telp' => $request->no_telp,
-                'alamat' => $request->alamat,
+                'cabang_id' => $request->cabang_id,
+                'ranting_id' => $request->ranting_id,
+                'status_kepengurusan' => $request->status_kepengurusan,
+                'level_kepengurusan' => $request->level_kepengurusan ?? '-',
                 'unit_id' => $request->unit_id,
-                'jabatan_id' => $request->jabatan_id,
-                'jenkel' => $request->jenkel,
+                'jabatan_id' => $request->jabatan_id ?? '7',
+                'tempat_lahir' => $request->tempat_lahir,
                 'tgl_lahir' => $request->tgl_lahir,
+                'jenkel' => $request->jenkel,
+                'pekerjaan' => $request->pekerjaan,
+                'no_telp' => $request->no_telp,
+                'email' => $request->email,
+                'alamat' => $request->alamat,
+                
             ]);
         
-            
+            // return dd($kirim);
             return redirect()->route('anggota.index');
 }
     
@@ -92,12 +104,14 @@ class AnggotaController extends Controller
      */
     public function edit($id)
     {
+        $cabang = Cabang::all();
+        $ranting = Ranting::all();
         $jabatan = Jabatan::all();
         $unit = Unit::all();
         $where = array('id' => $id);
         $post  = Anggota::where($where)->first();
      
-        return view('admin.anggota.anggota-edit', compact('post','unit','jabatan'));
+        return view('admin.anggota.anggota-edit', compact('post','unit','jabatan','ranting','cabang'));
     }
 
     /**
@@ -139,13 +153,21 @@ class AnggotaController extends Controller
             $anggota->update([
                 'gambar' => $imageName,
                 'nama_anggota' => $request->nama_anggota,
+                'nik' => $request->nik,
                 'akun_id' => $request->akun_id,
-                'no_telp' => $request->no_telp,
-                'alamat' => $request->alamat,
+                'cabang_id' => $request->cabang_id,
+                'ranting_id' => $request->ranting_id,
+                'status_kepengurusan' => $request->status_kepengurusan,
+                'level_kepengurusan' => $request->level_kepengurusan ?? '-',
                 'unit_id' => $request->unit_id,
-                'jabatan_id' => $request->jabatan_id,
+                'jabatan_id' => $request->jabatan_id ?? '7',
+                'tempat_lahir' => $request->tempat_lahir,
+                'tgl_lahir' => $request->tgl_lahir,
                 'jenkel' => $request->jenkel,
-                'tgl_lahir' => $request->tgl_lahir,            
+                'pekerjaan' => $request->pekerjaan,
+                'no_telp' => $request->no_telp,
+                'email' => $request->email,
+                'alamat' => $request->alamat,            
             ]);
 
             
@@ -156,18 +178,26 @@ class AnggotaController extends Controller
 
     public function create()
     {
+        $cabang = Cabang::all();
+        $ranting = Ranting::all();
         $jabatan = Jabatan::all();
         $unit = Unit::all();
         $anggota = Anggota::all();
-        return view('admin.anggota.anggota-baru', compact('anggota', 'unit', 'jabatan'));
+        return view('admin.anggota.anggota-baru', compact('anggota', 'unit', 'jabatan','cabang','ranting'));
     }
 
     public function info($id){
         $where = array('id' => $id);
-        $post  =  Anggota::with('jabatan','units')->where($where)->get();
+        $post  =  Anggota::with('jabatan','units','cabang','ranting')->where($where)->get();
         $result = $post->toArray();
-     
-        return response()->json($result);
+        $date = Carbon::parse($result[0]['tgl_lahir'])->locale('id')->isoFormat('LL');
+        
+        // dd($date);
+        // return response()->json($result);
+        return response()->json(array(
+            'result' => $result,
+            'date' => $date,
+        ));
     }
      
        

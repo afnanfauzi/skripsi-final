@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Kegiatan;
 
-class kegiatanSeeder extends Seeder
+class KegiatanSeeder extends Seeder
 {
     /**
      * Run the database seeds.

@@ -4291,8 +4291,13 @@ div[data-role="editor-toolbar"] {
   min-height: 38px; }
 
 .select2-container--default .select2-selection--single .select2-selection__rendered {
-  color: #73879C;
-  padding-top: 5px; }
+  color: #495057;
+  padding-top: 5px;
+  display: block;
+  height: calc(1.5em + .75rem + 2px);
+  padding: .375rem .75rem;
+  font-size: 1rem;
+ }
 
 .select2-container--default .select2-selection--multiple .select2-selection__rendered {
   padding-top: 3px; }

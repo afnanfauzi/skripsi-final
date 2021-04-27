@@ -39,39 +39,52 @@
                 @csrf
                 {{ method_field('PUT') }}
                 <div class="x_content">
-                        <div class="item form-group">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="akun_id">ID Anggota <span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 ">
-                                <input type="text" id="akun_id" name="akun_id" required="required" class="form-control" value="{{ $post->akun_id }}">
-                            </div>
+                    <div class="item form-group">
+                        <label for="nama_anggota" class="col-form-label col-md-3 col-sm-3 label-align">Nama Anggota <span class="required">*</span></label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input id="nama_anggota" class="form-control" required="required" type="text" name="nama_anggota" value="{{ $post->nama_anggota }}">
                         </div>
-                        
-                        <div class="item form-group">
-                            <label for="nama_anggota" class="col-form-label col-md-3 col-sm-3 label-align">Nama Anggota <span class="required">*</span></label>
-                            <div class="col-md-6 col-sm-6 ">
-                                <input id="nama_anggota" class="form-control" required="required" type="text" name="nama_anggota" value="{{ $post->nama_anggota }}">
-                            </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="nik">Nomor Induk Kependudukan <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input type="text" id="nik" name="nik" required="required" class="form-control" value="{{ $post->nik }}">
                         </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="akun_id">No Baku Muhammdiyah / Aisyiah
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input type="text" id="akun_id" name="akun_id" class="form-control" value="{{ $post->akun_id }}">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label for="unit" class="col-form-label col-md-3 col-sm-3 label-align">Pengurus <span class="required">*</span></label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <select name="status_kepengurusan" id="status_kepengurusan" class="custom-select" required="required" style="width: 100%;">
+                                <option value="" holder>Silahkan Pilih</option>
+                                <option value="Ya" <?php if($post->status_kepengurusan=="Ya") echo 'selected="selected"'; ?>>Ya</option>
+                                <option value="Tidak" <?php if($post->status_kepengurusan=="Tidak") echo 'selected="selected"'; ?>>Tidak</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="opsi_pengurus" style="display:none">
                         <div class="item form-group">
-                            <label for="unit" class="col-form-label col-md-3 col-sm-3 label-align">Unit <span class="required">*</span></label>
+                            <label for="unit" class="col-form-label col-md-3 col-sm-3 label-align">Level <span class="required">*</span></label>
                             <div class="col-md-6 col-sm-6 ">
-                                <select name="unit_id" id="unit_id" class="form-control" required="required">
-                                    <option value="" holder>Pilih Unit</option>
-                                    @foreach ($unit as $unit)
-                                        <option value="{{ $unit->id }}"
-                                    @if ($post->unit_id == $unit->id)
-                                        selected
-                                    @endif    
-                                        >{{ $unit->nama_unit }}</option>
-                                    @endforeach
+                                <select name="level_kepengurusan" id="level_kepengurusan" class="custom-select" style="width: 100%;" value="{{ $post->level_kepengurusan }}">
+                                    <option value="" holder>Pilih Level</option>
+                                    <option value="Kabupaten" <?php if($post->level_kepengurusan=="Kabupaten") echo 'selected="selected"'; ?>>Kabupaten</option>
+                                    <option value="Cabang" <?php if($post->level_kepengurusan=="Cabang") echo 'selected="selected"'; ?>>Cabang</option>
+                                    <option value="Ranting"  <?php if($post->level_kepengurusan=="Ranting") echo 'selected="selected"'; ?>>Ranting</option>
                                 </select>
                             </div>
                         </div>
                         <div class="item form-group">
                             <label for="jabatan_id" class="col-form-label col-md-3 col-sm-3 label-align">Jabatan <span class="required">*</span></label>
                             <div class="col-md-6 col-sm-6 ">
-                                <select name="jabatan_id" id="jabatan_id" class="form-control" required="required">
+                                <select name="jabatan_id" id="jabatan_id" class="custom-select" style="width: 100%;">
                                     <option value="" holder>Pilih Jabatan</option>
                                     @foreach ($jabatan as $jabatan)
                                     <option value="{{ $jabatan->id }}"
@@ -83,67 +96,127 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="item form-group">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align">Tanggal Lahir <span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 ">
-                                <input id="tgl_lahir" name="tgl_lahir" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" type="text" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)" value="{{ $post->tgl_lahir }}">
-                                <script>
-                                    function timeFunctionLong(input) {
-                                        setTimeout(function() {
-                                            input.type = 'text';
-                                        }, 60000);
-                                    }
-                                </script>
+                    </div>
+                    <div class="item form-group">
+                        <label for="unit" class="col-form-label col-md-3 col-sm-3 label-align">Unit <span class="required">*</span></label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <select name="unit_id" id="unit_id" class="custom-select" required="required" style="width: 100%;">
+                                <option value="" holder>Pilih Unit</option>
+                                @foreach ($unit as $unit)
+                                <option value="{{ $unit->id }}"
+                                @if ($post->unit_id == $unit->id)
+                                    selected
+                                @endif    
+                                    >{{ $unit->nama_unit }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label for="unit" class="col-form-label col-md-3 col-sm-3 label-align">Cabang <span class="required">*</span></label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <select name="cabang_id" id="cabang_id" class="custom-select" required="required" style="width: 100%;">
+                                <option value="" holder>Pilih Cabang</option>
+                                @foreach ($cabang as $cabang)
+                                    <option value="{{ $cabang->id }}"
+                                @if ($post->cabang_id == $cabang->id)
+                                    selected
+                                @endif    
+                                    >{{ $cabang->nama_cabang }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label for="jabatan_id" class="col-form-label col-md-3 col-sm-3 label-align">Ranting <span class="required">*</span></label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <select name="ranting_id" id="ranting_id" class="custom-select" required="required" style="width: 100%;">
+                                <option value="" holder>Pilih Ranting</option>
+                                @foreach ($ranting as $ranting)
+                                    <option value="{{ $ranting->id }}"
+                                @if ($post->ranting_id == $ranting->id)
+                                    selected
+                                @endif    
+                                    >{{ $ranting->nama_ranting }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align">Tempat, Tanggal Lahir <span class="required">*</span>
+                        </label>
+                        <div class="col-md-4 col-sm-4 ">
+                            <input type="text" id="tempat_lahir" name="tempat_lahir" class="form-control" required="required" value="{{ $post->tempat_lahir }}">
+                        </div>
+                        <div class="col-md-2 col-sm-2 ">
+                            <input id="tgl_lahir" name="tgl_lahir" class="date-picker form-control" placeholder="dd-mm-yyyy" type="text" required="required" type="text" onfocus="this.type='date'" onmouseover="this.type='date'" onclick="this.type='date'" onblur="this.type='text'" onmouseout="timeFunctionLong(this)" value="{{ $post->tgl_lahir }}">
+                            <script>
+                                function timeFunctionLong(input) {
+                                    setTimeout(function() {
+                                        input.type = 'text';
+                                    }, 60000);
+                                }
+                            </script>
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align">Jenis Kelamin</label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <div id="jenkel" class="col-form-label">
+                                <input type="radio" class="flat" name="jenkel" id="laki-laki" value="Laki-Laki" {{ $post->jenkel == 'Laki-Laki' ? 'checked' : ''}} /> Laki-Laki
+                                <input type="radio" class="flat" name="jenkel" id="perempuan" value="Perempuan" {{ $post->jenkel == 'Perempuan' ? 'checked' : ''}}/> Perempuan
                             </div>
                         </div>
-                        <div class="item form-group">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align">Jenis Kelamin</label>
-                            <div class="col-md-6 col-sm-6 ">
-                                <div id="jenkel" class="btn-group" data-toggle="buttons" >
-                                    <label class="btn btn-secondary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                        <input type="radio" name="jenkel" value="Laki-Laki" class="join-btn" {{ $post->jenkel == 'Laki-Laki' ? 'checked' : ''}}> &nbsp; Laki-Laki &nbsp;
-                                    </label>
-                                    <label class="btn btn-primary" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                        <input type="radio" name="jenkel" value="Perempuan" class="join-btn" {{ $post->jenkel == 'Perempuan' ? 'checked' : ''}}> Perempuan
-                                    </label>
-                                </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="pekerjaan">Pekerjaan
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input type="text" id="pekerjaan" name="pekerjaan" class="form-control" value="{{ $post->pekerjaan }}">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="no_telp">No Telepon 
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input type="text" id="no_telp" name="no_telp" class="form-control" value="{{ $post->no_telp }}">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="email">Email 
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input type="text" id="email" name="email" class="form-control" value="{{ $post->email }}">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label for="alamat" class="col-form-label col-md-3 col-sm-3 label-align">Alamat</label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input id="alamat" class="form-control" type="text" name="alamat" value="{{ $post->alamat }}">
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="gambar">Foto <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 ">
+                            <input type='file' id="gambar" accept="gambar/*" name="gambar" multiple="multiple" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="item form-group">
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="kosong"></label>
+                        <div class="col-md-6 col-sm-6" >
+                            <div id="upload_prev">
+                                <img id="preview" src="{{Storage::url('public/gambar/'.$post->gambar)}}" width="130" style="border: 3px solid #6c757d" />
                             </div>
                         </div>
-                        <div class="item form-group">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="no_telp">No Telepon 
-                            </label>
-                            <div class="col-md-6 col-sm-6 ">
-                                <input type="text" id="no_telp" name="no_telp" class="form-control" value="{{ $post->no_telp }}">
-                            </div>
+                    </div>
+                    <div class="ln_solid"></div>
+                    <div class="item form-group">
+                        <div class="col-md-6 col-sm-6 offset-md-3">
+                            <button type="submit" class="btn btn-success">Edit</button>
+                            <a href="{{ route('anggota.index') }}" class="btn btn-info" type="button">Kembali</a>
                         </div>
-                        <div class="item form-group">
-                            <label for="alamat" class="col-form-label col-md-3 col-sm-3 label-align">Alamat</label>
-                            <div class="col-md-6 col-sm-6 ">
-                                <input id="alamat" class="form-control" type="text" name="alamat" value="{{ $post->alamat }}">
-                            </div>
-                        </div>
-                        <div class="item form-group">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="gambar">Foto <span class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 ">
-                                <input type='file' id="gambar" accept="gambar/*" name="gambar" multiple="multiple" class="form-control" />
-                            </div>
-                        </div>
-                        <div class="item form-group">
-                            <div class="col-md-9 col-sm-9" style="padding-left: 313px;">
-                                <div id="upload_prev">
-                                    <img id="preview" src="{{Storage::url('public/gambar/'.$post->gambar)}}" width="130" style="border: 3px solid #6c757d" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ln_solid"></div>
-                        <div class="item form-group">
-                            <div class="col-md-6 col-sm-6 offset-md-3">
-                                <button type="submit" class="btn btn-success">Edit</button>
-                                <a href="{{ route('anggota.index') }}" class="btn btn-info" type="button">Kembali</a>
-                            </div>
-                        </div>
+                    </div>
 
                     
             
@@ -169,6 +242,34 @@
         }
         $("#gambar").change(function () {
             readURL(this, 'preview');
+        });
+
+
+        $(document).ready(function(){
+            $("#status_kepengurusan option:selected");
+                if($("#status_kepengurusan option:selected").text() == 'Ya'){
+                    $("#opsi_pengurus").show();
+                }else{
+                    $("#opsi_pengurus").hide();
+                };
+
+            $('#status_kepengurusan').on('change', function() {
+                if ( this.value == 'Ya')
+                    {
+                        $("#opsi_pengurus").show();
+                    }
+                else
+                    {
+                        $("#opsi_pengurus").hide();
+                        $("#level_kepengurusan").val('');
+                        $("#jabatan_id").val('');
+                    }
+            });
+            
+        });
+
+        $(document).ready(function() {
+            $('.custom-select').select2();
         });
     </script>
 

@@ -16,18 +16,22 @@ class CreateAnggotaTable extends Migration
         Schema::create('anggota', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama_anggota');
-            $table->date('tgl_lahir');
-            $table->string('pekerjaan');
             $table->string('nik');
-            $table->string('no_telp')->nullable();
-            $table->text('alamat')->nullable();
-            $table->string('jenkel')->nullable();
-            $table->string('gambar')->nullable();
-            $table->foreignId('unit_id');
             $table->foreignId('akun_id')->nullable();
-            $table->foreignId('jabatan_id');
-            $table->foreignId('ranting_id');
             $table->foreignId('cabang_id');
+            $table->foreignId('ranting_id');
+            $table->string('status_kepengurusan');
+            $table->string('level_kepengurusan')->nullable();
+            $table->foreignId('unit_id');
+            $table->foreignId('jabatan_id');
+            $table->string('tempat_lahir');
+            $table->date('tgl_lahir');
+            $table->string('jenkel')->nullable();
+            $table->string('pekerjaan')->nullable();
+            $table->string('no_telp')->nullable();
+            $table->string('email')->nullable();
+            $table->text('alamat')->nullable();
+            $table->string('gambar')->nullable();
             $table->timestamps();
         });
     }

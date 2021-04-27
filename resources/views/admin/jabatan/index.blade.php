@@ -69,7 +69,7 @@
                   
               </div>
               <div class="modal-footer">
-                <div class="col-sm-offset-2 col-sm-12" style="padding-top: 30px">
+                <div class="col-sm-offset-2 col-sm-12">
                     <button type="submit" class="btn btn-primary btn-block" id="tombol-simpan"
                         value="create">Simpan
                     </button>
@@ -164,7 +164,7 @@
   
                 ],
                 order: [
-                    [0, 'desc']
+                    [0, 'asc']
                 ]
             });
         });
