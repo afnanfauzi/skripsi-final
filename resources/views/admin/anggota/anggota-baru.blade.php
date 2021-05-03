@@ -80,6 +80,17 @@
                                 </div>
                             </div>
                             <div class="item form-group">
+                                <label for="unit" class="col-form-label col-md-3 col-sm-3 label-align">Unit <span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <select name="unit_id" id="unit_id" class="custom-select" style="width: 100%;">
+                                        <option value="" holder>Pilih Unit</option>
+                                        @foreach ($unit as $unit)
+                                            <option value="{{ $unit->id }}">{{ $unit->nama_unit }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="item form-group">
                                 <label for="jabatan_id" class="col-form-label col-md-3 col-sm-3 label-align">Jabatan <span class="required">*</span></label>
                                 <div class="col-md-6 col-sm-6 ">
                                     <select name="jabatan_id" id="jabatan_id" class="custom-select" style="width: 100%;">
@@ -91,37 +102,30 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="item form-group">
-                            <label for="unit" class="col-form-label col-md-3 col-sm-3 label-align">Unit <span class="required">*</span></label>
-                            <div class="col-md-6 col-sm-6 ">
-                                <select name="unit_id" id="unit_id" class="custom-select" style="width: 100%;">
-                                    <option value="" holder>Pilih Unit</option>
-                                    @foreach ($unit as $unit)
-                                        <option value="{{ $unit->id }}">{{ $unit->nama_unit }}</option>
-                                    @endforeach
-                                </select>
+                        <div id="opsi_level">
+                            <div class="item form-group">
+                                <label for="unit" class="col-form-label col-md-3 col-sm-3 label-align">Cabang <span class="required">*</span></label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <select name="cabang_id" id="cabang_id" class="custom-select"  style="width: 100%;">
+                                        <option value="" holder>Pilih Cabang</option>
+                                        @foreach ($cabang as $cabang)
+                                            <option value="{{ $cabang->id }}">{{ $cabang->nama_cabang }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="item form-group">
-                            <label for="unit" class="col-form-label col-md-3 col-sm-3 label-align">Cabang <span class="required">*</span></label>
-                            <div class="col-md-6 col-sm-6 ">
-                                <select name="cabang_id" id="cabang_id" class="custom-select"  style="width: 100%;">
-                                    <option value="" holder>Pilih Cabang</option>
-                                    @foreach ($cabang as $cabang)
-                                        <option value="{{ $cabang->id }}">{{ $cabang->nama_cabang }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="item form-group">
-                            <label for="jabatan_id" class="col-form-label col-md-3 col-sm-3 label-align">Ranting <span class="required">*</span></label>
-                            <div class="col-md-6 col-sm-6 ">
-                                <select name="ranting_id" id="ranting_id" class="custom-select"  style="width: 100%;">
-                                    <option value="" holder>Pilih Ranting</option>
-                                    @foreach ($ranting as $ranting)
-                                        <option value="{{ $ranting->id }}">{{ $ranting->nama_ranting }}</option>
-                                    @endforeach
-                                </select>
+                            <div id="opsi_ranting">
+                                <div class="item form-group">
+                                    <label for="jabatan_id" class="col-form-label col-md-3 col-sm-3 label-align">Ranting</label>
+                                    <div class="col-md-6 col-sm-6 ">
+                                        <select name="ranting_id" id="ranting_id" class="custom-select"  style="width: 100%;">
+                                            <option value="" holder>Pilih Ranting</option>
+                                            @foreach ($ranting as $ranting)
+                                                <option value="{{ $ranting->id }}">{{ $ranting->nama_ranting }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="item form-group">
@@ -238,6 +242,23 @@
                 else
                     {
                         $("#opsi_pengurus").hide();
+                        $("#opsi_level").show(); 
+                    }
+            });
+
+            $('#level_kepengurusan').on('change', function() {
+                if ( this.value == 'Kabupaten')
+                    {
+                        $("#opsi_level").hide();
+                    }
+                else if ( this.value == 'Cabang'){
+                        $("#opsi_level").show();   
+                        $("#opsi_ranting").hide();
+                    }
+                else
+                    {
+                        $("#opsi_level").show(); 
+                        $("#opsi_ranting").show();  
                     }
             });
         });

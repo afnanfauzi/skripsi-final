@@ -82,6 +82,21 @@
                             </div>
                         </div>
                         <div class="item form-group">
+                            <label for="unit" class="col-form-label col-md-3 col-sm-3 label-align">Unit <span class="required">*</span></label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <select name="unit_id" id="unit_id" class="custom-select" style="width: 100%;">
+                                    <option value="" holder>Pilih Unit</option>
+                                    @foreach ($unit as $unit)
+                                    <option value="{{ $unit->id }}"
+                                    @if ($post->unit_id == $unit->id)
+                                        selected
+                                    @endif    
+                                        >{{ $unit->nama_unit }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="item form-group">
                             <label for="jabatan_id" class="col-form-label col-md-3 col-sm-3 label-align">Jabatan <span class="required">*</span></label>
                             <div class="col-md-6 col-sm-6 ">
                                 <select name="jabatan_id" id="jabatan_id" class="custom-select" style="width: 100%;">
@@ -97,49 +112,38 @@
                             </div>
                         </div>
                     </div>
-                    <div class="item form-group">
-                        <label for="unit" class="col-form-label col-md-3 col-sm-3 label-align">Unit <span class="required">*</span></label>
-                        <div class="col-md-6 col-sm-6 ">
-                            <select name="unit_id" id="unit_id" class="custom-select" required="required" style="width: 100%;">
-                                <option value="" holder>Pilih Unit</option>
-                                @foreach ($unit as $unit)
-                                <option value="{{ $unit->id }}"
-                                @if ($post->unit_id == $unit->id)
-                                    selected
-                                @endif    
-                                    >{{ $unit->nama_unit }}</option>
-                                @endforeach
-                            </select>
+                    <div id="opsi_level">
+                        <div class="item form-group">
+                            <label for="unit" class="col-form-label col-md-3 col-sm-3 label-align">Cabang <span class="required">*</span></label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <select name="cabang_id" id="cabang_id" class="custom-select"  style="width: 100%;">
+                                    <option value="" holder>Pilih Cabang</option>
+                                    @foreach ($cabang as $cabang)
+                                        <option value="{{ $cabang->id }}"
+                                    @if ($post->cabang_id == $cabang->id)
+                                        selected
+                                    @endif    
+                                        >{{ $cabang->nama_cabang }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="item form-group">
-                        <label for="unit" class="col-form-label col-md-3 col-sm-3 label-align">Cabang <span class="required">*</span></label>
-                        <div class="col-md-6 col-sm-6 ">
-                            <select name="cabang_id" id="cabang_id" class="custom-select" required="required" style="width: 100%;">
-                                <option value="" holder>Pilih Cabang</option>
-                                @foreach ($cabang as $cabang)
-                                    <option value="{{ $cabang->id }}"
-                                @if ($post->cabang_id == $cabang->id)
-                                    selected
-                                @endif    
-                                    >{{ $cabang->nama_cabang }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                    <div class="item form-group">
-                        <label for="jabatan_id" class="col-form-label col-md-3 col-sm-3 label-align">Ranting <span class="required">*</span></label>
-                        <div class="col-md-6 col-sm-6 ">
-                            <select name="ranting_id" id="ranting_id" class="custom-select" required="required" style="width: 100%;">
-                                <option value="" holder>Pilih Ranting</option>
-                                @foreach ($ranting as $ranting)
-                                    <option value="{{ $ranting->id }}"
-                                @if ($post->ranting_id == $ranting->id)
-                                    selected
-                                @endif    
-                                    >{{ $ranting->nama_ranting }}</option>
-                                @endforeach
-                            </select>
+                        <div id="opsi_ranting">
+                            <div class="item form-group">
+                                <label for="jabatan_id" class="col-form-label col-md-3 col-sm-3 label-align">Ranting</label>
+                                <div class="col-md-6 col-sm-6 ">
+                                    <select name="ranting_id" id="ranting_id" class="custom-select" style="width: 100%;">
+                                        <option value="" holder>Pilih Ranting</option>
+                                        @foreach ($ranting as $ranting)
+                                            <option value="{{ $ranting->id }}"
+                                        @if ($post->ranting_id == $ranting->id)
+                                            selected
+                                        @endif    
+                                            >{{ $ranting->nama_ranting }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="item form-group">
@@ -251,7 +255,21 @@
                     $("#opsi_pengurus").show();
                 }else{
                     $("#opsi_pengurus").hide();
+                    $("#opsi_level").show(); 
                 };
+
+            
+            $("#level_kepengurusan option:selected");
+                if($("#level_kepengurusan option:selected").text() == 'Kabupaten'){
+                    $("#opsi_level").hide();
+                }else if($("#level_kepengurusan option:selected").text() == 'Cabang'){
+                    $("#opsi_level").show();   
+                    $("#opsi_ranting").hide();
+                }else{
+                    $("#opsi_level").show(); 
+                    $("#opsi_ranting").show();   
+                };
+
 
             $('#status_kepengurusan').on('change', function() {
                 if ( this.value == 'Ya')
@@ -261,8 +279,30 @@
                 else
                     {
                         $("#opsi_pengurus").hide();
+                        $("#opsi_level").show(); 
                         $("#level_kepengurusan").val('');
                         $("#jabatan_id").val('');
+                        $("#unit_id").val('');
+                    }
+            });
+
+            $('#level_kepengurusan').on('change', function() {
+                if ( this.value == 'Kabupaten')
+                    {
+                        $("#opsi_level").hide();
+                        $("#cabang_id").val('');
+                        $("#ranting_id").val('');
+                    }
+                else if ( this.value == 'Cabang'){
+                        $("#opsi_level").show();   
+                        $("#opsi_ranting").hide();
+                        $("#ranting_id").val('');
+                        
+                    }
+                else
+                    {
+                        $("#opsi_level").show(); 
+                        $("#opsi_ranting").show();  
                     }
             });
             

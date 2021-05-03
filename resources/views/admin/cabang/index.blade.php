@@ -74,7 +74,7 @@
                                 <label for="anggota_id" class="col-sm-12 control-label">Nama Ketua Cabang</label>
                                 <div class="col-sm-12">
                                     <select name="anggota_id" id="anggota_id" class="custom-select" style="width: 100%; height: 38px;">
-                                        {{-- <option value="" holder>Pilih Ketua Cabang</option> --}}
+                                        <option value="" holder>Pilih Ketua Cabang</option>
                                         @foreach ($anggota as $anggota)
                                             <option value="{{ $anggota->id }}">{{ $anggota->nama_anggota }}</option>
                                         @endforeach
@@ -254,8 +254,8 @@
                         name: 'nama_cabang' 
                     },
                     {
-                        data: 'anggota_id', 
-                        name: 'anggota_id' 
+                        data: 'anggota[0].nama_anggota', 
+                        name: 'anggota[0].nama_anggota' 
                     },
                     {
                         data: 'action',
@@ -344,7 +344,7 @@
             // alert("Data "+data.post);
             $(".modal-body #id_info").val(data.post[0].id);
             $(".modal-body #cabang_info").text(data.post[0].nama_cabang);
-            $(".modal-body #anggota_id_info").text(data.post[0].anggota_id);
+            $(".modal-body #anggota_id_info").text(data.post[0].anggota[0].nama_anggota);
             $(".modal-body #jmlh_ranting").text(data.ranting);
             $(".modal-body #aktif").text(data.aktif);
             $(".modal-body #kurang").text(data.kurang);

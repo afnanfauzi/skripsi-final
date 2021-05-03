@@ -18,12 +18,12 @@ class CreateAnggotaTable extends Migration
             $table->string('nama_anggota');
             $table->string('nik');
             $table->foreignId('akun_id')->nullable();
-            $table->foreignId('cabang_id');
-            $table->foreignId('ranting_id');
+            $table->foreignId('cabang_id')->nullable();
+            $table->foreignId('ranting_id')->nullable();
             $table->string('status_kepengurusan');
             $table->string('level_kepengurusan')->nullable();
-            $table->foreignId('unit_id');
-            $table->foreignId('jabatan_id');
+            $table->foreignId('unit_id')->nullable();
+            $table->foreignId('jabatan_id')->nullable();
             $table->string('tempat_lahir');
             $table->date('tgl_lahir');
             $table->string('jenkel')->nullable();

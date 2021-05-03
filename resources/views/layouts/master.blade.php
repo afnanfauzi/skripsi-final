@@ -53,13 +53,13 @@
     
   </head>
 
-  <body class="nav-md">
+  <body class="nav-md footer_fixed">
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col menu_fixed">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="{{route('kegiatan.index')}}" class="site_title"><span><p>Pimpinan Daerah Muhammadiyah Sragen<p></span></a>
+              <a href="{{route('dashboard.index')}}" class="site_title"><span><p>Pimpinan Daerah Muhammadiyah Sragen<p></span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -71,7 +71,12 @@
               </div>
               <div class="profile_info">
                 <span>Selamat Datang,</span>
-                <h2>John Doe</h2>
+                <h2>@role('admin')
+                        Admin
+                    @else
+                        Sekretaris
+                    @endrole
+              </h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -90,7 +95,7 @@
                   </li>
                 </ul>
                 <ul class="nav side-menu">
-                  <li><a><i class="fa fa-user"></i> Keanggotaan <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-users"></i> Keanggotaan <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{route('anggota.index')}}">Daftar Anggota</a></li>
                       <li><a href="{{route('unit.index')}}">Daftar Unit</a></li>
@@ -152,16 +157,23 @@
               <ul class=" navbar-right">
                 <li class="nav-item dropdown open" style="padding-left: 15px;">
                   <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                    <img src="{{ url('dashboard/production/images/img.jpg') }}" alt="">John Doe
+                    <img src="{{ url('dashboard/production/images/img.jpg') }}" alt="">
+                    @role('admin')
+                    Admin
+                    @else
+                        Sekretaris
+                    @endrole
                   </a>
                   <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item"  href="javascript:;"> Profile</a>
-                      <a class="dropdown-item"  href="javascript:;">
-                        <span class="badge bg-red pull-right">50%</span>
-                        <span>Settings</span>
-                      </a>
-                  <a class="dropdown-item"  href="javascript:;">Help</a>
-                    <a class="dropdown-item"  href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
                   </div>
                 </li>
 

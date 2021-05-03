@@ -4988,3 +4988,8 @@ ul.notifications {
   color: #F00;
   background-color: #FFF;
 }
+.row-nan {
+  margin-right: -10px;
+  margin-left: -10px; 
+  width: 100%;
+}

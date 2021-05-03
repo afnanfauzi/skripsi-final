@@ -17,6 +17,6 @@ class Ranting extends Model
     }
     public function anggota()
     {
-        return $this->hasMany('App\Anggota');
+        return $this->hasMany('App\Anggota', 'id', 'anggota_id');
     }
 }

@@ -31,7 +31,6 @@
                         <th></th>
                         <th>NIK</th>
                         <th>Nama</th>
-                        <th>Unit</th>
                         <th>Alamat</th>
                         <th>No HP</th>
                         <th>Aksi</th>
@@ -230,10 +229,6 @@
                         name: 'nama_anggota' 
                     },
                     {
-                        data: 'units.nama_unit', 
-                        name: 'units.nama_unit' 
-                    },
-                    {
                         data: 'alamat', 
                         name: 'alamat' 
                     },
@@ -295,17 +290,47 @@
       $(document).on("click", ".open-info", function () {
         var info_id = $(this).data('id');
         $.get('anggota/' + info_id + '/info', function(data){
-            
-            // $(".modal-body #id").val( data[0].id );
+            if (data.result[0].ranting_id == null && data.result[0].unit_id == null && data.result[0].jabatan_id == null ) {
+                $(".modal-body #ranting").text("-");
+                $(".modal-body #unit").text("-");
+                $(".modal-body #jabatan").text("-");
+                $(".modal-body #cabang").text( data.result[0].cabang['nama_cabang']);
+            }
+            else if (data.result[0].unit_id == null && data.result[0].jabatan_id == null){
+                $(".modal-body #unit").text("-");
+                $(".modal-body #jabatan").text("-");
+                $(".modal-body #cabang").text( data.result[0].cabang['nama_cabang']);
+                $(".modal-body #ranting").text( data.result[0].ranting['nama_ranting']);
+            }
+            else if (data.result[0].ranting_id == null && data.result[0].cabang_id == null) {
+                $(".modal-body #cabang").text("-");
+                $(".modal-body #ranting").text("-");
+                $(".modal-body #unit").text( data.result[0].units['nama_unit'] );
+                $(".modal-body #jabatan").text( data.result[0].jabatan['nama_jabatan']);
+            }
+            else if (data.result[0].ranting_id == null) {
+                $(".modal-body #ranting").text("-");
+                $(".modal-body #cabang").text( data.result[0].cabang['nama_cabang']);
+                $(".modal-body #unit").text( data.result[0].units['nama_unit'] );
+                $(".modal-body #jabatan").text( data.result[0].jabatan['nama_jabatan']);
+            }
+            else {
+                $(".modal-body #cabang").text( data.result[0].cabang['nama_cabang']);
+                $(".modal-body #ranting").text( data.result[0].ranting['nama_ranting']);
+                $(".modal-body #unit").text( data.result[0].units['nama_unit'] );
+                $(".modal-body #jabatan").text( data.result[0].jabatan['nama_jabatan']);
+            }
+
+           
             $(".modal-body #id").text(data.result[0].akun_id);
             $(".modal-body #nik").text(data.result[0].nik);
             $(".modal-body #nama_anggota").text(data.result[0].nama_anggota);
-            $(".modal-body #cabang").text( data.result[0].cabang['nama_cabang']);
-            $(".modal-body #ranting").text( data.result[0].ranting['nama_ranting']);
+            // $(".modal-body #cabang").text( data.result[0].cabang['nama_cabang']);
+            // $(".modal-body #ranting").text( data.result[0].ranting['nama_ranting']);
             $(".modal-body #status_kepengurusan").text( data.result[0].status_kepengurusan);
             $(".modal-body #level_kepengurusan").text( data.result[0].level_kepengurusan);
-            $(".modal-body #unit").text( data.result[0].units['nama_unit'] );
-            $(".modal-body #jabatan").text( data.result[0].jabatan['nama_jabatan']);
+            // $(".modal-body #unit").text( data.result[0].units['nama_unit'] );
+            // $(".modal-body #jabatan").text( data.result[0].jabatan['nama_jabatan']);
             $(".modal-body #tempat_lahir").text( data.result[0].tempat_lahir);
             $(".modal-body #tgl_lahir").text( data.date);
             $(".modal-body #jenkel").text( data.result[0].jenkel);
@@ -315,11 +340,10 @@
             $(".modal-body #alamat").text( data.result[0].alamat );
             $(".modal-body #gambar").attr("src","{{asset('storage/gambar')}}"+'/'+data.result[0].gambar);
             
-            // As pointed out in comments, 
-            // it is unnecessary to have to manually call the modal.
+            
             $('#tampilkan-info').modal('show');
             $('#modal-judul-info').html("Info Anggota");
-            // $("#bodyModal").html(html);
+            
             
             });
         });

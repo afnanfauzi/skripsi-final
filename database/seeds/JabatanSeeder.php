@@ -31,8 +31,8 @@ class JabatanSeeder extends Seeder
         Jabatan::create([
             'nama_jabatan' => 'Wakil Bendahara'
         ]);
-        Jabatan::create([
-            'nama_jabatan' => 'Anggota'
-        ]);
+        // Jabatan::create([
+        //     'nama_jabatan' => 'Anggota'
+        // ]);
     }
 }

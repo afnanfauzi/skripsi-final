@@ -16,8 +16,8 @@ class CabangController extends Controller
      */
     public function index(Request $request)
     {
-        $cabang = Cabang::with('ranting')->get();
-        $anggota = Anggota::where('jabatan_id', '=', 1)->get();
+        $cabang = Cabang::with('ranting','anggota')->get();
+        $anggota = Anggota::where('jabatan_id', '=', 1)->where('unit_id', '=', 2)->get();
 
     
         if($request->ajax()){
@@ -26,8 +26,8 @@ class CabangController extends Controller
                             $button = '<a href="javascript:void(0)" data-toggle="modal" data-id="'.$data->id.'" title="Lihat Detail Cabang" class="open-info btn btn-info"><i class="fa fa-info fa-sm"></i></a>';
                             $button .= '&nbsp;&nbsp;';
                             $button .= '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$data->id.'" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post" title="Edit Data"><i class="fa fa-edit fa-sm" style="padding:6px"></i></a>';
-                            $button .= '&nbsp;&nbsp;';
-                            $button .= '<button type="button" name="delete" id="'.$data->id.'" class="delete btn btn-danger btn-sm" title="Hapus Data"><i class="fa fa-trash fa-sm" style="padding:6px"></i></button>';                               
+                            // $button .= '&nbsp;&nbsp;';
+                            // $button .= '<button type="button" name="delete" id="'.$data->id.'" class="delete btn btn-danger btn-sm" title="Hapus Data"><i class="fa fa-trash fa-sm" style="padding:6px"></i></button>';                               
                             return $button;
                         })
                         ->rawColumns(['action'])
@@ -86,7 +86,7 @@ class CabangController extends Controller
         $where5 = array('status_ranting' => 'Tidak Aktif');
         $where6 = array('status_ranting' => 'Tidak Ada Ranting');
 
-        $post  =  Cabang::with('ranting')->where($where)->get();
+        $post  =  Cabang::with('ranting','anggota')->where($where)->get();
         $ranting = Ranting::where($where2)->count();
         $aktif = Ranting::where($where2)->where($where3)->count();
         $kurang = Ranting::where($where2)->where($where4)->count();
@@ -107,10 +107,6 @@ class CabangController extends Controller
             'tidakAda' => $tidakAda,
         ));
 
-
-         // $result = $post->toArray();
-     
-        // return response()->json($result);
     }
 
     /**
@@ -122,7 +118,7 @@ class CabangController extends Controller
     public function edit($id)
     {
         $where = array('id' => $id);
-        $post  = Cabang::where($where)->first();
+        $post  = Cabang::with('ranting','anggota')->where($where)->first();
 
         return response()->json($post);
 

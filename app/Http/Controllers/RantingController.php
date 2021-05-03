@@ -16,8 +16,8 @@ class RantingController extends Controller
      */
     public function index(Request $request)
     {
-        $ranting = Ranting::with('cabang')->get();
-        $anggota = Anggota::where('jabatan_id', '=', 1)->get();
+        $ranting = Ranting::with('cabang','anggota')->get();
+        $anggota = Anggota::where('jabatan_id', '=', 1)->where('unit_id', '=', 3)->get();
         $cabang = Cabang::all();
     
 
@@ -26,8 +26,8 @@ class RantingController extends Controller
             return datatables()->of($ranting)
                         ->addColumn('action', function($data){
                             $button = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$data->id.'" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post" title="Edit Data"><i class="fa fa-edit fa-sm" style="padding:6px"></i></a>';
-                            $button .= '&nbsp;&nbsp;';
-                            $button .= '<button type="button" name="delete" id="'.$data->id.'" class="delete btn btn-danger btn-sm" title="Hapus Data"><i class="fa fa-trash fa-sm" style="padding:6px"></i></button>';                               
+                            // $button .= '&nbsp;&nbsp;';
+                            // $button .= '<button type="button" name="delete" id="'.$data->id.'" class="delete btn btn-danger btn-sm" title="Hapus Data"><i class="fa fa-trash fa-sm" style="padding:6px"></i></button>';                               
                             return $button;
                         })
                         ->rawColumns(['action'])

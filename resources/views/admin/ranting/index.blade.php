@@ -80,7 +80,7 @@
                                 <label for="anggota_id" class="col-sm-12 control-label">Nama Ketua Ranting</label>
                                 <div class="col-sm-12">
                                     <select name="anggota_id" id="anggota_id" class="custom-select" style="width: 100%; height: 38px;">
-                                        {{-- <option value="" holder>Pilih Ketua Ranting</option> --}}
+                                        <option value="" holder>Pilih Ketua Ranting</option>
                                         @foreach ($anggota as $anggota)
                                             <option value="{{ $anggota->id }}">{{ $anggota->nama_anggota }}</option>
                                         @endforeach
@@ -162,7 +162,7 @@
 
 
  <!-- MULAI MODAL FORM INFO-->
- <div class="modal fade" id="tampilkan-info" aria-hidden="true">
+ {{-- <div class="modal fade" id="tampilkan-info" aria-hidden="true">
     <div class="modal-dialog modal-lg ">
         <div class="modal-content">
             <div class="modal-header">
@@ -188,7 +188,6 @@
                             <td style="vertical-align: top;"><label for="status_ranting_info" class="control-label">Status Ranting</label></td>
                             <td style="vertical-align: top;"><label for="status_ranting_info" class="control-label">:</label></td>
                             <td><label for="rencana_info" class="control-label" id="status_ranting_info" ></label></td>
-
                         </tr>
                       </table>
                     </div>
@@ -201,7 +200,7 @@
             </div>
         </div>
     </div>
-   </div>
+   </div> --}}
 <!-- AKHIR MODAL -->
 
 <script>
@@ -262,8 +261,8 @@
                         name: 'nama_ranting' 
                     },
                     {
-                        data: 'anggota_id', 
-                        name: 'anggota_id' 
+                        data: 'anggota[0].nama_anggota', 
+                        name: 'anggota[0].nama_anggota', 
                     },
                     {
                         data: 'jmlh_anggota', 
@@ -372,22 +371,22 @@
 
 
         //TOMBOL INFO DAN TAMPIKAN DATA BERDASARKAN ID kegiatan KE MODAL
-      $(document).on("click", ".open-info", function () {
-        var info_id = $(this).data('id');
-        $.get('ranting/' + info_id, function(data){
-            // alert("Data "+data[0]);
-            $(".modal-body #id_info").val(data[0].id);
-            $(".modal-body #ranting_info").text(data[0].nama_ranting);
-            $(".modal-body #anggota_id_info").text(data[0].anggota_id);
+    //   $(document).on("click", ".open-info", function () {
+    //     var info_id = $(this).data('id');
+    //     $.get('ranting/' + info_id, function(data){
+    //         // alert("Data "+data[0]);
+    //         $(".modal-body #id_info").val(data[0].id);
+    //         $(".modal-body #ranting_info").text(data[0].nama_ranting);
+    //         $(".modal-body #anggota_id_info").text(data[0].anggota_id);
 
-            // As pointed out in comments, 
-            // it is unnecessary to have to manually call the modal.
-            $('#tampilkan-info').modal('show');
-            $('#modal-judul-info').html("Info Ranting");
-            // $("#bodyModal").html(html);
+    //         // As pointed out in comments, 
+    //         // it is unnecessary to have to manually call the modal.
+    //         $('#tampilkan-info').modal('show');
+    //         $('#modal-judul-info').html("Info Ranting");
+    //         // $("#bodyModal").html(html);
             
-            });
-        });
+    //         });
+    //     });
 
 
 
