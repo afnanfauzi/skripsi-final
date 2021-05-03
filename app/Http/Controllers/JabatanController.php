@@ -55,6 +55,7 @@ class JabatanController extends Controller
         $post   =   Jabatan::updateOrCreate(['id' => $id],
                     [
                         'nama_jabatan' => $request->nama_jabatan,
+                        'status' => $request->status,
                     ]); 
 
         return response()->json($post);

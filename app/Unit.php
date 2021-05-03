@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Unit extends Model
 {
     protected $table= 'unit';
-    protected $fillable = ['id','nama_unit'];
+    protected $guarded = [];
 
     public function kegiatans()
     {

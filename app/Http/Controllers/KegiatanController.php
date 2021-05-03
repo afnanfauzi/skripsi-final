@@ -15,7 +15,6 @@ class KegiatanController extends Controller
     public function index(Request $request)
     {
     
-    $unitmodal = Unit::all();
     $kegiatan = Kegiatan::with('units')->get();
     if($request->ajax()){
         return datatables()->of($kegiatan)
@@ -32,7 +31,7 @@ class KegiatanController extends Controller
                     ->make(true);
     }
 
-        return view('admin.kegiatan.index', compact('unitmodal'));
+        return view('admin.kegiatan.index');
     
     }
      
@@ -72,7 +71,7 @@ class KegiatanController extends Controller
      */
     public function edit($id)
     {
-        $unit = Unit::all();
+        $unit = Unit::where('status', '=', 'Aktif')->get();
         $where = array('id' => $id);
         $post  = Kegiatan::where($where)->first();
      
@@ -104,7 +103,7 @@ class KegiatanController extends Controller
 
 
     public function create(){
-        $unit = Unit::all();
+        $unit = Unit::where('status', '=', 'Aktif')->get();
         return view('admin.kegiatan.kegiatan-baru', compact('unit'));
     }
 

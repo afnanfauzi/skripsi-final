@@ -55,7 +55,7 @@ class UnitController extends Controller
         $post   =   Unit::updateOrCreate(['id' => $id],
                     [
                         'nama_unit' => $request->nama_unit,
-                        // 'no_telp' => $request->no_telp,
+                        'status' => $request->status,
                     ]); 
 
         return response()->json($post);

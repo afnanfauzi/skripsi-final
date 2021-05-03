@@ -18,10 +18,7 @@ class AnggotaController extends Controller
 {
     public function index(Request $request)
     {
-    // $rantingmodal = Ranting::all();
-    // $cabangmodal = Cabang::all();
-    $unitmodal = Unit::all();
-    $jabatanmodal = Jabatan::all();
+   
     $anggota = Anggota::with('units')->get();
     if($request->ajax()){
         return datatables()->of($anggota)
@@ -38,7 +35,7 @@ class AnggotaController extends Controller
                     ->make(true);
     }
 
-        return view('admin.anggota.index', compact('unitmodal','jabatanmodal'));
+        return view('admin.anggota.index');
     
     }
         // return $anggota;}
@@ -106,8 +103,8 @@ class AnggotaController extends Controller
     {
         $cabang = Cabang::all();
         $ranting = Ranting::all();
-        $jabatan = Jabatan::all();
-        $unit = Unit::all();
+        $jabatan = Jabatan::where('status', '=', 'Aktif')->get();
+        $unit = Unit::where('status', '=', 'Aktif')->get();
         $where = array('id' => $id);
         $post  = Anggota::where($where)->first();
      
@@ -180,8 +177,8 @@ class AnggotaController extends Controller
     {
         $cabang = Cabang::all();
         $ranting = Ranting::all();
-        $jabatan = Jabatan::all();
-        $unit = Unit::all();
+        $jabatan = Jabatan::where('status', '=', 'Aktif')->get();
+        $unit = Unit::where('status', '=', 'Aktif')->get();
         $anggota = Anggota::all();
         return view('admin.anggota.anggota-baru', compact('anggota', 'unit', 'jabatan','cabang','ranting'));
     }

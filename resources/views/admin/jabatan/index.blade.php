@@ -27,6 +27,7 @@
                                 <th></th>
                                 <th>No</th>
                                 <th>Nama Jabatan</th>
+                                <th>Status</th>
                                 <th>Aksi</th>
 
                             </tr>
@@ -59,7 +60,17 @@
                               <div class="form-group">
                                 <label for="name" class="col-sm-12 control-label">Nama Jabatan</label>
                                 <div class="col-sm-12">
-                                <input type="text" class="form-control" id="nama_jabatan" name="nama_jabatan" placeholder="" value="" maxlength="50" required="">
+                                    <input type="text" class="form-control" id="nama_jabatan" name="nama_jabatan" placeholder="" value="" maxlength="50" required="">
+                                </div>
+                              </div> 
+                              <div class="form-group">
+                                <label for="status" class="col-sm-12 control-label">Status</label>
+                                <div class="col-sm-12">
+                                    <select name="status" id="status" class="form-control">
+                                        <option value="" holder>Pilih Status</option>
+                                        <option value="Aktif" >Aktifkan</option>
+                                        <option value="Nonaktif" >Nonaktifkan</option>
+                                    </select>
                                 </div>
                               </div> 
 
@@ -158,6 +169,10 @@
                         name: 'nama_jabatan' 
                     },
                     {
+                        data: 'status', 
+                        name: 'status' 
+                    },
+                    {
                         data: 'action',
                         name: 'action'
                     },
@@ -180,10 +195,12 @@
             // of an input field. Validation rules are defined
             // on the right side
             nama_jabatan: "required",
+            status: "required",
             },
              // Specify validation error messages
             messages: {
                 nama_jabatan: "Silahkan masukkan nama jabatan terlebih dahulu",
+                status: "Silahkan masukkan status jabatan terlebih dahulu",
             },
               submitHandler: function (form) {
                   var actionType = $('#tombol-simpan').val();
@@ -229,6 +246,7 @@
                 //set value masing-masing id berdasarkan data yg diperoleh dari ajax get request diatas               
                 $('#id').val(data.id);
                 $('#nama_jabatan').val(data.nama_jabatan);
+                $('#status').val(data.status);
             })
         });
   

@@ -13,23 +13,29 @@ class JabatanSeeder extends Seeder
     public function run()
     {
         Jabatan::create([
-            'nama_jabatan' => 'Ketua'
+            'nama_jabatan' => 'Ketua',
+            'status' => 'Aktif'
         ]);
 
         Jabatan::create([
-            'nama_jabatan' => 'Wakil Ketua'
+            'nama_jabatan' => 'Wakil Ketua',
+            'status' => 'Aktif'
         ]);
         Jabatan::create([
-            'nama_jabatan' => 'Sekretaris'
+            'nama_jabatan' => 'Sekretaris',
+            'status' => 'Aktif'
         ]);
         Jabatan::create([
-            'nama_jabatan' => 'Wakil Sekretaris'
+            'nama_jabatan' => 'Wakil Sekretaris',
+            'status' => 'Aktif'
         ]);
         Jabatan::create([
-            'nama_jabatan' => 'Bendahara'
+            'nama_jabatan' => 'Bendahara',
+            'status' => 'Aktif'
         ]);
         Jabatan::create([
-            'nama_jabatan' => 'Wakil Bendahara'
+            'nama_jabatan' => 'Wakil Bendahara',
+            'status' => 'Aktif'
         ]);
         // Jabatan::create([
         //     'nama_jabatan' => 'Anggota'

@@ -30,7 +30,7 @@
                         <th></th>
                         <th>No</th>
                         <th>Nama Unit</th>
-                        {{-- <th>No Telp</th> --}}
+                        <th>Status</th>
                         <th>Aksi</th>
 
                     </tr>
@@ -66,12 +66,16 @@
                                 <input type="text" class="form-control" id="nama_unit" name="nama_unit" placeholder="" value="" maxlength="50" required="">
                                 </div>
                               </div> 
-                              {{-- <div class="form-group">
-                                <label for="no_telp" class="col-sm-12 control-label">No Telp</label>
+                              <div class="form-group">
+                                <label for="status" class="col-sm-12 control-label">Status</label>
                                 <div class="col-sm-12">
-                                <input type="text" class="form-control" id="no_telp" name="no_telp" placeholder="" value="" maxlength="50" required="">
+                                    <select name="status" id="status" class="form-control">
+                                        <option value="" holder>Pilih Status</option>
+                                        <option value="Aktif" >Aktifkan</option>
+                                        <option value="Nonaktif" >Nonaktifkan</option>
+                                    </select>
                                 </div>
-                              </div>  --}}
+                              </div> 
                           </div>
                       </div>
 
@@ -166,10 +170,10 @@
                         data: 'nama_unit', 
                         name: 'nama_unit' 
                     },
-                    // {
-                    //     data: 'no_telp', 
-                    //     name: 'no_telp' 
-                    // },
+                    {
+                        data: 'status', 
+                        name: 'status' 
+                    },
                     {
                         data: 'action',
                         name: 'action'
@@ -193,12 +197,12 @@
             // of an input field. Validation rules are defined
             // on the right side
             nama_unit: "required",
-            // no_telp: "required",
+            status: "required",
             },
              // Specify validation error messages
             messages: {
                 nama_unit: "Silahkan masukkan nama unit terlebih dahulu",
-                // no_telp: "Silahkan masukkan nomor telepon dahulu",
+                status: "Silahkan masukkan status unit terlebih dahulu",
             },
               submitHandler: function (form) {
                   var actionType = $('#tombol-simpan').val();
@@ -244,7 +248,7 @@
                 //set value masing-masing id berdasarkan data yg diperoleh dari ajax get request diatas               
                 $('#id').val(data.id);
                 $('#nama_unit').val(data.nama_unit);
-                // $('#unit_id').val(data.unit_id);
+                $('#status').val(data.status);
                 // $('#akun_id').val(data.akun_id);
                 // $('#no_telp').val(data.no_telp);
                 // $('#alamat').val(data.alamat);
