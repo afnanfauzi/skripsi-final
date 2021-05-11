@@ -15,13 +15,13 @@ class CreateArtikelTable extends Migration
     {
         Schema::create('artikel', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('judul', 200);
-            $table->string('slug', 200);
-            $table->string('isi', 500);
+            $table->string('judul');
+            $table->string('slug');
+            $table->text('isi');
             $table->string('thumbnail')->nullable();
             $table->string('statuspublikasi');
+            $table->string('penulis');
             $table->foreignId('kategori_id');
-            $table->foreignId('anggota_id');
             $table->timestamps();
         });
     }

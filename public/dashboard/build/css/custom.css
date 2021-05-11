@@ -1607,7 +1607,8 @@ article.media {
 
 h2 {
   font-size: 18px;
-  font-weight: 400; }
+  font-weight: 400;
+  font-family: Montserrat,Georgia,'Times New Roman',Times,serif; }
 
 #left, #right {
   display: table; }

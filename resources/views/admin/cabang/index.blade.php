@@ -14,7 +14,7 @@
   <div class="col-md-12 col-sm-12 ">
             <div class="x_panel">
             <div class="x_title">
-                <h2>Daftar Cabang</h2>
+                <h2 class="text-uppercase">Daftar Cabang</h2>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -222,7 +222,7 @@
             $('#tombol-simpan').val("create-post"); //valuenya menjadi create-post
             $('#id').val(''); //valuenya menjadi kosong
             $('#form-tambah-edit').trigger("reset"); //mereset semua input dll didalamnya
-            $('#modal-judul').html("Tambah cabang"); //valuenya tambah cabang baru
+            $('#modal-judul').html("Tambah Cabang"); //valuenya tambah cabang baru
             $('#tambah-edit-modal').modal('show'); //modal tampil
         });
         

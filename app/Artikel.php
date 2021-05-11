@@ -8,7 +8,6 @@ use Illuminate\Support\Carbon;
 class Artikel extends Model
 {
     protected $table= 'artikel';
-    // protected $casts = ['created_at' => 'datetime:d-m-Y',];
     protected $guarded = [];
 
 
@@ -16,7 +15,7 @@ class Artikel extends Model
     public function getCreatedAtAttribute()
     {
         return Carbon::parse($this->attributes['created_at'])
-        ->locale('id')->isoFormat('LLL');
+        ->locale('id')->isoFormat('LL');
     }
 
     public function kategori()

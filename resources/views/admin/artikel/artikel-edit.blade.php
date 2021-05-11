@@ -23,15 +23,21 @@
 <div class="row">
     <div class="col-md-12 col-sm-12 ">
         <div class="x_panel">
-            <div class="x_title">
-                <h2>Edit Postingan</h2>
-                <div class="clearfix"></div>
-            </div>
-
-           
             <form method="post" action="{{ route('artikel.update', $post->id) }}" enctype="multipart/form-data">
                 @csrf
                 {{ method_field('PUT') }}
+
+            <div class="x_title">
+                <div class="col-md-8 col-sm-8">
+                    <h2 class="text-uppercase">Edit Postingan</h2>
+                </div>
+                <div class="col-md-4 col-sm-4" style="text-align: right;">
+                    <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-paper-plane"></i> Publikasikan</button>
+                    <a href="{{ route('artikel.index') }}" class="btn btn-primary btn-sm" type="button">Kembali</a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
             <div class="x_content">
                 <input type="text" placeholder="Judul" id="judul" name="judul" class="form-control" value="{{ $post->judul }}">
                     <div class="form-group">
@@ -41,6 +47,10 @@
             </div>
             <div class="col-md-12 col-sm-12">
                 <div class="form-group row">
+                    <label class="control-label col-md-1 col-sm-1" style="padding-top: 10px; font-size: 15px;" style="text-align: right;">Thumbnail :</label>
+                    <div class="col-md-2 col-sm-2" style="text-align: right;">
+                        <input type="file" name="thumbnail" id="thumbnail" style="padding-top: 10px;">
+                    </div>
                     <label class="control-label col-md-1 col-sm-1" style="padding-top: 10px; font-size: 15px;" style="text-align: right;">Kategori :</label>
                     <div class="col-md-2 col-sm-2" style="text-align: right;">
                         <select name="kategori_id" id="kategori_id" class="form-control">
@@ -77,10 +87,7 @@
                             </select> 
                         </div>
                     {{-- </div> --}}
-                    <div class="col-md-3 col-sm-3" style="text-align: right;">
-                        <a href="{{ route('artikel.index') }}" class="btn btn-primary" type="button">Kembali</a>
-                        <button type="submit" class="btn btn-success"><i class="fa fa-paper-plane"></i> Publikasikan</button>
-                    </div>
+                    
                 </div>
             </div>
         </form>

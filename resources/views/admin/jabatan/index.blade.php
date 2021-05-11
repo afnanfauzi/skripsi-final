@@ -10,7 +10,7 @@
   <div class="col-md-12 col-sm-12 ">
             <div class="x_panel">
             <div class="x_title">
-                <h2>List Jabatan</h2>
+                <h2 class="text-uppercase">List Jabatan</h2>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -137,7 +137,7 @@
             $('#tombol-simpan').val("create-post"); //valuenya menjadi create-post
             $('#id').val(''); //valuenya menjadi kosong
             $('#form-tambah-edit').trigger("reset"); //mereset semua input dll didalamnya
-            $('#modal-judul').html("Tambah jabatan"); //valuenya tambah jabatan baru
+            $('#modal-judul').html("Tambah Jabatan"); //valuenya tambah jabatan baru
             $('#tambah-edit-modal').modal('show'); //modal tampil
         });
         
@@ -239,7 +239,7 @@
             var data_id = $(this).data('id');
             $.get('jabatan/' + data_id + '/edit', function (data) {
                 // alert("Data: " + data);
-                $('#modal-judul').html("Edit jabatan");
+                $('#modal-judul').html("Edit Jabatan");
                 $('#tombol-simpan').val("edit-post");
                 $('#tambah-edit-modal').modal('show');
   

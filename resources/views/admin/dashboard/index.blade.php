@@ -1,11 +1,10 @@
 <!-- jQuery -->
 <script src="{{ asset('dashboard/vendors/jquery/dist/jquery.min.js') }}"></script>
 {{-- Custom css cards --}}
-<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
-<link href="{{ asset('dashboard/build/css/blog/bootstrap-extended.min.css') }}" rel="stylesheet">
-<link href="{{ asset('dashboard/build/css/blog/colors.min.css') }}" rel="stylesheet">
-<link href="{{ asset('dashboard/build/css/blog/style.min.css') }}" rel="stylesheet">
-<link href="{{ asset('dashboard/build/css/blog/bootstrap.min.css') }}" rel="stylesheet">
+<link href="{{ asset('dashboard/build/css/dashboard-admin/bootstrap-extended.min.css') }}" rel="stylesheet">
+<link href="{{ asset('dashboard/build/css/dashboard-admin/colors.min.css') }}" rel="stylesheet">
+<link href="{{ asset('dashboard/build/css/dashboard-admin/style.min.css') }}" rel="stylesheet">
+<link href="{{ asset('dashboard/build/css/dashboard-admin/bootstrap.min.css') }}" rel="stylesheet">
 
 @extends('layouts.master')
 @section('csrf')

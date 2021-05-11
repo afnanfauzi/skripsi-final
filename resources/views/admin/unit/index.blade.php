@@ -10,7 +10,7 @@
   <div class="col-md-12 col-sm-12 ">
     <div class="x_panel">
       <div class="x_title">
-        <h2>Daftar Unit</h2>
+        <h2 class="text-uppercase">Daftar Unit</h2>
         <div class="clearfix"></div>
       </div>
       <div class="x_content">
@@ -241,7 +241,7 @@
         $('body').on('click', '.edit-post', function () {
             var data_id = $(this).data('id');
             $.get('unit/' + data_id + '/edit', function (data) {
-                $('#modal-judul').html("Edit unit");
+                $('#modal-judul').html("Edit Unit");
                 $('#tombol-simpan').val("edit-post");
                 $('#tambah-edit-modal').modal('show');
   

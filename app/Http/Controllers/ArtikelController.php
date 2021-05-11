@@ -9,6 +9,7 @@ use App\Tags;
 use Illuminate\Http\Request;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Str;
+use App\CustomHelpers\ImageHelper;
 
 class ArtikelController extends Controller
 {
@@ -21,8 +22,7 @@ class ArtikelController extends Controller
     {
         
         $artikel = Artikel::with('kategori','anggota')->get();
-        // print_r($artikel);
-        // die();
+       
         if($request->ajax()){
             return datatables()->of($artikel)
                         ->addColumn('action', function($data){
@@ -69,17 +69,20 @@ class ArtikelController extends Controller
             'isi'=>'required',
             'kategori_id'=>'required',
             'tags'=>'required',
-            'nama_status'=>'required'
+            'nama_status'=>'required',
+            'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
         ],$messages);
 
-        $post = Artikel::updateOrCreate([
+        $imageName = ImageHelper::addImage($request->file('thumbnail'));
+
+        $post = Artikel::Create([
+            'thumbnail' =>$imageName ?? 'default.jpg',
             'judul' => $request->judul,
             'slug' => Str::slug($request->judul),
             'isi' =>$request->isi,
-            'thumbnail' =>$request->thumbnail,
             'statuspublikasi' =>$request->nama_status,
             'kategori_id' =>$request->kategori_id,
-            'anggota_id' =>'1',
+            'penulis' =>'Admin',
             // 'tags' => Str::slug($request->tags_1),
         ]);
 
@@ -148,23 +151,22 @@ class ArtikelController extends Controller
             'isi'=>'required',
             'kategori_id'=>'required',
             'tags'=>'required',
-            'nama_status'=>'required'
+            'nama_status'=>'required',
+            'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
         ],$messages);
 
         $post = Artikel::findorFail($id);
+        $imageName = ImageHelper::changeImage($request->file('thumbnail'), $post->thumbnail);
 
-        // if ($request->has('gambar')) {
-        //     $gambar = $request->gambar;
-        // }
 
         $post_data = [
             'judul' => $request->judul,
             'slug' => Str::slug($request->judul),
             'isi' =>$request->isi,
-            'thumbnail' =>$request->thumbnail,
+            'thumbnail' =>$imageName,
             'statuspublikasi' =>$request->nama_status,
             'kategori_id' =>$request->kategori_id,
-            'anggota_id' =>'1',
+            'penulis' =>'Admin',
             // 'tags' => Str::slug($request->tags_1),
         ];
 
@@ -184,26 +186,30 @@ class ArtikelController extends Controller
      */
     public function destroy($id)
     {
-        $post = Artikel::where('id',$id)->delete();
+        // $post = Artikel::where('id',$id)->delete();
+        $where = array('id' => $id);
+        $img = Artikel::where($where)->first();
+        ImageHelper::deleteImage($img->thumbnail);
+        $img->delete();
  
-        return response()->json($post);
+        return view('admin.artikel.index');
     }
 
-    public function upload(Request $request)
-    {
-        if($request->hasFile('upload')) {
-            $originName = $request->file('upload')->getClientOriginalName();
-            $fileName = pathinfo($originName, PATHINFO_FILENAME);
-            $extension = $request->file('upload')->getClientOriginalExtension();
-            $fileName = $fileName.'_'.time().'.'.$extension;
-            $request->file('upload')->move(public_path('gambar'), $fileName);
-            $CKEditorFuncNum = $request->input('CKEditorFuncNum');
-            $url = asset('gambar/'.$fileName); 
-            $msg = 'Image successfully uploaded'; 
-            $response = "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url', '$msg')</script>";
+    // public function upload(Request $request)
+    // {
+    //     if($request->hasFile('upload')) {
+    //         $originName = $request->file('upload')->getClientOriginalName();
+    //         $fileName = pathinfo($originName, PATHINFO_FILENAME);
+    //         $extension = $request->file('upload')->getClientOriginalExtension();
+    //         $fileName = $fileName.'_'.time().'.'.$extension;
+    //         $request->file('upload')->move(public_path('gambar'), $fileName);
+    //         $CKEditorFuncNum = $request->input('CKEditorFuncNum');
+    //         $url = asset('gambar/'.$fileName); 
+    //         $msg = 'Image successfully uploaded'; 
+    //         $response = "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url', '$msg')</script>";
                
-            @header('Content-type: text/html; charset=utf-8'); 
-            echo $response;
-        }
-    }
+    //         @header('Content-type: text/html; charset=utf-8'); 
+    //         echo $response;
+    //     }
+    // }
 }

@@ -23,8 +23,17 @@
 <div class="row">
     <div class="col-md-12 col-sm-12 ">
         <div class="x_panel">
+            <form method="post" action="{{ route('artikel.store') }}" enctype="multipart/form-data">
+                @csrf
+
             <div class="x_title">
-                <h2>Buat Postingan Baru</h2>
+                <div class="col-md-8 col-sm-8">
+                    <h2 class="text-uppercase">Buat Postingan Baru</h2>
+                </div>
+                <div class="col-md-4 col-sm-4" style="text-align: right;">
+                    <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-paper-plane"></i> Publikasikan</button>
+                    <a href="{{ route('artikel.index') }}" class="btn btn-primary btn-sm" type="button">Kembali</a>
+                </div>
                 <div class="clearfix"></div>
             </div>
             
@@ -38,9 +47,7 @@
                 </ul>
             </div>
             @endif
-
-            <form method="post" action="{{ route('artikel.store') }}" enctype="multipart/form-data">
-                @csrf
+            
             <div class="x_content">
                 <input type="text" placeholder="Judul" id="judul" name="judul" class="form-control" value="{{ old('judul') }}">
                     <div class="form-group">
@@ -50,6 +57,10 @@
             </div>
             <div class="col-md-12 col-sm-12">
                 <div class="form-group row">
+                    <label class="control-label col-md-1 col-sm-1" style="padding-top: 10px; font-size: 15px;" style="text-align: right;">Thumbnail :</label>
+                    <div class="col-md-2 col-sm-2" style="text-align: right;">
+                        <input type="file" name="thumbnail" id="thumbnail" style="padding-top: 10px;">
+                    </div>
                     <label class="control-label col-md-1 col-sm-1" style="padding-top: 10px; font-size: 15px;" style="text-align: right;">Kategori :</label>
                     <div class="col-md-2 col-sm-2" style="text-align: right;">
                         <select name="kategori_id" id="kategori_id" class="form-control">
@@ -68,17 +79,12 @@
                         </select>
                     </div>
                     <label class="control-label col-md-1 col-sm-1" style="padding-top: 10px; font-size: 15px; text-align: right;">Tags:</label>
-                        <div class="col-md-2 col-sm-2"> 
-                            <select id="choices-multiple-remove-button" placeholder="Pilih maksimal 5 tags" multiple name="tags[]" class="form-control">
-                            @foreach ($tags as $tag)
-                                <option value="{{ $tag->id }}">{{ $tag->nama_tags }}</option>
-                            @endforeach
-                            </select> 
-                        </div>
-                    
-                    <div class="col-md-3 col-sm-3" style="text-align: right;">
-                        <a href="{{ route('artikel.index') }}" class="btn btn-primary" type="button">Kembali</a>
-                        <button type="submit" class="btn btn-success"><i class="fa fa-paper-plane"></i> Publikasikan</button>
+                    <div class="col-md-2 col-sm-2"> 
+                        <select id="choices-multiple-remove-button" placeholder="Pilih maksimal 5 tags" multiple name="tags[]" class="form-control">
+                        @foreach ($tags as $tag)
+                            <option value="{{ $tag->id }}">{{ $tag->nama_tags }}</option>
+                        @endforeach
+                        </select> 
                     </div>
                 </div>
             </div>
