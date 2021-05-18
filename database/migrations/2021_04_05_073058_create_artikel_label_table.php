@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateArtikelTagsTable extends Migration
+class CreateArtikelLabelTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateArtikelTagsTable extends Migration
      */
     public function up()
     {
-        Schema::create('artikel_tags', function (Blueprint $table) {
+        Schema::create('artikel_label', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('artikel_id');
             $table->foreign('artikel_id')->references('id')->on('artikel')->onDelete('cascade');
-            $table->unsignedBigInteger('tags_id');
-            $table->foreign('tags_id')->references('id')->on('tags')->onDelete('cascade');
+            $table->unsignedBigInteger('label_id');
+            $table->foreign('label_id')->references('id')->on('label')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateArtikelTagsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('artikel_tags');
+        Schema::dropIfExists('artikel_label');
     }
 }

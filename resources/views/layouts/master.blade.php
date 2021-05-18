@@ -115,7 +115,7 @@
                           <ul class="nav child_menu">
                             <li class="sub_menu"><a href="{{route('artikel.index')}}">Postingan</a></li>
                             <li><a href="{{route('artikel-kategori.index')}}">Kategori</a></li>
-                            <li><a href="{{route('artikel-tags.index')}}">Tags</a></li>
+                            <li><a href="{{route('artikel-label.index')}}">Label</a></li>
                           </ul>
                         </li>
                         <li><a href="#level1_1">Halaman</a>

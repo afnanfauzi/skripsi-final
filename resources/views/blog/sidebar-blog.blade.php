@@ -44,8 +44,8 @@
         </div>
         <div class="category-widget">
             <ul>
-                @foreach($kategori as $kategori)
-                <li><a href="#">{{ $kategori->nama_kategori }} <span>{{ $kategori->artikel->count() }}</span></a></li>
+                @foreach($data_kategori as $data_kategori)
+                <li><a href="{{ route('list.kategori', $data_kategori->slug) }}">{{ $data_kategori->nama_kategori }} <span>{{ $data_kategori->artikel->count() }}</span></a></li>
                 @endforeach
             </ul>
         </div>

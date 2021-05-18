@@ -30,9 +30,9 @@ class Artikel extends Model
       
     }
 
-    public function tags()
+    public function label()
     {
-        return $this->belongsToMany('App\Tags', 'artikel_tags', 'artikel_id', 'tags_id');
+        return $this->belongsToMany('App\Label', 'artikel_label', 'artikel_id', 'label_id');
     }
 
     public function status(){

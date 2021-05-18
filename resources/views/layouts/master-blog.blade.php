@@ -6,8 +6,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
-	<title>@yield('title')</title>
+	
+	<title>@yield('title','Pimpinan Daerah Muhammadiyah Kabupaten Sragen')</title>
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CMuli:400,700" rel="stylesheet">
@@ -50,7 +50,7 @@
 
 					<!-- logo -->
 					<div class="nav-logo">
-						<a href="index.html" class="logo"><img src="{{ asset('dashboard/blog/img/logo.png')}}" alt=""></a>
+						<a href="{{ route('blog') }}" class="logo"><img src="{{ asset('dashboard/blog/img/logo.png')}}" alt=""></a>
 					</div>
 					<!-- /logo -->
 
@@ -59,8 +59,8 @@
 						<button class="aside-btn"><i class="fa fa-bars"></i></button>
 						<button class="search-btn"><i class="fa fa-search"></i></button>
 						<div id="nav-search">
-							<form>
-								<input class="input" name="search" placeholder="Enter your search...">
+							<form action="{{ route('cari.blog') }}" method="GET">
+								<input class="input" name="cari" placeholder="Enter your search...">
 							</form>
 							<button class="nav-close search-close">
 								<span></span>
@@ -190,7 +190,7 @@
 						<div class="category-widget">
 							<ul>
 								@foreach($kategori_footer as $kategori_footer)
-								<li><a href="#">{{ $kategori_footer->nama_kategori }} <span>{{ $kategori_footer->artikel->count() }}</span></a></li>
+								<li><a href="{{ route('list.kategori', $kategori_footer->slug) }}">{{ $kategori_footer->nama_kategori }} <span>{{ $kategori_footer->artikel->count() }}</span></a></li>
 								@endforeach
 							</ul>
 						</div>
@@ -198,11 +198,11 @@
 				</div>
 				<div class="col-md-3">
 					<div class="footer-widget">
-						<h3 class="footer-title">Tags</h3>
+						<h3 class="footer-title">Label</h3>
 						<div class="tags-widget">
 							<ul>
-								@foreach($tags as $tags)
-								<li><a href="#">{{ $tags->nama_tags }}</a></li>
+								@foreach($label_footer as $label_footer)
+								<li><a href="{{ route('list.label', $label_footer->slug) }}">{{ $label_footer->nama_label }}</a></li>
 								@endforeach
 							</ul>
 						</div>

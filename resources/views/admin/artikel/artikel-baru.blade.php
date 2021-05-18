@@ -78,11 +78,11 @@
                             <option value="Tidak">Tidak</option>
                         </select>
                     </div>
-                    <label class="control-label col-md-1 col-sm-1" style="padding-top: 10px; font-size: 15px; text-align: right;">Tags:</label>
+                    <label class="control-label col-md-1 col-sm-1" style="padding-top: 10px; font-size: 15px; text-align: right;">Label:</label>
                     <div class="col-md-2 col-sm-2"> 
-                        <select id="choices-multiple-remove-button" placeholder="Pilih maksimal 5 tags" multiple name="tags[]" class="form-control">
-                        @foreach ($tags as $tag)
-                            <option value="{{ $tag->id }}">{{ $tag->nama_tags }}</option>
+                        <select id="choices-multiple-remove-button" placeholder="Pilih maksimal 5 label" multiple name="label[]" class="form-control">
+                        @foreach ($label as $tag)
+                            <option value="{{ $tag->id }}">{{ $tag->nama_label }}</option>
                         @endforeach
                         </select> 
                     </div>

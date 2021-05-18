@@ -72,17 +72,17 @@
                             <option value="Tidak" @if ($post->statuspublikasi == "Tidak") {{ 'selected' }} @endif>Tidak</option>
                           </select>
                     </div>
-                    <label class="control-label col-md-1 col-sm-1" style="padding-top: 10px; font-size: 15px; text-align: right;">Tags:</label>
+                    <label class="control-label col-md-1 col-sm-1" style="padding-top: 10px; font-size: 15px; text-align: right;">Label:</label>
                         <div class="col-md-2 col-sm-2"> 
-                            <select id="choices-multiple-remove-button" placeholder="Pilih maksimal 5 tags" multiple name="tags[]">
-                            @foreach ($tags as $tag)
+                            <select id="choices-multiple-remove-button" placeholder="Pilih maksimal 5 label" multiple name="label[]">
+                            @foreach ($label as $tag)
                                 <option value="{{ $tag->id }}"
-                                    @foreach ($post->tags as $value)
+                                    @foreach ($post->label as $value)
                                         @if ($tag->id == $value->id)
                                             selected 
                                         @endif
                                     @endforeach
-                                    >{{ $tag->nama_tags }}</option>
+                                    >{{ $tag->nama_label }}</option>
                             @endforeach
                             </select> 
                         </div>

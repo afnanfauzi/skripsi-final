@@ -181,6 +181,9 @@ return [
         // izitoast
         LaraIzitoast\LaraIzitoastServiceProvider::class,
 
+        //Meta Pencarian
+        Davmixcool\MetaManager\MetaServiceProvider::class,
+
     ],
 
     /*

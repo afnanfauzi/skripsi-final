@@ -13,13 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/post', function () {
-    return view('blog.post');
+Route::get('/login', function () {
+    return view('layouts.app');
 });
 
 // Untuk blog
 Route::get('/', 'BlogController@index')->name('blog');
+Route::get('/list-post', 'BlogController@list_post')->name('list.post');
+Route::get('/kategori/{Kategori}', 'BlogController@list_kategori')->name('list.kategori');
+Route::get('/label/{Label}', 'BlogController@list_label')->name('list.label');
+Route::get('/cari', 'BlogController@cari')->name('cari.blog');
 Route::get('/{slug}', 'BlogController@isi')->name('isi.blog');
+
 
 
 Auth::routes();
@@ -35,7 +40,7 @@ Route::group(['middleware' => ['role:admin|sekretaris']], function () {
     Route::resource('admin/keanggotaan/cabang','CabangController', ['names' => 'cabang']);
     Route::resource('admin/keanggotaan/ranting','RantingController', ['names' => 'ranting']);
     Route::resource('admin/blog/artikel/kategori','KategoriController', ['names' => 'artikel-kategori']);
-    Route::resource('admin/blog/artikel/tags','TagsController', ['names' => 'artikel-tags']);
+    Route::resource('admin/blog/artikel/label','LabelController', ['names' => 'artikel-label']);
     Route::resource('admin/blog/artikel','ArtikelController', ['names' => 'artikel']);
 });
 

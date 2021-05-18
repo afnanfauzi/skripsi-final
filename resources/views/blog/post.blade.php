@@ -2,7 +2,13 @@
 @section('csrf')
 <meta name="csrf-token" content="{{ csrf_token() }}">    
 @endsection
-@section('title', 'Pimpinan Daerah Muhammadiyah Sragen')
+@foreach ($meta as $meta)
+    @include('meta::manager', [
+    'title'         => $meta->judul,
+    'description'   => Illuminate\Support\Str::limit($meta->isi, 140),
+    'image'         => Storage::url('public/gambar/'.$meta->thumbnail),
+    ])
+@endforeach
 @foreach ($post as $post)
     
     @section('header-post')
@@ -57,8 +63,8 @@
                     <div class="section-row">
                         <div class="post-tags">
                             <ul>
-                                <li>TAGS:</li>
-                                {{-- <li><a href="#">{{ $post->tags->nama_tags }}</a></li> --}}
+                                <li>label:</li>
+                                {{-- <li><a href="#">{{ $post->label->nama_label }}</a></li> --}}
                             </ul>
                         </div>
                     </div>

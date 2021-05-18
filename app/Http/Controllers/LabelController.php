@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Tags;
+use App\Label;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class TagsController extends Controller
+class LabelController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +15,10 @@ class TagsController extends Controller
      */
     public function index(Request $request)
     {
-        $tags = Tags::all();
-        // dd($tags);
+        $label = Label::all();
+        // dd($label);
         if($request->ajax()){
-            return datatables()->of($tags)
+            return datatables()->of($label)
                         ->addColumn('action', function($data){
                             $button = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$data->id.'" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post" title="Edit Data"><i class="fa fa-edit fa-sm"></i></a>';
                             // $button .= '&nbsp;&nbsp;';
@@ -30,7 +30,7 @@ class TagsController extends Controller
                         ->make(true);
         }
     
-            return view('admin.artikel.tags');
+            return view('admin.artikel.label');
     }
 
     /**
@@ -53,10 +53,10 @@ class TagsController extends Controller
     {
         $id = $request->id;
         
-        $post   =   Tags::updateOrCreate(['id' => $id],
+        $post   =   Label::updateOrCreate(['id' => $id],
                     [
-                        'nama_tags' => $request->nama_tags,
-                        'slug' => Str::slug($request->tags),
+                        'nama_label' => $request->nama_label,
+                        'slug' => Str::slug($request->nama_label),
                     ]); 
 
         return response()->json($post);
@@ -82,7 +82,7 @@ class TagsController extends Controller
     public function edit($id)
     {
         $where = array('id' => $id);
-        $post  = Tags::where($where)->first();
+        $post  = Label::where($where)->first();
      
         return response()->json($post);
     }
@@ -107,7 +107,7 @@ class TagsController extends Controller
      */
     public function destroy($id)
     {
-        $post = Tags::where('id',$id)->delete();
+        $post = Label::where('id',$id)->delete();
      
         return response()->json($post);
     }

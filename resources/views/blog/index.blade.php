@@ -42,7 +42,7 @@
                 <!-- /row -->
 
                 <div class="section-row loadmore text-center">
-                    <a href="#" class="primary-button">Tampilkan Lebih Banyak</a>
+                    <a href="{{ route('list.post') }}" class="primary-button">Tampilkan Lebih Banyak</a>
                 </div>
             </div>
             
@@ -52,5 +52,5 @@
     </div>
     <!-- /container -->
 </div>
-<!-- /SECTION -->    
+<!-- /SECTION -->  
 @endsection

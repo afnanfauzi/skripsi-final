@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Artikel;
 use App\Kategori;
 // use App\StatusPublikasi;
-use App\Tags;
+use App\Label;
 use Illuminate\Http\Request;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Str;
@@ -47,9 +47,9 @@ class ArtikelController extends Controller
     public function create()
     {
         // $status = StatusPublikasi::all();
-        $tags = Tags::all();
+        $label = Label::all();
         $kategori = Kategori::all();
-        return view('admin.artikel.artikel-baru', compact('kategori', 'tags'));
+        return view('admin.artikel.artikel-baru', compact('kategori', 'label'));
     }
 
     /**
@@ -68,9 +68,9 @@ class ArtikelController extends Controller
             'judul'=>'required',
             'isi'=>'required',
             'kategori_id'=>'required',
-            'tags'=>'required',
+            'label'=>'required',
             'nama_status'=>'required',
-            'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+            'thumbnail' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
         ],$messages);
 
         $imageName = ImageHelper::addImage($request->file('thumbnail'));
@@ -83,11 +83,11 @@ class ArtikelController extends Controller
             'statuspublikasi' =>$request->nama_status,
             'kategori_id' =>$request->kategori_id,
             'penulis' =>'Admin',
-            // 'tags' => Str::slug($request->tags_1),
+            // 'label' => Str::slug($request->label_1),
         ]);
 
-        $tagsId = $request->tags;
-        $post->tags()->attach($tagsId);
+        $labelId = $request->label;
+        $post->label()->attach($labelId);
 
         return redirect()->action([ArtikelController::class, 'index']);
 
@@ -116,21 +116,21 @@ class ArtikelController extends Controller
     {
         // $status = StatusPublikasi::all();
         $kategori = Kategori::all();
-        $tags = Tags::all();
+        $label = Label::all();
         $where = array('id' => $id);
         $post  = Artikel::where($where)->first();
        
         // return $post;
-        return view('admin.artikel.artikel-edit', compact('kategori', 'tags','post'));
-        // return view('artikel.artikel-edit', compact('kategori', 'tags'), ['post' => $request->post])->render();
+        return view('admin.artikel.artikel-edit', compact('kategori', 'label','post'));
+        // return view('artikel.artikel-edit', compact('kategori', 'label'), ['post' => $request->post])->render();
        
         
     }
 
     // public function editArtikel(Request $request){
     //     $kategori = Kategori::all();
-    //     $tags = Tags::all();
-    //     return view('artikel.artikel-edit', compact('kategori', 'tags'));
+    //     $label = label::all();
+    //     return view('artikel.artikel-edit', compact('kategori', 'label'));
     // }
 
     /**
@@ -150,7 +150,7 @@ class ArtikelController extends Controller
             'judul'=>'required',
             'isi'=>'required',
             'kategori_id'=>'required',
-            'tags'=>'required',
+            'label'=>'required',
             'nama_status'=>'required',
             'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
         ],$messages);
@@ -167,11 +167,11 @@ class ArtikelController extends Controller
             'statuspublikasi' =>$request->nama_status,
             'kategori_id' =>$request->kategori_id,
             'penulis' =>'Admin',
-            // 'tags' => Str::slug($request->tags_1),
+            // 'label' => Str::slug($request->label_1),
         ];
 
-        $tagsId = $request->tags;
-        $post->tags()->sync($tagsId);
+        $labelId = $request->label;
+        $post->label()->sync($labelId);
         $post->update($post_data);
 
         return redirect()->action([ArtikelController::class, 'index']);
