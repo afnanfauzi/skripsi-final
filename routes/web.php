@@ -12,10 +12,20 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 
-Route::get('/login', function () {
+Route::get('admin/login', function () {
     return view('layouts.app');
 });
+
+// File Manager
+Route::group(['prefix' => 'admin/kelola-penyimpanan', 'middleware' => ['web', 'auth']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});
+
+// Route::group(['prefix' => 'admin/kelola-penyimpanan', 'middleware' => ['web', 'admin']], function () {
+//     \UniSharp\LaravelFilemanager\Lfm::routes();
+// });
 
 // Untuk blog
 Route::get('/', 'BlogController@index')->name('blog');
@@ -27,7 +37,9 @@ Route::get('/{slug}', 'BlogController@isi')->name('isi.blog');
 
 
 
-Auth::routes();
+
+
+
 
 Route::group(['middleware' => ['role:admin|sekretaris']], function () {
     Route::resource('admin/dashboard','DashboardController', ['names' => 'dashboard']);

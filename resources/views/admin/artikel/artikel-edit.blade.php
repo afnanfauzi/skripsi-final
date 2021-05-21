@@ -1,11 +1,9 @@
 <!-- jQuery -->
 <script src="{{ asset('dashboard/vendors/jquery/dist/jquery.min.js') }}"></script>
-{{-- <!-- Select2 -->
-<script src="{{ asset('dashboard/vendors/select2/dist/js/select2.full.min.js') }}"></script>
-<!-- Select2 -->
-<link href="{{ asset('dashboard/vendors/select2/dist/css/select2.min.css') }}" rel="stylesheet"> --}}
+
 <!-- ckEditor -->
-<script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+{{-- <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script> --}}
+<script src="{{ asset('vendor/ckeditor/ckeditor.js') }}"></script>
 
 <!-- Select custom -->
 <link href="{{ asset('css/custom-select-multiple.css') }}" rel="stylesheet">
@@ -94,9 +92,19 @@
         </div>
     </div>
 
-        
+    {{-- tambahkan gambar/file pada ck editor --}}
     <script>
-        CKEDITOR.replace( 'isi' );
+        var options = {
+          filebrowserImageBrowseUrl: '/admin/kelola-penyimpanan?type=Images',
+          filebrowserImageUploadUrl: '/admin/kelola-penyimpanan/upload?type=Images&_token='+ $('meta[name=csrf-token]').attr("content"),
+          filebrowserBrowseUrl: '/admin/kelola-penyimpanan?type=Files',
+          filebrowserUploadUrl: '/admin/kelola-penyimpanan/upload?type=Files&_token='+ $('meta[name=csrf-token]').attr("content")
+        };
+    </script>
+    
+    {{-- load ck editor --}}
+    <script>
+        CKEDITOR.replace( 'isi', options );
     </script>
     
     <script>

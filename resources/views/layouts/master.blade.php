@@ -123,9 +123,7 @@
                         </li>
                     </ul>
                   </li>  
-
-
-
+                  <li><a href="{{ route('blog') }}"><i class="fa fa-newspaper-o"></i> Lihat Blog</a></li>
                 </ul>
               </div>
             </div>

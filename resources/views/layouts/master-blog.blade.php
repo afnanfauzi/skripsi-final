@@ -50,7 +50,7 @@
 
 					<!-- logo -->
 					<div class="nav-logo">
-						<a href="{{ route('blog') }}" class="logo"><img src="{{ asset('dashboard/blog/img/logo.png')}}" alt=""></a>
+						<a href="{{ route('blog') }}" class="logo"><img src="{{ asset('dashboard/blog/img/logo-blog.png')}}" width="50" alt=""></a>
 					</div>
 					<!-- /logo -->
 
@@ -173,15 +173,17 @@
 				<div class="col-md-3">
 					<div class="footer-widget">
 						<div class="footer-logo">
-							<a href="index.html" class="logo"><img src="{{ asset('dashboard/blog/img/logo-alt.png')}}" alt=""></a>
+							{{-- <a href="{{ route('blog') }}" class="logo"><img src="{{ asset('dashboard/blog/img/muhammadiyah.png')}}" alt="" width="150"></a> --}}
+							<h3 class="footer-title">Temukan Kami</h3>
 						</div>
-						<p>Nec feugiat nisl pretium fusce id velit ut tortor pretium. Nisl purus in mollis nunc sed. Nunc non blandit massa enim nec.</p>
-						<ul class="contact-social">
+						<p>Kantor: <br>
+							Jl. Yos Sudarso, Karang Duwo, Sragen Tengah, Kec. Sragen, Kabupaten Sragen, Jawa Tengah 57211</p>
+						{{-- <ul class="contact-social">
 							<li><a href="#" class="social-facebook"><i class="fa fa-facebook"></i></a></li>
 							<li><a href="#" class="social-twitter"><i class="fa fa-twitter"></i></a></li>
 							<li><a href="#" class="social-google-plus"><i class="fa fa-google-plus"></i></a></li>
 							<li><a href="#" class="social-instagram"><i class="fa fa-instagram"></i></a></li>
-						</ul>
+						</ul> --}}
 					</div>
 				</div>
 				<div class="col-md-3">
@@ -210,14 +212,15 @@
 				</div>
 				<div class="col-md-3">
 					<div class="footer-widget">
-						<h3 class="footer-title">Newsletter</h3>
-						<div class="newsletter-widget">
+						<h3 class="footer-title">Peta Lokasi</h3>
+						{{-- <div class="newsletter-widget">
 							<form>
 								<p>Nec feugiat nisl pretium fusce id velit ut tortor pretium.</p>
 								<input class="input" name="newsletter" placeholder="Enter Your Email">
 								<button class="primary-button">Subscribe</button>
 							</form>
-						</div>
+						</div> --}}
+						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.353402827331!2d111.01987501439962!3d-7.426085994642308!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a034802ce4217%3A0xada9f86e68b5850d!2sPimpinan%20Daerah%20Muhammadiyah%20Kabupaten%20Sragen!5e0!3m2!1sid!2sid!4v1621599827098!5m2!1sid!2sid" width="275" height="220" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
 					</div>
 				</div>
 			</div>

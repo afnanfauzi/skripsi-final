@@ -20,30 +20,36 @@
                         </div>
                     </div>
                     <!-- post -->
-                    @foreach($postingan as $postingan)
-                    <div class="col-md-6">
-                        <div class="post">
-                            <a class="post-img" href="{{ route('isi.blog', $postingan->slug) }}"><img src="{{Storage::url('public/gambar/'.$postingan->thumbnail)}}" alt=""></a>
-                            <div class="post-body">
-                                <div class="post-category">
-                                    <a href="#">{{ $postingan->kategori->nama_kategori }}</a>
+                    @if($postingan->count() > 0)
+                        @foreach($postingan as $postingan)
+                        <div class="col-md-6">
+                            <div class="post">
+                                <a class="post-img" href="{{ route('isi.blog', $postingan->slug) }}"><img src="{{Storage::url('public/gambar/'.$postingan->thumbnail)}}" alt=""></a>
+                                <div class="post-body">
+                                    <div class="post-category">
+                                        <a href="{{ route('list.kategori', $postingan->kategori->slug) }}">{{ $postingan->kategori->nama_kategori }}</a>
+                                    </div>
+                                    <h3 class="post-title"><a href="{{ route('isi.blog', $postingan->slug) }}">{{ $postingan->judul }}</a></h3>
+                                    <ul class="post-meta">
+                                        <li><a href="#">{{ $postingan->penulis}}</a></li>
+                                        <li>{{ $postingan->created_at }}</li>
+                                    </ul>
                                 </div>
-                                <h3 class="post-title"><a href="#">{{ $postingan->judul }}</a></h3>
-                                <ul class="post-meta">
-                                    <li><a href="#">{{ $postingan->penulis}}</a></li>
-                                    <li>{{ $postingan->created_at }}</li>
-                                </ul>
                             </div>
                         </div>
-                    </div>
-                    @endforeach
+                        @endforeach
+                    @else
+                        <p>Postingan Tidak Ditemukan.</p>
+                    @endif
                     <!-- /post -->
                 </div>
                 <!-- /row -->
-
-                <div class="section-row loadmore text-center">
-                    <a href="{{ route('list.post') }}" class="primary-button">Tampilkan Lebih Banyak</a>
-                </div>
+                @if($postingan->count() > 0)
+                    <div class="section-row loadmore text-center">
+                        <a href="{{ route('list.post') }}" class="primary-button">Tampilkan Lebih Banyak</a>
+                    </div>
+                @else
+                @endif   
             </div>
             
             @include('blog.sidebar-blog')

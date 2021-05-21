@@ -18,6 +18,8 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "2.0",
         "spatie/laravel-permission": "^4.0",
+        "spatie/laravel-sitemap": "5.7.0",
+        "unisharp/laravel-filemanager": "^2.2",
         "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {

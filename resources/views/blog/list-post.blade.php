@@ -19,24 +19,28 @@
                         </div>
                     </div> --}}
                     <!-- post -->
-                    @foreach($postingan as $post)
-                    <div class="post post-row">
-                        <a class="post-img" href="{{ route('isi.blog', $post->slug) }}"><img src="{{Storage::url('public/gambar/'.$post->thumbnail)}}" alt=""></a>
-                        <div class="post-body">
-                            <div class="post-category">
-                                <a href="#">{{ $post->kategori->nama_kategori }}</a>
+                    @if($postingan->count() > 0)
+                        @foreach($postingan as $post)
+                        <div class="post post-row">
+                            <a class="post-img" href="{{ route('isi.blog', $post->slug) }}"><img src="{{Storage::url('public/gambar/'.$post->thumbnail)}}" alt=""></a>
+                            <div class="post-body">
+                                <div class="post-category">
+                                    <a href="{{ route('list.kategori', $post->kategori->slug) }}">{{ $post->kategori->nama_kategori }}</a>
+                                </div>
+                                <h3 class="post-title"><a href="{{ route('isi.blog', $post->slug) }}">{{ $post->judul }}</a></h3>
+                                <ul class="post-meta">
+                                    <li><a href="#">{{ $post->penulis}}</a></li>
+                                    <li>{{ $post->created_at }}</li>
+                                </ul>
+                                <p>{!! Illuminate\Support\Str::limit($post->isi, 180, $end='...') !!}</p>
                             </div>
-                            <h3 class="post-title"><a href="{{ route('isi.blog', $post->slug) }}">{{ $post->judul }}</a></h3>
-                            <ul class="post-meta">
-                                <li><a href="author.html">{{ $post->penulis}}</a></li>
-                                <li>{{ $post->created_at }}</li>
-                            </ul>
-                            <p>{!! Illuminate\Support\Str::limit($post->isi, 180, $end='...') !!}</p>
                         </div>
-                    </div>
-                    @endforeach
-                    <!-- /post -->
-                    <center>{{ $postingan->links() }}</center>
+                        @endforeach
+                        <!-- /post -->
+                        <center>{{ $postingan->links() }}</center>
+                    @else
+                        <p>Postingan Tidak Ditemukan.</p>
+                    @endif
                 </div>
                 <!-- /row -->
 
