@@ -97,9 +97,9 @@ return [
 
     'disk'                     => 'public',
 
-    'rename_file'              => true,
+    'rename_file'              => false,
 
-    'rename_duplicates'        => false,
+    'rename_duplicates'        => true,
 
     'alphanumeric_filename'    => false,
 

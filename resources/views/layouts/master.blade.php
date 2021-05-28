@@ -118,9 +118,8 @@
                             <li><a href="{{route('artikel-label.index')}}">Label</a></li>
                           </ul>
                         </li>
-                        <li><a href="#level1_1">Halaman</a>
-                        <li><a href="#level1_2">Pengumuman</a>
-                        </li>
+                        <li><a href="{{route('halaman.index')}}">Halaman</a></li>
+                        <li><a href="{{route('unduhan.index')}}">Unduhan</a></li>
                     </ul>
                   </li>  
                   <li><a href="{{ route('blog') }}"><i class="fa fa-newspaper-o"></i> Lihat Blog</a></li>

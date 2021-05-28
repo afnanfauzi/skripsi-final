@@ -69,7 +69,6 @@ class ArtikelController extends Controller
             'isi'=>'required',
             'kategori_id'=>'required',
             'label'=>'required',
-            'nama_status'=>'required',
             'thumbnail' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
         ],$messages);
 
@@ -80,9 +79,10 @@ class ArtikelController extends Controller
             'judul' => $request->judul,
             'slug' => Str::slug($request->judul),
             'isi' =>$request->isi,
-            'statuspublikasi' =>$request->nama_status,
+            'statuspublikasi' =>$request->nama_status ?? 'Tidak',
             'kategori_id' =>$request->kategori_id,
             'penulis' =>'Admin',
+            'sematkan' =>$request->sematkan,
             // 'label' => Str::slug($request->label_1),
         ]);
 
@@ -151,7 +151,6 @@ class ArtikelController extends Controller
             'isi'=>'required',
             'kategori_id'=>'required',
             'label'=>'required',
-            'nama_status'=>'required',
             'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
         ],$messages);
 
@@ -164,9 +163,10 @@ class ArtikelController extends Controller
             'slug' => Str::slug($request->judul),
             'isi' =>$request->isi,
             'thumbnail' =>$imageName,
-            'statuspublikasi' =>$request->nama_status,
+            'statuspublikasi' =>$request->nama_status ?? 'Tidak',
             'kategori_id' =>$request->kategori_id,
             'penulis' =>'Admin',
+            'sematkan' =>$request->sematkan,
             // 'label' => Str::slug($request->label_1),
         ];
 
@@ -195,21 +195,4 @@ class ArtikelController extends Controller
         return view('admin.artikel.index');
     }
 
-    // public function upload(Request $request)
-    // {
-    //     if($request->hasFile('upload')) {
-    //         $originName = $request->file('upload')->getClientOriginalName();
-    //         $fileName = pathinfo($originName, PATHINFO_FILENAME);
-    //         $extension = $request->file('upload')->getClientOriginalExtension();
-    //         $fileName = $fileName.'_'.time().'.'.$extension;
-    //         $request->file('upload')->move(public_path('gambar'), $fileName);
-    //         $CKEditorFuncNum = $request->input('CKEditorFuncNum');
-    //         $url = asset('gambar/'.$fileName); 
-    //         $msg = 'Image successfully uploaded'; 
-    //         $response = "<script>window.parent.CKEDITOR.tools.callFunction($CKEditorFuncNum, '$url', '$msg')</script>";
-               
-    //         @header('Content-type: text/html; charset=utf-8'); 
-    //         echo $response;
-    //     }
-    // }
 }

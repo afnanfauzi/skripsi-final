@@ -27,22 +27,11 @@ Route::group(['prefix' => 'admin/kelola-penyimpanan', 'middleware' => ['web', 'a
 //     \UniSharp\LaravelFilemanager\Lfm::routes();
 // });
 
-// Untuk blog
-Route::get('/', 'BlogController@index')->name('blog');
-Route::get('/list-post', 'BlogController@list_post')->name('list.post');
-Route::get('/kategori/{Kategori}', 'BlogController@list_kategori')->name('list.kategori');
-Route::get('/label/{Label}', 'BlogController@list_label')->name('list.label');
-Route::get('/cari', 'BlogController@cari')->name('cari.blog');
-Route::get('/{slug}', 'BlogController@isi')->name('isi.blog');
-
-
-
-
-
 
 
 Route::group(['middleware' => ['role:admin|sekretaris']], function () {
     Route::resource('admin/dashboard','DashboardController', ['names' => 'dashboard']);
+    Route::get('admin/', 'DashboardController@index');
     Route::get('admin/kegiatan/{kegiatan}/info', 'KegiatanController@info');
     Route::resource('admin/kegiatan','KegiatanController', ['names' => 'kegiatan']);
     Route::resource('admin/keanggotaan/unit','UnitController', ['names' => 'unit']);
@@ -54,7 +43,29 @@ Route::group(['middleware' => ['role:admin|sekretaris']], function () {
     Route::resource('admin/blog/artikel/kategori','KategoriController', ['names' => 'artikel-kategori']);
     Route::resource('admin/blog/artikel/label','LabelController', ['names' => 'artikel-label']);
     Route::resource('admin/blog/artikel','ArtikelController', ['names' => 'artikel']);
+    Route::resource('admin/blog/halaman','HalamanController', ['names' => 'halaman']);
+    Route::resource('admin/blog/unduhan','UnduhanController', ['names' => 'unduhan']);
 });
+
+
+
+
+// Untuk blog
+Route::get('/', 'BlogController@index')->name('blog');
+Route::get('/list-post', 'BlogController@list_post')->name('list.post');
+Route::get('/kategori/{Kategori}', 'BlogController@list_kategori')->name('list.kategori');
+Route::get('/label/{Label}', 'BlogController@list_label')->name('list.label');
+Route::get('/cari', 'BlogController@cari')->name('cari.blog');
+Route::get('/postingan/{slug}', 'BlogController@isi')->name('isi.blog');
+Route::get('/halaman/{slug}', 'BlogController@halaman')->name('halaman.blog');
+Route::get('/unduhan', 'BlogController@unduhan')->name('unduhan.blog');
+
+
+
+
+
+
+
 
 
 

@@ -35,7 +35,4 @@ class Artikel extends Model
         return $this->belongsToMany('App\Label', 'artikel_label', 'artikel_id', 'label_id');
     }
 
-    public function status(){
-        return $this->belongsTo('App\StatusPublikasi', 'statuspublikasi_id', 'id');
-    }
 }

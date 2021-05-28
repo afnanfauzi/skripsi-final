@@ -8,6 +8,8 @@
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 	
 	<title>@yield('title','Pimpinan Daerah Muhammadiyah Kabupaten Sragen')</title>
+	@yield('meta-tag')
+	@yield('jquery')
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CMuli:400,700" rel="stylesheet">
@@ -28,6 +30,11 @@
 		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
+
+	{{-- Datatables --}}
+	<link href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet">
+	
+	
 
 </head>
 
@@ -79,37 +86,41 @@
 					<ul class="nav-menu">
 						<li><a href="{{ route('blog') }}">Beranda</a></li>
 						<li class="has-dropdown">
-							<a href="#">Profil</a>
+							<a href="#">Tentang Kami</a>
 							<div class="dropdown">
 								<div class="dropdown-body">
 									<ul class="dropdown-list">
-										<li><a href="#">Sejarah</a></li>
+										@foreach ($menuprofil as $menu)
+										<li><a href="{{ route('halaman.blog', $menu->slug) }}">{{ $menu->judul }}</a></li>
+										@endforeach
+										{{-- <li><a href="#">Sejarah</a></li>
 										<li><a href="#">Struktur Organisasi</a></li>
 										<li><a href="#">Visi Misi</a></li>
 										<li><a href="#">Program Kerja</a></li>
 										<li><a href="#">Majelis</a></li>
 										<li><a href="#">Lembaga</a></li>
 										<li><a href="#">PCM</a></li>
-										<li><a href="#">Ortom</a></li>
+										<li><a href="#">Ortom</a></li> --}}
 									</ul>
 								</div>
 							</div>
 						</li>
-						<li class="has-dropdown">
-							<a href="#">Download</a>
+						<li><a href="{{ route('unduhan.blog') }}">Unduhan</a></li>
+						{{-- <li class="has-dropdown">
+							<a href="#">Unduhan</a>
 							<div class="dropdown">
 								<div class="dropdown-body">
 									<ul class="dropdown-list">
 										<li><a href="#">Lagu Muhammadiyah</a></li>
-										{{-- <li><a href="blog-post.html">Post page</a></li>
+										<li><a href="blog-post.html">Post page</a></li>
 										<li><a href="author.html">Author page</a></li>
 										<li><a href="about.html">About Us</a></li>
 										<li><a href="contact.html">Contacts</a></li>
-										<li><a href="blank.html">Regular</a></li> --}}
+										<li><a href="blank.html">Regular</a></li>
 									</ul>
 								</div>
 							</div>
-						</li>
+						</li> --}}
 					</ul>
 					<!-- /nav -->
 				</div>
@@ -119,39 +130,43 @@
 			<!-- Aside Nav -->
 			<div id="nav-aside">
 				<ul class="nav-aside-menu">
-					<li><a href="#">Beranda</a></li>
+					<li><a href="{{ route('blog') }}">Beranda</a></li>
 						<li class="has-dropdown">
-							<a href="#">Profil</a>
+							<a href="#">Tentang Kami</a>
 							<div class="dropdown">
 								<div class="dropdown-body">
 									<ul class="dropdown-list">
-										<li><a href="#">Sejarah</a></li>
+										@foreach ($menuprofil as $menu)
+										<li><a href="{{ route('halaman.blog', $menu->slug) }}">{{ $menu->judul }}</a></li>
+										@endforeach
+										{{-- <li><a href="#">Sejarah</a></li>
 										<li><a href="#">Struktur Organisasi</a></li>
 										<li><a href="#">Visi Misi</a></li>
 										<li><a href="#">Program Kerja</a></li>
 										<li><a href="#">Majelis</a></li>
 										<li><a href="#">Lembaga</a></li>
 										<li><a href="#">PCM</a></li>
-										<li><a href="#">Ortom</a></li>
+										<li><a href="#">Ortom</a></li> --}}
 									</ul>
 								</div>
 							</div>
 						</li>
-						<li class="has-dropdown">
-							<a href="#">Download</a>
+						<li><a href="{{ route('unduhan.blog') }}">Unduhan</a></li>
+						{{-- <li class="has-dropdown">
+							<a href="#">Unduhan</a>
 							<div class="dropdown">
 								<div class="dropdown-body">
 									<ul class="dropdown-list">
 										<li><a href="#">Lagu Muhammadiyah</a></li>
-										{{-- <li><a href="blog-post.html">Post page</a></li>
+										<li><a href="blog-post.html">Post page</a></li>
 										<li><a href="author.html">Author page</a></li>
 										<li><a href="about.html">About Us</a></li>
 										<li><a href="contact.html">Contacts</a></li>
-										<li><a href="blank.html">Regular</a></li> --}}
+										<li><a href="blank.html">Regular</a></li>
 									</ul>
 								</div>
 							</div>
-						</li>
+						</li> --}}
 				</ul>
 				<button class="nav-close nav-aside-close"><span></span></button>
 			</div>
@@ -230,9 +245,9 @@
 			<div class="footer-bottom row">
 				<div class="col-md-6 col-md-push-6">
 					<ul class="footer-nav">
-						<li><a href="index.html">Beranda</a></li>
+						{{-- <li><a href="index.html">Beranda</a></li>
 						<li><a href="about.html">Tentang Kami</a></li>
-						<li><a href="contact.html">Kontak Kami</a></li>
+						<li><a href="contact.html">Kontak Kami</a></li> --}}
 					</ul>
 				</div>
 				<div class="col-md-6 col-md-pull-6">
@@ -254,6 +269,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	<script src="{{ asset('dashboard/blog/js/bootstrap.min.js') }}"></script>
 	<script src="{{ asset('dashboard/blog/js/jquery.stellar.min.js') }}"></script>
 	<script src="{{ asset('dashboard/blog/js/main.js') }}"></script>
+
+	{{-- Datatables --}}
+	<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
 
 </body>
 

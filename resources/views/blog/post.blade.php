@@ -2,13 +2,14 @@
 @section('csrf')
 <meta name="csrf-token" content="{{ csrf_token() }}">    
 @endsection
+@section('meta-tag')
 @foreach ($meta as $meta)
     @include('meta::manager', [
     'title'         => $meta->judul,
     'description'   => Illuminate\Support\Str::limit($meta->isi, 140),
-    'image'         => Storage::url('public/gambar/'.$meta->thumbnail),
     ])
-@endforeach
+@endforeach   
+@endsection
 @foreach ($post as $post)
     
     @section('header-post')

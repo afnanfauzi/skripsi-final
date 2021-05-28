@@ -30,7 +30,7 @@
                     <h2 class="text-uppercase">Buat Postingan Baru</h2>
                 </div>
                 <div class="col-md-4 col-sm-4" style="text-align: right;">
-                    <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-paper-plane"></i> Publikasikan</button>
+                    <button type="submit" class="btn btn-success btn-sm">Simpan</button>
                     <a href="{{ route('artikel.index') }}" class="btn btn-primary btn-sm" type="button">Kembali</a>
                 </div>
                 <div class="clearfix"></div>
@@ -69,14 +69,14 @@
                             @endforeach
                           </select>
                     </div>
-                    <label class="control-label col-md-1 col-sm-1" style="padding-top: 10px; font-size: 15px;" style="text-align: right;">Publikasi :</label>
-                    <div class="col-md-2 col-sm-2" style="text-align: right;">
+                    {{-- <label class="control-label col-md-1 col-sm-1" style="padding-top: 10px; font-size: 15px;" style="text-align: right;">Publikasi :</label> --}}
+                    {{-- <div class="col-md-2 col-sm-2" >
                         <select name="nama_status" id="nama_status" class="form-control">
                             <option value="" holder>Pilih Status</option>
                             <option value="Ya">Ya</option>
                             <option value="Tidak">Tidak</option>
-                        </select>
-                    </div>
+                        </select>    
+                    </div> --}}
                     <label class="control-label col-md-1 col-sm-1" style="padding-top: 10px; font-size: 15px; text-align: right;">Label:</label>
                     <div class="col-md-2 col-sm-2"> 
                         <select id="choices-multiple-remove-button" placeholder="Pilih maksimal 5 label" multiple name="label[]" class="form-control">
@@ -84,6 +84,14 @@
                             <option value="{{ $tag->id }}">{{ $tag->nama_label }}</option>
                         @endforeach
                         </select> 
+                    </div>
+                    <div class="form-control col-md-3 col-sm-3" style="border:none;padding-top: 10px; font-size: 15px; color:#73879C;">
+                        <label>
+                            <input type="checkbox" name="nama_status" id="nama_status" value="Ya" class="flat" checked="checked"> Publikasikan
+                        </label>
+                        <label style="padding-left: 12px;">
+                            <input type="checkbox" name="sematkan" id="sematkan" value="Ya" class="flat"> Sematkan Postingan
+                        </label>
                     </div>
                 </div>
             </div>

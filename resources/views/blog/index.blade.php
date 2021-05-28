@@ -4,7 +4,7 @@
 @endsection
 @section('title', 'Pimpinan Daerah Muhammadiyah Sragen')
 @section('content')
-@include('blog.announce-blog')
+@include('blog.post-disematkan')
 <!-- SECTION -->
 <div class="section">
     <!-- container -->

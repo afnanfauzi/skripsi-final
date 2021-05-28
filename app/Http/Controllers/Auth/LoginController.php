@@ -42,11 +42,12 @@ class LoginController extends Controller
     // Auth custom
     public function authenticated(Request $request, $user)
     {
-    if ($user->hasRole('admin')) {
+        if ($user->hasRole('admin')) {
+            return redirect()->route('dashboard.index');
+        }elseif ($user->hasRole('sekretaris')){
+            return redirect()->route('dashboard.index');
+        }
+        
         return redirect()->route('dashboard.index');
-    }elseif ($user->hasRole('sekretaris')){
-        return redirect()->route('dashboard.index');
-    }
-    return redirect()->route('dashboard.index');
     }
 }

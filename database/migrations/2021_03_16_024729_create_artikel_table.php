@@ -20,6 +20,7 @@ class CreateArtikelTable extends Migration
             $table->text('isi');
             $table->string('thumbnail')->nullable();
             $table->string('statuspublikasi');
+            $table->string('sematkan')->nullable();
             $table->string('penulis');
             $table->foreignId('kategori_id');
             $table->timestamps();
