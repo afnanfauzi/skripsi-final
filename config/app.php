@@ -184,6 +184,8 @@ return [
         //Meta Pencarian
         Davmixcool\MetaManager\MetaServiceProvider::class,
 
+        // Disqus Comment
+        Yajra\Disqus\DisqusServiceProvider::class,
     ],
 
     /*

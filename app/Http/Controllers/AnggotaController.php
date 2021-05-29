@@ -54,12 +54,12 @@ class AnggotaController extends Controller
         ];
 
         $this->validate($request, [
-                    'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                    // 'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ],$messages);
         
             // menyimpan data file yang diupload ke variabel $file
             // $file = $request->file('gambar');
-            $imageName = ImageHelper::addImage($request->file('gambar'));
+            // $imageName = ImageHelper::addImage($request->file('gambar'));
         
             // $nama_file = time()."_".$file->getClientOriginalName();
         
@@ -69,7 +69,7 @@ class AnggotaController extends Controller
         
         
             $kirim = Anggota::create([
-                'gambar' => $imageName,
+                'gambar' => $request->gambar,
                 'nama_anggota' => $request->nama_anggota,
                 'nik' => $request->nik,
                 'akun_id' => $request->akun_id,
@@ -139,16 +139,16 @@ class AnggotaController extends Controller
         ];
 
         $this->validate($request, [
-                    'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                    // 'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             ],$messages);
 
             $where = array('id' => $id);
             $anggota = Anggota::where($where)->first();
-            $imageName = ImageHelper::changeImage($request->file('gambar'), $anggota->gambar);
+            // $imageName = ImageHelper::changeImage($request->file('gambar'), $anggota->gambar);
 
 
             $anggota->update([
-                'gambar' => $imageName,
+                'gambar' => $request->gambar,
                 'nama_anggota' => $request->nama_anggota,
                 'nik' => $request->nik,
                 'akun_id' => $request->akun_id,

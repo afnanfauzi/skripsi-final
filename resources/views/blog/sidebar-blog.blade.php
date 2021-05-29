@@ -60,7 +60,7 @@
         @foreach($postingan_populer as $pp)
         <!-- post -->
         <div class="post post-widget">
-            <a class="post-img" href="{{ route('isi.blog', $pp->slug) }}"><img src="{{Storage::url('public/gambar/'.$pp->thumbnail)}}" alt=""></a>
+            <a class="post-img" href="{{ route('isi.blog', $pp->slug) }}"><img src="{{ $pp->thumbnail }}" alt=""></a>
             <div class="post-body">
                 <div class="post-category">
                     <a href="{{ route('list.kategori', $data_kategori->slug) }}">{{ $pp->kategori->nama_kategori }}</a>

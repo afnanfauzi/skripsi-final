@@ -22,7 +22,7 @@
                     @if($postingan->count() > 0)
                         @foreach($postingan as $post)
                         <div class="post post-row">
-                            <a class="post-img" href="{{ route('isi.blog', $post->slug) }}"><img src="{{Storage::url('public/gambar/'.$post->thumbnail)}}" alt=""></a>
+                            <a class="post-img" href="{{ route('isi.blog', $post->slug) }}"><img src="{{ $post->thumbnail }}" alt=""></a>
                             <div class="post-body">
                                 <div class="post-category">
                                     <a href="{{ route('list.kategori', $post->kategori->slug) }}">{{ $post->kategori->nama_kategori }}</a>

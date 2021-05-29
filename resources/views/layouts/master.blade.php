@@ -70,7 +70,7 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="{{ url('dashboard/production/images/img.jpg') }}" alt="..." class="img-circle profile_img">
+                <img src="{{ url('dashboard/production/images/admin.jpg') }}" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>Selamat Datang,</span>
@@ -120,16 +120,24 @@
                         </li>
                         <li><a href="{{route('halaman.index')}}">Halaman</a></li>
                         <li><a href="{{route('unduhan.index')}}">Unduhan</a></li>
+                        <li><a href="{{ route('blog') }}">Lihat Blog</a></li>
                     </ul>
                   </li>  
-                  <li><a href="{{ route('blog') }}"><i class="fa fa-newspaper-o"></i> Lihat Blog</a></li>
+                </ul>
+                <ul class="nav side-menu">
+                  <li><a><i class="fa fa-hdd-o"></i> Kelola Penyimpanan <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="{{url('admin/kelola-penyimpanan?type=Images')}}">Gambar</a></li>
+                      <li><a href="{{url('admin/kelola-penyimpanan?type=file')}}">File</a></li>
+                    </ul>
+                  </li>
                 </ul>
               </div>
             </div>
             <!-- /sidebar menu -->
 
             <!-- /menu footer buttons -->
-            <div class="sidebar-footer hidden-small">
+            {{-- <div class="sidebar-footer hidden-small">
               <a data-toggle="tooltip" data-placement="top" title="Settings">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
               </a>
@@ -142,7 +150,7 @@
               <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
               </a>
-            </div>
+            </div> --}}
             <!-- /menu footer buttons -->
           </div>
         </div>
@@ -157,7 +165,7 @@
               <ul class=" navbar-right">
                 <li class="nav-item dropdown open" style="padding-left: 15px;">
                   <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                    <img src="{{ url('dashboard/production/images/img.jpg') }}" alt="">
+                    <img src="{{ url('dashboard/production/images/admin.jpg') }}" alt="">
                     @role('admin')
                     Admin
                     @else

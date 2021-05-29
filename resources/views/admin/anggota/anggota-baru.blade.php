@@ -8,6 +8,8 @@
 <!-- Parsley -->
 <script src="{{ asset('dashboard/vendors/parsleyjs/dist/parsley.min.js') }}"></script>
 
+<!-- File manager -->
+<script src="{{ asset('/vendor/laravel-filemanager/js/stand-alone-button.js') }}"></script>
 
 @extends('layouts.master')
 @section('csrf')
@@ -185,14 +187,23 @@
                             <label class="col-form-label col-md-3 col-sm-3 label-align" for="gambar">Foto <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 ">
-                                <input type='file' id="gambar" accept="gambar/*" name="gambar" multiple="multiple" required="required" class="form-control" />
+                                {{-- <input type='file' id="gambar" accept="gambar/*" name="gambar" multiple="multiple" required="required" class="form-control" /> --}}
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                      <a id="lfm" data-input="gambar" data-preview="holder" class="btn btn-primary" style="color:white;">
+                                        <i class="fa fa-picture-o"></i> Pilih Gambar
+                                      </a>
+                                    </span>
+                                    <input id="gambar" class="form-control" type="text" name="gambar">
+                                </div>
                             </div>
                         </div>
                         <div class="item form-group">
                             <label class="col-form-label col-md-3 col-sm-3 label-align" for="kosong"></label>
                             <div class="col-md-6 col-sm-6">
                                 <div id="upload_prev">
-                                    <img id="preview" src="" width="130" style="border: 3px solid #6c757d" />
+                                    {{-- <img id="preview" src="" width="130" style="border: 3px solid #6c757d" /> --}}
+                                    <div id="holder" style="margin-top:10px;max-height:100px;"></div>
                                 </div>
                             </div>
                         </div>
@@ -200,7 +211,7 @@
                         <div class="item form-group">
                             <div class="col-md-6 col-sm-6 offset-md-3">
                                 <button type="submit" class="btn btn-success">Simpan</button>
-                                <a href="{{ route('anggota.index') }}" class="btn btn-primary" type="button">Kembali</a>
+                                <a href="{{ route('anggota.index') }}" class="btn btn-info" type="button">Kembali</a>
                             </div>
                         </div>
 
@@ -216,20 +227,25 @@
 
 
 <script>
-    function readURL(input, id) {
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
+    // Untuk File Manager
+    var route_prefix = "/admin/kelola-penyimpanan";
+    $('#lfm').filemanager('image', {prefix: route_prefix});
+    // End
 
-                reader.onload = function (e) {
-                    $('#' + id).attr('src', e.target.result);
-                }
+    // function readURL(input, id) {
+    //         if (input.files && input.files[0]) {
+    //             var reader = new FileReader();
 
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-        $("#gambar").change(function () {
-            readURL(this, 'preview');
-        });
+    //             reader.onload = function (e) {
+    //                 $('#' + id).attr('src', e.target.result);
+    //             }
+
+    //             reader.readAsDataURL(input.files[0]);
+    //         }
+    //     }
+    //     $("#gambar").change(function () {
+    //         readURL(this, 'preview');
+    //     });
 
 
 

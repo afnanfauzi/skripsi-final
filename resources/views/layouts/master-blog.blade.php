@@ -188,10 +188,10 @@
 				<div class="col-md-3">
 					<div class="footer-widget">
 						<div class="footer-logo">
-							{{-- <a href="{{ route('blog') }}" class="logo"><img src="{{ asset('dashboard/blog/img/muhammadiyah.png')}}" alt="" width="150"></a> --}}
 							<h3 class="footer-title">Temukan Kami</h3>
+							<a href="{{ route('blog') }}" class="logo"><img src="{{ asset('dashboard/blog/img/logo-blog-white.png')}}" alt="" width="250"></a>
 						</div>
-						<p>Kantor: <br>
+						<p style="text-align: justify;">Kantor: <br>
 							Jl. Yos Sudarso, Karang Duwo, Sragen Tengah, Kec. Sragen, Kabupaten Sragen, Jawa Tengah 57211</p>
 						{{-- <ul class="contact-social">
 							<li><a href="#" class="social-facebook"><i class="fa fa-facebook"></i></a></li>

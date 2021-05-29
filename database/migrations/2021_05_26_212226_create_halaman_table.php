@@ -17,7 +17,7 @@ class CreateHalamanTable extends Migration
             $table->bigIncrements('id');
             $table->string('judul');
             $table->string('slug');
-            $table->text('isi');
+            $table->text('isi')->nullable();
             $table->string('statuspublikasi');
             $table->string('menu');
             $table->string('penulis');

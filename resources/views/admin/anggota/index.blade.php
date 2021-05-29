@@ -338,7 +338,7 @@
             $(".modal-body #no_telp").text( data.result[0].no_telp );
             $(".modal-body #email").text( data.result[0].email );
             $(".modal-body #alamat").text( data.result[0].alamat );
-            $(".modal-body #gambar").attr("src","{{asset('storage/gambar')}}"+'/'+data.result[0].gambar);
+            $(".modal-body #gambar").attr("src", data.result[0].gambar);
             
             
             $('#tampilkan-info').modal('show');

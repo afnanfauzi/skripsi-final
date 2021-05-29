@@ -15,7 +15,7 @@
     @section('header-post')
     <!-- PAGE HEADER -->
     <div id="post-header" class="page-header">
-        <div class="page-header-bg" style="background-image: url({{Storage::url('public/gambar/'.$post->thumbnail)}});" data-stellar-background-ratio="0.5"></div>
+        <div class="page-header-bg" style="background-image: url({{ $post->thumbnail }});" data-stellar-background-ratio="0.5"></div>
         <div class="container">
             <div class="row">
                 <div class="col-md-10">
@@ -66,6 +66,9 @@
                             <ul>
                                 <li>label:</li>
                                 {{-- <li><a href="#">{{ $post->label->nama_label }}</a></li> --}}
+                                @foreach($label_footer as $label_post)
+								<li><a href="{{ route('list.label', $label_post->slug) }}">{{ $label_post->nama_label }}</a></li>
+								@endforeach
                             </ul>
                         </div>
                     </div>
@@ -155,7 +158,7 @@
                     <!-- /related post --> --}}
 
                     <!-- post comments -->
-                    <div class="section-row">
+                    {{-- <div class="section-row">
                         <div class="section-title">
                             <h3 class="title">3 Comments</h3>
                         </div>
@@ -207,15 +210,34 @@
                             </div>
                             <!-- /comment -->
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- /post comments -->
 
                     <!-- post reply -->
                     <div class="section-row">
                         <div class="section-title">
-                            <h3 class="title">Leave a reply</h3>
+                            <h3 class="title">Tinggalkan Komentar</h3>
+                            <div id="disqus_thread" style="padding-top: 5px;"></div>
+                                <script>
+                                    /**
+                                    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                                    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+                                    /*
+                                    var disqus_config = function () {
+                                    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                                    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                                    };
+                                    */
+                                    (function() { // DON'T EDIT BELOW THIS LINE
+                                    var d = document, s = d.createElement('script');
+                                    s.src = 'https://pdm-sragen.disqus.com/embed.js';
+                                    s.setAttribute('data-timestamp', +new Date());
+                                    (d.head || d.body).appendChild(s);
+                                    })();
+                                </script>
+                                <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
                         </div>
-                        <form class="post-reply">
+                        {{-- <form class="post-reply">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
@@ -240,9 +262,8 @@
                                 <div class="col-md-12">
                                     <button class="primary-button">Submit</button>
                                 </div>
-
                             </div>
-                        </form>
+                        </form> --}}
                     </div>
                     <!-- /post reply -->
                 </div>

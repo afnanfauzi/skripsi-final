@@ -69,13 +69,13 @@ class ArtikelController extends Controller
             'isi'=>'required',
             'kategori_id'=>'required',
             'label'=>'required',
-            'thumbnail' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+            // 'thumbnail' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
         ],$messages);
 
-        $imageName = ImageHelper::addImage($request->file('thumbnail'));
+        // $imageName = ImageHelper::addImage($request->file('thumbnail'));
 
         $post = Artikel::Create([
-            'thumbnail' =>$imageName ?? 'default.jpg',
+            'thumbnail' =>$request->thumbnail ?? 'default.jpg',
             'judul' => $request->judul,
             'slug' => Str::slug($request->judul),
             'isi' =>$request->isi,
@@ -151,18 +151,18 @@ class ArtikelController extends Controller
             'isi'=>'required',
             'kategori_id'=>'required',
             'label'=>'required',
-            'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+            // 'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
         ],$messages);
 
         $post = Artikel::findorFail($id);
-        $imageName = ImageHelper::changeImage($request->file('thumbnail'), $post->thumbnail);
+        // $imageName = ImageHelper::changeImage($request->file('thumbnail'), $post->thumbnail);
 
 
         $post_data = [
             'judul' => $request->judul,
             'slug' => Str::slug($request->judul),
             'isi' =>$request->isi,
-            'thumbnail' =>$imageName,
+            'thumbnail' =>$request->thumbnail,
             'statuspublikasi' =>$request->nama_status ?? 'Tidak',
             'kategori_id' =>$request->kategori_id,
             'penulis' =>'Admin',

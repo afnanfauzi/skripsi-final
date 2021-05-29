@@ -42,7 +42,6 @@ class HalamanController extends Controller
 
         $validasi = $request->validate([
             'judul'=>'required',
-            'isi'=>'required',
         ],$messages);
 
         $post = Halaman::Create([
@@ -74,7 +73,6 @@ class HalamanController extends Controller
 
         $validasi = $request->validate([
             'judul'=>'required',
-            'isi'=>'required',
         ],$messages);
 
         $post = Halaman::findorFail($id);

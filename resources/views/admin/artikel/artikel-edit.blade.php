@@ -11,6 +11,8 @@
 {{-- <link rel="stylesheet" href="https://res.cloudinary.com/dxfq3iotg/raw/upload/v1569006288/BBBootstrap/choices.min.css?version=7.0.0"> --}}
 {{-- <script src="https://res.cloudinary.com/dxfq3iotg/raw/upload/v1569006273/BBBootstrap/choices.min.js?version=7.0.0"></script> --}}
 
+<!-- File manager -->
+<script src="{{ asset('/vendor/laravel-filemanager/js/stand-alone-button.js') }}"></script>
 
 @extends('layouts.master')
 @section('csrf')
@@ -26,10 +28,18 @@
                 {{ method_field('PUT') }}
 
             <div class="x_title">
-                <div class="col-md-8 col-sm-8">
+                <div class="col-md-7 col-sm-7">
                     <h2 class="text-uppercase">Edit Postingan</h2>
                 </div>
-                <div class="col-md-4 col-sm-4" style="text-align: right;">
+                <div class="col-md-3 col-sm-3" style="text-align: right;">
+                    <label style="padding-top:10px;">
+                        <input type="checkbox" name="nama_status" id="nama_status" value="Ya" class="flat" {{  ($post->statuspublikasi == 'Ya' ? ' checked' : '') }}> Publikasikan
+                    </label>
+                    <label style="padding-left: 12px; padding-top:10px;">
+                        <input type="checkbox" name="sematkan" id="sematkan" value="Ya" class="flat" {{  ($post->sematkan == 'Ya' ? ' checked' : '') }}> Sematkan Postingan
+                    </label>
+                </div>
+                <div class="col-md-2 col-sm-2" style="text-align: right;">
                     <button type="submit" class="btn btn-success btn-sm">Simpan</button>
                     <a href="{{ route('artikel.index') }}" class="btn btn-primary btn-sm" type="button">Kembali</a>
                 </div>
@@ -46,8 +56,16 @@
             <div class="col-md-12 col-sm-12">
                 <div class="form-group row">
                     <label class="control-label col-md-1 col-sm-1" style="padding-top: 10px; font-size: 15px;" style="text-align: right;">Thumbnail :</label>
-                    <div class="col-md-2 col-sm-2" style="text-align: right;">
-                        <input type="file" name="thumbnail" id="thumbnail" style="padding-top: 10px;">
+                    <div class="col-md-5 col-sm-5" style="text-align: right;">
+                        {{-- <input type="file" name="thumbnail" id="thumbnail" style="padding-top: 10px;"> --}}
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                              <a id="lfm" data-input="thumbnail" data-preview="holder" class="btn btn-success" style="color:white;">
+                                <i class="fa fa-picture-o"></i> Pilih Gambar
+                              </a>
+                            </span>
+                            <input id="thumbnail" class="form-control" type="text" name="thumbnail" value="{{ $post->thumbnail }}">
+                          </div>
                     </div>
                     <label class="control-label col-md-1 col-sm-1" style="padding-top: 10px; font-size: 15px;" style="text-align: right;">Kategori :</label>
                     <div class="col-md-2 col-sm-2" style="text-align: right;">
@@ -84,14 +102,14 @@
                         @endforeach
                         </select> 
                     </div>
-                    <div class="form-control col-md-3 col-sm-3" style="border:none;padding-top: 10px; font-size: 15px; color:#73879C;">
+                    {{-- <div class="form-control col-md-3 col-sm-3" style="border:none;padding-top: 10px; font-size: 15px; color:#73879C;">
                         <label>
                             <input type="checkbox" name="nama_status" id="nama_status" value="Ya" class="flat" {{  ($post->statuspublikasi == 'Ya' ? ' checked' : '') }}> Publikasikan
                         </label>
                         <label style="padding-left: 12px;">
                             <input type="checkbox" name="sematkan" id="sematkan" value="Ya" class="flat" {{  ($post->sematkan == 'Ya' ? ' checked' : '') }}> Sematkan Postingan
                         </label>
-                    </div>
+                    </div> --}}
 
                     {{-- </div> --}}
                     
@@ -109,6 +127,9 @@
           filebrowserBrowseUrl: '/admin/kelola-penyimpanan?type=Files',
           filebrowserUploadUrl: '/admin/kelola-penyimpanan/upload?type=Files&_token='+ $('meta[name=csrf-token]').attr("content")
         };
+
+        var route_prefix = "/admin/kelola-penyimpanan";
+        $('#lfm').filemanager('image', {prefix: route_prefix});
     </script>
     
     {{-- load ck editor --}}
