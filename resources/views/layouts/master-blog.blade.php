@@ -10,6 +10,7 @@
 	<title>@yield('title','Pimpinan Daerah Muhammadiyah Kabupaten Sragen')</title>
 	@yield('meta-tag')
 	@yield('jquery')
+	{{-- @yield('laravel-share') --}}
 
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CMuli:400,700" rel="stylesheet">
@@ -48,10 +49,10 @@
 				<div class="container">
 					<!-- social -->
 					<ul class="nav-social">
-						<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-						<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-						<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-						<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+						<li><a href="https://www.facebook.com/pdmkabsragen" target="_blank"><i class="fa fa-facebook"></i></a></li>
+						<li><a href="https://www.instagram.com/pdmsragen/" target="_blank"><i class="fa fa-instagram"></i></a></li>
+						<li><a href="https://www.youtube.com/channel/UCLBHUE6_iF83IT-robSqkgQ" target="_blank"><i class="fa fa-youtube-play"></i></a></li>
+						<li><a href="https://telegram.me/muhammadiyahsragen" target="_blank"><i class="fa fa-telegram"></i></a></li>
 					</ul>
 					<!-- /social -->
 

@@ -15,21 +15,21 @@
         <div class="social-widget">
             <ul>
                 <li>
-                    <a href="#" class="social-facebook">
+                    <a href="https://www.facebook.com/pdmkabsragen" class="social-facebook" target="_blank">
                         <i class="fa fa-facebook"></i>
-                        <span>21.2K<br>Followers</span>
+                        <span>Ikuti<br>Kami</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="social-twitter">
-                        <i class="fa fa-twitter"></i>
-                        <span>10.2K<br>Followers</span>
+                    <a href="https://www.instagram.com/pdmsragen/" class="social-instagram" target="_blank">
+                        <i class="fa fa-instagram"></i>
+                        <span>Ikuti<br>Kami</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="social-google-plus">
-                        <i class="fa fa-google-plus"></i>
-                        <span>5K<br>Followers</span>
+                    <a href="https://www.youtube.com/channel/UCLBHUE6_iF83IT-robSqkgQ" class="social-youtube" target="_blank">
+                        <i class="fa fa-youtube-play"></i>
+                        <span>Ikuti<br>Kami</span>
                     </a>
                 </li>
             </ul>
@@ -60,7 +60,7 @@
         @foreach($postingan_populer as $pp)
         <!-- post -->
         <div class="post post-widget">
-            <a class="post-img" href="{{ route('isi.blog', $pp->slug) }}"><img src="{{ $pp->thumbnail }}" alt=""></a>
+            <a class="post-img" href="{{ route('isi.blog', $pp->slug) }}"><img src="{{ $pp->thumbnail }}" alt="" class="sidebar"></a>
             <div class="post-body">
                 <div class="post-category">
                     <a href="{{ route('list.kategori', $data_kategori->slug) }}">{{ $pp->kategori->nama_kategori }}</a>

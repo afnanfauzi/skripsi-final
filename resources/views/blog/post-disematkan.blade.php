@@ -8,7 +8,7 @@
             <div class="col-md-8 hot-post-left">
                 <!-- post -->
                 <div class="post post-thumb">
-                    <a class="post-img" href="{{ route('isi.blog', $pd->slug) }}"><img src="{{$pd->thumbnail}}" alt=""></a>
+                    <a class="post-img" href="{{ route('isi.blog', $pd->slug) }}"><img src="{{$pd->thumbnail}}" alt="" class="hot-post-custom-kiri"></a>
                     <div class="post-body">
                         <div class="post-category">
                             <a href="{{ route('list.kategori', $pd->kategori->slug) }}">{{ $pd->kategori->nama_kategori }}</a>
@@ -27,7 +27,7 @@
             <div class="col-md-4 hot-post-right">
                 <!-- post -->
                 <div class="post post-thumb">
-                    <a class="post-img" href="{{ route('isi.blog', $pd2->slug) }}"><img src="{{ $pd2->thumbnail }}" alt=""></a>
+                    <a class="post-img" href="{{ route('isi.blog', $pd2->slug) }}"><img src="{{ $pd2->thumbnail }}" alt="" class="hot-post-custom-kanan"></a>
                     <div class="post-body">
                         <div class="post-category">
                             <a href="{{ route('list.kategori', $pd2->kategori->slug) }}">{{ $pd2->kategori->nama_kategori }}</a>

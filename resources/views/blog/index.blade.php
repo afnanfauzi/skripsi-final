@@ -24,7 +24,7 @@
                         @foreach($postingan as $postingan)
                         <div class="col-md-6">
                             <div class="post">
-                                <a class="post-img" href="{{ route('isi.blog', $postingan->slug) }}"><img src="{{ $postingan->thumbnail }}" alt=""></a>
+                                <a class="post-img" href="{{ route('isi.blog', $postingan->slug) }}"><img src="{{ $postingan->thumbnail }}" alt="" class="post-custom"></a>
                                 <div class="post-body">
                                     <div class="post-category">
                                         <a href="{{ route('list.kategori', $postingan->kategori->slug) }}">{{ $postingan->kategori->nama_kategori }}</a>

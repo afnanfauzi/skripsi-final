@@ -186,6 +186,9 @@ return [
 
         // Disqus Comment
         Yajra\Disqus\DisqusServiceProvider::class,
+
+        // Laravel share
+        Jorenvh\Share\Providers\ShareServiceProvider::class,
     ],
 
     /*
@@ -240,6 +243,9 @@ return [
 
         // Datatables
         'Datatables' => Yajra\Datatables\Facades\Datatables::class,
+
+        // Laravel share
+        'Share' => Jorenvh\Share\ShareFacade::class,
 
     ],
 

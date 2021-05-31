@@ -7,9 +7,14 @@
     @include('meta::manager', [
     'title'         => $meta->judul,
     'description'   => Illuminate\Support\Str::limit($meta->isi, 140),
+    'image'         => $meta->thumbnail,
     ])
 @endforeach   
 @endsection
+{{-- @section('laravel-share')
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+<script src="{{ asset('js/share.js') }}"></script> 
+@endsection --}}
 @foreach ($post as $post)
     
     @section('header-post')
@@ -44,14 +49,14 @@
             <div class="row">
                 <div class="col-md-8">
                     <!-- post share -->
-                    {{-- <div class="section-row">
+                    <div class="section-row">
                         <div class="post-share">
-                            <a href="#" class="social-facebook"><i class="fa fa-facebook"></i><span>Share</span></a>
-                            <a href="#" class="social-twitter"><i class="fa fa-twitter"></i><span>Tweet</span></a>
-                            <a href="#" class="social-pinterest"><i class="fa fa-pinterest"></i><span>Pin</span></a>
-                            <a href="#" ><i class="fa fa-envelope"></i><span>Email</span></a>
+                            <a href="http://www.facebook.com/sharer.php?u={{ Request::url() }}" class="social-facebook" target="_blank"><i class="fa fa-facebook"></i><span>Share</span></a>
+                            <a href="https://twitter.com/share?url={{ Request::url() }}&text={{ $meta->judul }}" class="social-twitter" target="_blank"><i class="fa fa-twitter"></i><span>Tweet</span></a>
+                            <a href="https://pinterest.com/pin/create/button/?url={{ Request::url() }}&media={{ $meta->thumbnail }}&description={{ Illuminate\Support\Str::limit($meta->isi, 120) }}" class="social-pinterest" target="_blank"><i class="fa fa-pinterest"></i><span>Pin</span></a>
+                            {{-- <a href="http://www.gmail.com/sharer.php?u={{ Request::url() }}" ><i class="fa fa-envelope" target="_blank"></i><span>Email</span></a> --}}
                         </div>
-                    </div> --}}
+                    </div>
                     <!-- /post share -->
 
                     <!-- post content -->
