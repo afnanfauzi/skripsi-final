@@ -90,7 +90,7 @@
                     </div> --}}
                     <label class="control-label col-md-1 col-sm-1" style="padding-top: 10px; font-size: 15px; text-align: right;">Label:</label>
                     <div class="col-md-2 col-sm-2"> 
-                        <select id="choices-multiple-remove-button" placeholder="Pilih maksimal 5 label" multiple name="label[]">
+                        <select id="label" placeholder="Pilih maksimal 5 label" multiple name="label[]">
                         @foreach ($label as $tag)
                             <option value="{{ $tag->id }}"
                             @foreach ($post->label as $value)
@@ -138,7 +138,7 @@
     </script>
     
     <script>
-    var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+    var multipleCancelButton = new Choices('#label', {
         removeItemButton: true,
         maxItemCount:5,
         searchResultLimit:5,

@@ -75,7 +75,7 @@
                                 <i class="fa fa-picture-o"></i> Pilih Gambar
                               </a>
                             </span>
-                            <input id="thumbnail" class="form-control" type="text" name="thumbnail">
+                            <input id="thumbnail" class="form-control" type="text" name="thumbnail" value="{{ old('thumbnail') }}">
                           </div>
                           {{-- <img id="holder" style="margin-top:15px;max-height:100px;"> --}}
                     </div>
@@ -98,9 +98,9 @@
                     </div> --}}
                     <label class="control-label col-md-1 col-sm-1" style="padding-top: 10px; font-size: 15px; text-align: right;">Label:</label>
                     <div class="col-md-2 col-sm-2"> 
-                        <select id="choices-multiple-remove-button" placeholder="Pilih maksimal 5 label" multiple name="label[]" class="form-control">
+                        <select id="label" placeholder="Pilih maksimal 5 label" multiple name="label[]" class="form-control">
                         @foreach ($label as $tag)
-                            <option value="{{ $tag->id }}">{{ $tag->nama_label }}</option>
+                            <option value="{{ $tag->id }}" {{ (collect(old('label'))->contains($tag->id)) ? 'selected':'' }}>{{ $tag->nama_label }}</option>
                         @endforeach
                         </select> 
                     </div>
@@ -142,7 +142,7 @@
     </script>
     
     <script>
-    var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+    var multipleCancelButton = new Choices('#label', {
         removeItemButton: true,
         maxItemCount:5,
         searchResultLimit:5,

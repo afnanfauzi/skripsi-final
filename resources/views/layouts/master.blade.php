@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="images/favicon.ico" type="image/ico" />
+    <link rel="icon" href="{{ URL::asset('dashboard/production/images/favicon.ico') }}" type="image/ico" />
 
     <title>@yield('title')</title>
 
@@ -120,15 +120,15 @@
                         </li>
                         <li><a href="{{route('halaman.index')}}">Halaman</a></li>
                         <li><a href="{{route('unduhan.index')}}">Unduhan</a></li>
-                        <li><a href="{{ route('blog') }}">Lihat Blog</a></li>
+                        <li><a href="{{ route('blog') }}" target="_blank">Lihat Blog</a></li>
                     </ul>
                   </li>  
                 </ul>
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-hdd-o"></i> Kelola Penyimpanan <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="{{url('admin/kelola-penyimpanan?type=Images')}}">Gambar</a></li>
-                      <li><a href="{{url('admin/kelola-penyimpanan?type=file')}}">File</a></li>
+                      <li><a href="{{url('admin/kelola-penyimpanan?type=Images')}}" target="_blank">Gambar</a></li>
+                      <li><a href="{{url('admin/kelola-penyimpanan?type=file')}}" target="_blank">File</a></li>
                     </ul>
                   </li>
                 </ul>

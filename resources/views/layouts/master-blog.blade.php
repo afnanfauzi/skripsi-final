@@ -12,6 +12,9 @@
 	@yield('jquery')
 	{{-- @yield('laravel-share') --}}
 
+	{{-- Favicon --}}
+	<link rel="icon" href="{{ URL::asset('dashboard/blog/img/favicon.ico') }}" type="image/ico" />
+
 	<!-- Google font -->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CMuli:400,700" rel="stylesheet">
 

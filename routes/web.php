@@ -23,10 +23,6 @@ Route::group(['prefix' => 'admin/kelola-penyimpanan', 'middleware' => ['web', 'a
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
 
-// Route::group(['prefix' => 'admin/kelola-penyimpanan', 'middleware' => ['web', 'admin']], function () {
-//     \UniSharp\LaravelFilemanager\Lfm::routes();
-// });
-
 
 
 Route::group(['middleware' => ['role:admin|sekretaris']], function () {
