@@ -148,44 +148,45 @@
                             </div>
                         </div>
                         <div class="item form-group">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align">Jenis Kelamin</label>
+                            <label class="col-form-label col-md-3 col-sm-3 label-align">Jenis Kelamin <span class="required">*</span></label>
                             <div class="col-md-6 col-sm-6 ">
                                 <div id="jenkel" class="col-form-label">
-                                    <input type="radio" class="flat" name="jenkel" id="laki-laki" value="Laki-Laki" /> Laki-Laki
+                                    <input type="radio" class="flat" name="jenkel" id="laki-laki" value="Laki-Laki" required="required" /> Laki-Laki
+                                </div>
+                                <div id="jenkel" class="col-form-label">
                                     <input type="radio" class="flat" name="jenkel" id="perempuan" value="Perempuan" /> Perempuan
                                 </div>
                             </div>
                         </div>
                         <div class="item form-group">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="pekerjaan">Pekerjaan
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="pekerjaan">Pekerjaan <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 ">
-                                <input type="text" id="pekerjaan" name="pekerjaan" class="form-control">
+                                <input type="text" id="pekerjaan" name="pekerjaan" class="form-control" required="required">
                             </div>
                         </div>
                         <div class="item form-group">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="no_telp">No Telepon 
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="no_telp">No Telepon <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 ">
-                                <input type="text" id="no_telp" name="no_telp" class="form-control">
+                                <input type="text" id="no_telp" name="no_telp" class="form-control" required="required">
                             </div>
                         </div>
                         <div class="item form-group">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="email">Email 
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="email">Email <span class="required">*</span> 
                             </label>
                             <div class="col-md-6 col-sm-6 ">
-                                <input type="text" id="email" name="email" class="form-control">
+                                <input type="email" id="email" name="email" class="form-control" required="required">
                             </div>
                         </div>
                         <div class="item form-group">
-                            <label for="alamat" class="col-form-label col-md-3 col-sm-3 label-align">Alamat</label>
+                            <label for="alamat" class="col-form-label col-md-3 col-sm-3 label-align">Alamat <span class="required">*</span></label>
                             <div class="col-md-6 col-sm-6 ">
-                                <input id="alamat" class="form-control" type="text" name="alamat">
+                                <input id="alamat" class="form-control" type="text" name="alamat" required="required">
                             </div>
                         </div>
                         <div class="item form-group">
-                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="gambar">Foto <span class="required">*</span>
-                            </label>
+                            <label class="col-form-label col-md-3 col-sm-3 label-align" for="gambar">Foto </label>
                             <div class="col-md-6 col-sm-6 ">
                                 {{-- <input type='file' id="gambar" accept="gambar/*" name="gambar" multiple="multiple" required="required" class="form-control" /> --}}
                                 <div class="input-group">

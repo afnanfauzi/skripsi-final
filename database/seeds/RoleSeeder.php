@@ -18,7 +18,7 @@ class RoleSeeder extends Seeder
         ]);
 
         Role::create([
-            'name' => 'sekretaris',
+            'name' => 'user',
             'guard_name' => 'web'
         ]);
     }

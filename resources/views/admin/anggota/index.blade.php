@@ -22,7 +22,9 @@
                     <p>Berikut adalah daftar anggota tiap unit</p>
                   </div>
                   <div class="col-md-2" style="text-align: right;">
+                    @hasrole('admin')
                     <a href="{{ route('anggota.create') }}" class="btn btn-primary btn-sm" id="tambah-anggota"><i class="fa fa-plus"></i> Tambah Anggota</a>
+                    @endhasrole
                   </div>
   
                   <table class="table table-striped table-bordered dt-responsive nowrap" id="table-anggota" style="width:100%">
@@ -31,8 +33,7 @@
                         <th></th>
                         <th>NIK</th>
                         <th>Nama</th>
-                        <th>Alamat</th>
-                        <th>No HP</th>
+                        <th>No Telp</th>
                         <th>Aksi</th>
 
                     </tr>
@@ -229,16 +230,13 @@
                         name: 'nama_anggota' 
                     },
                     {
-                        data: 'alamat', 
-                        name: 'alamat' 
-                    },
-                    {
                         data: 'no_telp', 
                         name: 'no_telp' 
                     },
                     {
                         data: 'action',
-                        name: 'action'
+                        name: 'action',
+                        orderable: false,searchable: false
                     },
   
                 ],

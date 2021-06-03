@@ -74,11 +74,11 @@
               </div>
               <div class="profile_info">
                 <span>Selamat Datang,</span>
-                <h2>@role('admin')
+                <h2>@hasrole('admin')
                         Admin
                     @else
-                        Sekretaris
-                    @endrole
+                        User
+                    @endhasrole
               </h2>
               </div>
             </div>
@@ -90,6 +90,53 @@
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
                 <h3>Menu</h3>
+                @hasrole('admin')
+                  <ul class="nav side-menu">
+                    <li><a><i class="fa fa-briefcase"></i> Kegiatan <span class="fa fa-chevron-down"></span></a>
+                      <ul class="nav child_menu">
+                        <li><a href="{{route('kegiatan.index')}}">Daftar Kegiatan</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                  <ul class="nav side-menu">
+                    <li><a><i class="fa fa-users"></i> Keanggotaan <span class="fa fa-chevron-down"></span></a>
+                      <ul class="nav child_menu">
+                        <li><a href="{{route('anggota.index')}}">Daftar Anggota</a></li>
+                        <li><a href="{{route('unit.index')}}">Daftar Unit</a></li>
+                        <li><a href="{{route('cabang.index')}}">Daftar Cabang</a></li>
+                        <li><a href="{{route('ranting.index')}}">Daftar Ranting</a></li>
+                        <li><a href="{{route('jabatan.index')}}">List Jabatan</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                  <ul class="nav side-menu">
+                    <li><a><i class="fa fa-dribbble"></i> Blog <span class="fa fa-chevron-down"></span></a>
+                      <ul class="nav child_menu">
+                          <li><a>Artikel<span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                              <li class="sub_menu"><a href="{{route('artikel.index')}}">Postingan</a></li>
+                              <li><a href="{{route('artikel-kategori.index')}}">Kategori</a></li>
+                              <li><a href="{{route('artikel-label.index')}}">Label</a></li>
+                            </ul>
+                          </li>
+                          <li><a href="{{route('halaman.index')}}">Halaman</a></li>
+                          <li><a href="{{route('unduhan.index')}}">Unduhan</a></li>
+                          <li><a href="{{ route('blog') }}" target="_blank">Lihat Blog</a></li>
+                      </ul>
+                    </li>  
+                  </ul>
+                  <ul class="nav side-menu">
+                    <li><a><i class="fa fa-hdd-o"></i> Kelola Penyimpanan <span class="fa fa-chevron-down"></span></a>
+                      <ul class="nav child_menu">
+                        <li><a href="{{url('admin/kelola-penyimpanan?type=Images')}}" target="_blank">Gambar</a></li>
+                        <li><a href="{{url('admin/kelola-penyimpanan?type=file')}}" target="_blank">File</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                  <ul class="nav side-menu">
+                    <li><a href="{{ route('pengguna.index') }}"><i class="fa fa-user"></i> Kelola Pengguna</a></li>
+                  </ul>
+                @else
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-briefcase"></i> Kegiatan <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
@@ -101,37 +148,12 @@
                   <li><a><i class="fa fa-users"></i> Keanggotaan <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="{{route('anggota.index')}}">Daftar Anggota</a></li>
-                      <li><a href="{{route('unit.index')}}">Daftar Unit</a></li>
                       <li><a href="{{route('cabang.index')}}">Daftar Cabang</a></li>
                       <li><a href="{{route('ranting.index')}}">Daftar Ranting</a></li>
-                      <li><a href="{{route('jabatan.index')}}">List Jabatan</a></li>
                     </ul>
                   </li>
                 </ul>
-                <ul class="nav side-menu">
-                  <li><a><i class="fa fa-dribbble"></i> Blog <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                        <li><a>Artikel<span class="fa fa-chevron-down"></span></a>
-                          <ul class="nav child_menu">
-                            <li class="sub_menu"><a href="{{route('artikel.index')}}">Postingan</a></li>
-                            <li><a href="{{route('artikel-kategori.index')}}">Kategori</a></li>
-                            <li><a href="{{route('artikel-label.index')}}">Label</a></li>
-                          </ul>
-                        </li>
-                        <li><a href="{{route('halaman.index')}}">Halaman</a></li>
-                        <li><a href="{{route('unduhan.index')}}">Unduhan</a></li>
-                        <li><a href="{{ route('blog') }}" target="_blank">Lihat Blog</a></li>
-                    </ul>
-                  </li>  
-                </ul>
-                <ul class="nav side-menu">
-                  <li><a><i class="fa fa-hdd-o"></i> Kelola Penyimpanan <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="{{url('admin/kelola-penyimpanan?type=Images')}}" target="_blank">Gambar</a></li>
-                      <li><a href="{{url('admin/kelola-penyimpanan?type=file')}}" target="_blank">File</a></li>
-                    </ul>
-                  </li>
-                </ul>
+                @endhasrole
               </div>
             </div>
             <!-- /sidebar menu -->
@@ -166,11 +188,11 @@
                 <li class="nav-item dropdown open" style="padding-left: 15px;">
                   <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
                     <img src="{{ url('dashboard/production/images/admin.jpg') }}" alt="">
-                    @role('admin')
-                    Admin
+                    @hasrole('admin')
+                        Admin
                     @else
-                        Sekretaris
-                    @endrole
+                        User
+                    @endhasrole
                   </a>
                   <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{{ route('logout') }}"

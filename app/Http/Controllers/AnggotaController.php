@@ -16,12 +16,19 @@ use File;
 
 class AnggotaController extends Controller
 {
+    // Membatasi route agar user tidak bisa akses selain method index dan info
+    public function __construct()
+    {
+        $this->middleware(['role:admin'])->except('index', 'info');
+    }
+
     public function index(Request $request)
     {
    
     $anggota = Anggota::with('units')->get();
     if($request->ajax()){
-        return datatables()->of($anggota)
+        if(auth()->user()->hasrole('admin')){
+            return datatables()->of($anggota)
                     ->addColumn('action', function($data){
                         $button = '<a href="anggota/'.$data->id.'/edit" data-toggle="tooltip"   data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post" title="Edit Data"><i class="fa fa-edit fa-sm" style="padding:6px"></i></a>';
                         $button .= '&nbsp;&nbsp;';
@@ -33,6 +40,17 @@ class AnggotaController extends Controller
                     ->rawColumns(['action'])
                     ->addIndexColumn()
                     ->make(true);
+        }else{
+            return datatables()->of($anggota)
+                    ->addColumn('action', function($data){
+                        $button = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$data->id.'" data-original-title="Info Anggota" class="edit btn btn-info btn-sm open-info" title="Lihat Detail Anggota"><i class="fa fa-info fa-sm" style="padding:6px"></i></a>';    
+                        return $button;
+                    })
+                    ->rawColumns(['action'])
+                    ->addIndexColumn()
+                    ->make(true);
+          }
+        
     }
 
         return view('admin.anggota.index');

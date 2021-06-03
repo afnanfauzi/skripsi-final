@@ -167,44 +167,45 @@
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label class="col-form-label col-md-3 col-sm-3 label-align">Jenis Kelamin</label>
+                        <label class="col-form-label col-md-3 col-sm-3 label-align">Jenis Kelamin <span class="required">*</span></label>
                         <div class="col-md-6 col-sm-6 ">
                             <div id="jenkel" class="col-form-label">
                                 <input type="radio" class="flat" name="jenkel" id="laki-laki" value="Laki-Laki" {{ $post->jenkel == 'Laki-Laki' ? 'checked' : ''}} /> Laki-Laki
+                            </div>
+                            <div id="jenkel" class="col-form-label">
                                 <input type="radio" class="flat" name="jenkel" id="perempuan" value="Perempuan" {{ $post->jenkel == 'Perempuan' ? 'checked' : ''}}/> Perempuan
                             </div>
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="pekerjaan">Pekerjaan
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="pekerjaan">Pekerjaan <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 ">
-                            <input type="text" id="pekerjaan" name="pekerjaan" class="form-control" value="{{ $post->pekerjaan }}">
+                            <input type="text" id="pekerjaan" name="pekerjaan" class="form-control" value="{{ $post->pekerjaan }}" required="required">
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="no_telp">No Telepon 
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="no_telp">No Telepon <span class="required">*</span> 
                         </label>
                         <div class="col-md-6 col-sm-6 ">
-                            <input type="text" id="no_telp" name="no_telp" class="form-control" value="{{ $post->no_telp }}">
+                            <input type="text" id="no_telp" name="no_telp" class="form-control" value="{{ $post->no_telp }}" required="required">
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="email">Email 
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="email">Email <span class="required">*</span> 
                         </label>
                         <div class="col-md-6 col-sm-6 ">
-                            <input type="text" id="email" name="email" class="form-control" value="{{ $post->email }}">
+                            <input type="email" id="email" name="email" class="form-control" value="{{ $post->email }}" required="required">
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label for="alamat" class="col-form-label col-md-3 col-sm-3 label-align">Alamat</label>
+                        <label for="alamat" class="col-form-label col-md-3 col-sm-3 label-align">Alamat <span class="required">*</span></label>
                         <div class="col-md-6 col-sm-6 ">
-                            <input id="alamat" class="form-control" type="text" name="alamat" value="{{ $post->alamat }}">
+                            <input id="alamat" class="form-control" type="text" name="alamat" value="{{ $post->alamat }}" required="required">
                         </div>
                     </div>
                     <div class="item form-group">
-                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="gambar">Foto <span class="required">*</span>
-                        </label>
+                        <label class="col-form-label col-md-3 col-sm-3 label-align" for="gambar">Foto </label>
                         <div class="col-md-6 col-sm-6 ">
                             {{-- <input type='file' id="gambar" accept="gambar/*" name="gambar" multiple="multiple" class="form-control" /> --}}
                             <div class="input-group">
@@ -229,7 +230,7 @@
                     <div class="ln_solid"></div>
                     <div class="item form-group">
                         <div class="col-md-6 col-sm-6 offset-md-3">
-                            <button type="submit" class="btn btn-success">Edit</button>
+                            <button type="submit" class="btn btn-success">Simpan</button>
                             <a href="{{ route('anggota.index') }}" class="btn btn-info" type="button">Kembali</a>
                         </div>
                     </div>

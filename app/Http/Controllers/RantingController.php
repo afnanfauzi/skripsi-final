@@ -9,6 +9,13 @@ use Illuminate\Http\Request;
 
 class RantingController extends Controller
 {
+    // Membatasi route agar user tidak bisa akses selain method infex dan show
+    public function __construct()
+    {
+        $this->middleware(['role:admin'])->except('index', 'show');
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -23,9 +30,12 @@ class RantingController extends Controller
 
 
         if($request->ajax()){
-            return datatables()->of($ranting)
+            if(auth()->user()->hasrole('admin')){
+                return datatables()->of($ranting)
                         ->addColumn('action', function($data){
                             $button = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$data->id.'" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post" title="Edit Data"><i class="fa fa-edit fa-sm" style="padding:6px"></i></a>';
+                            $button .= '&nbsp;&nbsp;';
+                            $button .= '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$data->id.'" data-original-title="Info Ranting" class="edit btn btn-info btn-sm open-info" title="Lihat Detail Ranting"><i class="fa fa-info fa-sm" style="padding:6px"></i></a>';
                             // $button .= '&nbsp;&nbsp;';
                             // $button .= '<button type="button" name="delete" id="'.$data->id.'" class="delete btn btn-danger btn-sm" title="Hapus Data"><i class="fa fa-trash fa-sm" style="padding:6px"></i></button>';                               
                             return $button;
@@ -33,6 +43,19 @@ class RantingController extends Controller
                         ->rawColumns(['action'])
                         ->addIndexColumn()
                         ->make(true);
+            }else{
+                return datatables()->of($ranting)
+                        ->addColumn('action', function($data){
+                            $button = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$data->id.'" data-original-title="Info Ranting" class="edit btn btn-info btn-sm open-info" title="Lihat Detail Ranting"><i class="fa fa-info fa-sm" style="padding:6px"></i></a>';
+                            // $button .= '&nbsp;&nbsp;';
+                            // $button .= '<button type="button" name="delete" id="'.$data->id.'" class="delete btn btn-danger btn-sm" title="Hapus Data"><i class="fa fa-trash fa-sm" style="padding:6px"></i></button>';                               
+                            return $button;
+                        })
+                        ->rawColumns(['action'])
+                        ->addIndexColumn()
+                        ->make(true);
+              }
+            
         }
     
         return view('admin.ranting.index', compact('anggota', 'cabang'));
@@ -79,7 +102,11 @@ class RantingController extends Controller
      */
     public function show($id)
     {
-        //
+        $where = array('id' => $id);
+        $post  =  Ranting::with('cabang','anggota')->where($where)->get();
+        $result = $post->toArray();
+     
+        return response()->json($result);
     }
 
     /**

@@ -25,7 +25,9 @@
                                 <p>Berikut adalah daftar cabang di Pimpinan Daerah Muhammadiyah Sragen</p>
                               </div>
                               <div class="col-md-2" style="text-align: right;">
+                                @hasrole('admin')
                                 <a href="javascript:void(0)" class="btn btn-primary btn-sm" id="tambah-cabang"><i class="fa fa-plus"></i> Tambah Cabang</a>
+                                @endhasrole
                               </div>
         
                         <table class="table table-striped table-bordered dt-responsive nowrap" id="table-cabang" style="width:100%">
@@ -259,7 +261,8 @@
                     },
                     {
                         data: 'action',
-                        name: 'action'
+                        name: 'action',
+                        orderable: false,searchable: false
                     },
   
                 ],
@@ -342,9 +345,13 @@
         var info_id = $(this).data('id');
         $.get('cabang/' + info_id, function(data){
             // alert("Data "+data.post);
+            if (data.post[0].anggota[0] == null) {
+                $(".modal-body #anggota_id_info").text("-");
+            }else {
+                $(".modal-body #anggota_id_info").text(data.post[0].anggota[0].nama_anggota);
+            }
             $(".modal-body #id_info").val(data.post[0].id);
             $(".modal-body #cabang_info").text(data.post[0].nama_cabang);
-            $(".modal-body #anggota_id_info").text(data.post[0].anggota[0].nama_anggota);
             $(".modal-body #jmlh_ranting").text(data.ranting);
             $(".modal-body #aktif").text(data.aktif);
             $(".modal-body #kurang").text(data.kurang);

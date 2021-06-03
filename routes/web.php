@@ -25,22 +25,28 @@ Route::group(['prefix' => 'admin/kelola-penyimpanan', 'middleware' => ['web', 'a
 
 
 
-Route::group(['middleware' => ['role:admin|sekretaris']], function () {
+Route::group(['middleware' => ['role:admin|user']], function () {
     Route::resource('admin/dashboard','DashboardController', ['names' => 'dashboard']);
     Route::get('admin/', 'DashboardController@index');
     Route::get('admin/kegiatan/{kegiatan}/info', 'KegiatanController@info');
     Route::resource('admin/kegiatan','KegiatanController', ['names' => 'kegiatan']);
-    Route::resource('admin/keanggotaan/unit','UnitController', ['names' => 'unit']);
     Route::get('admin/keanggotaan/anggota/{anggota}/info', 'AnggotaController@info');
     Route::resource('admin/keanggotaan/anggota','AnggotaController', ['names' => 'anggota']);
-    Route::resource('admin/keanggotaan/jabatan','JabatanController', ['names' => 'jabatan']);
     Route::resource('admin/keanggotaan/cabang','CabangController', ['names' => 'cabang']);
     Route::resource('admin/keanggotaan/ranting','RantingController', ['names' => 'ranting']);
-    Route::resource('admin/blog/artikel/kategori','KategoriController', ['names' => 'artikel-kategori']);
-    Route::resource('admin/blog/artikel/label','LabelController', ['names' => 'artikel-label']);
-    Route::resource('admin/blog/artikel','ArtikelController', ['names' => 'artikel']);
-    Route::resource('admin/blog/halaman','HalamanController', ['names' => 'halaman']);
-    Route::resource('admin/blog/unduhan','UnduhanController', ['names' => 'unduhan']);
+
+    
+    Route::group(['middleware' => ['role:admin']], function () {
+        Route::resource('admin/keanggotaan/unit','UnitController', ['names' => 'unit']);
+        Route::resource('admin/keanggotaan/jabatan','JabatanController', ['names' => 'jabatan']);
+        Route::resource('admin/blog/artikel/kategori','KategoriController', ['names' => 'artikel-kategori']);
+        Route::resource('admin/blog/artikel/label','LabelController', ['names' => 'artikel-label']);
+        Route::resource('admin/blog/artikel','ArtikelController', ['names' => 'artikel']);
+        Route::resource('admin/blog/halaman','HalamanController', ['names' => 'halaman']);
+        Route::resource('admin/blog/unduhan','UnduhanController', ['names' => 'unduhan']);
+        Route::resource('admin/pengguna','PenggunaController', ['names' => 'pengguna']);
+    });
+    
 });
 
 

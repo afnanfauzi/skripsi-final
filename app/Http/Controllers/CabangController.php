@@ -9,6 +9,13 @@ use App\Ranting;
 
 class CabangController extends Controller
 {
+    // Membatasi route agar user tidak bisa akses selain method index dan show
+    public function __construct()
+    {
+        $this->middleware(['role:admin'])->except('index', 'show');
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -21,7 +28,8 @@ class CabangController extends Controller
 
     
         if($request->ajax()){
-            return datatables()->of($cabang)
+            if(auth()->user()->hasrole('admin')){
+                return datatables()->of($cabang)
                         ->addColumn('action', function($data){
                             $button = '<a href="javascript:void(0)" data-toggle="modal" data-id="'.$data->id.'" title="Lihat Detail Cabang" class="open-info btn btn-info"><i class="fa fa-info fa-sm"></i></a>';
                             $button .= '&nbsp;&nbsp;';
@@ -33,6 +41,17 @@ class CabangController extends Controller
                         ->rawColumns(['action'])
                         ->addIndexColumn()
                         ->make(true);
+            }else{
+                return datatables()->of($cabang)
+                        ->addColumn('action', function($data){
+                            $button = '<a href="javascript:void(0)" data-toggle="modal" data-id="'.$data->id.'" title="Lihat Detail Cabang" class="open-info btn btn-info"><i class="fa fa-info fa-sm"></i></a>';                               
+                            return $button;
+                        })
+                        ->rawColumns(['action'])
+                        ->addIndexColumn()
+                        ->make(true);
+              }
+            
         }
     
         return view('admin.cabang.index', compact('anggota'));

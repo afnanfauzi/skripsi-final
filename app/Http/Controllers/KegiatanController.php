@@ -9,7 +9,11 @@ use Illuminate\Http\Request;
 
 class KegiatanController extends Controller
 {
-
+    // Membatasi route agar user tidak bisa akses selain method index dan info
+    public function __construct()
+    {
+        $this->middleware(['role:admin'])->except('index', 'info');
+    }   
     
 
     public function index(Request $request)
@@ -17,7 +21,8 @@ class KegiatanController extends Controller
     
     $kegiatan = Kegiatan::with('units')->get();
     if($request->ajax()){
-        return datatables()->of($kegiatan)
+        if(auth()->user()->hasrole('admin')){
+            return datatables()->of($kegiatan)
                     ->addColumn('action', function($data){
                         $button = '<a href="javascript:void(0)" data-toggle="modal" data-id="'.$data->id.'" title="Lihat Detail Kegiatan" class="open-info btn btn-info"><i class="fa fa-info fa-sm"></i></a>';
                         $button .= '&nbsp;&nbsp;';
@@ -29,6 +34,16 @@ class KegiatanController extends Controller
                     ->rawColumns(['action'])
                     ->addIndexColumn()
                     ->make(true);
+        }else{
+            return datatables()->of($kegiatan)
+                    ->addColumn('action', function($data){
+                        $button = '<a href="javascript:void(0)" data-toggle="modal" data-id="'.$data->id.'" title="Lihat Detail Kegiatan" class="open-info btn btn-info"><i class="fa fa-info fa-sm"></i></a>';                               
+                        return $button;
+                    })
+                    ->rawColumns(['action'])
+                    ->addIndexColumn()
+                    ->make(true);
+          }
     }
 
         return view('admin.kegiatan.index');
@@ -59,7 +74,7 @@ class KegiatanController extends Controller
                         'rab' => $request->rab,
                     ]); 
 
-        return view('admin.kegiatan.index');
+        return redirect()->route('kegiatan.index');
     }
 
     

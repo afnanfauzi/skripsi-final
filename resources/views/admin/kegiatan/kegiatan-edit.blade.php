@@ -104,7 +104,7 @@
                         <div class="ln_solid"></div>
                         <div class="item form-group">
                             <div class="col-md-6 col-sm-6 offset-md-3">
-                                <button type="submit" class="btn btn-success">Edit</button>
+                                <button type="submit" class="btn btn-success">Simpan</button>
                                 <a href="{{ route('kegiatan.index') }}" class="btn btn-info" type="button">Kembali</a>
                             </div>
                         </div>

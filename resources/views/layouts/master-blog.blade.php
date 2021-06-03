@@ -67,7 +67,7 @@
 
 					<!-- search & aside toggle -->
 					<div class="nav-btns">
-						<button class="aside-btn"><i class="fa fa-bars"></i></button>
+						<button type="button" onclick="window.location='{{ url('/login') }}'"><i class="fa fa-sign-in"></i></button>
 						<button class="search-btn"><i class="fa fa-search"></i></button>
 						<div id="nav-search">
 							<form action="{{ route('cari.blog') }}" method="GET">
@@ -77,6 +77,7 @@
 								<span></span>
 							</button>
 						</div>
+						<button class="aside-btn"><i class="fa fa-bars"></i></button>
 					</div>
 					<!-- /search & aside toggle -->
 				</div>

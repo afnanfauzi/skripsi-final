@@ -28,7 +28,9 @@
                         <p id="selectTriggerFilter"></p>
                     </div>
                     <div class="col-md-4" style="text-align: right; padding-top: 27px">
+                        @hasrole('admin')
                         <a href="{{ route('kegiatan.create') }}" class="btn btn-primary btn-sm" id="tambah-kegiatan"><i class="fa fa-plus"></i> Tambah Rencana Kegiatan</a>
+                        @endhasrole
                     </div>
                     </div>
   

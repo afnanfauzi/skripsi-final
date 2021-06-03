@@ -28,7 +28,9 @@
                                 <p>Berikut adalah daftar ranting di Pimpinan Daerah Muhammadiyah Sragen</p>
                               </div>
                               <div class="col-md-2" style="text-align: right;">
-                                <a href="javascript:void(0)" class="btn btn-primary btn-sm" id="tambah-ranting"><i class="fa fa-plus"></i> Tambah Ranting</a>
+                                @hasrole('admin')
+                                    <a href="javascript:void(0)" class="btn btn-primary btn-sm" id="tambah-ranting"><i class="fa fa-plus"></i> Tambah Ranting</a>
+                                @endhasrole
                               </div>
         
                         <table class="table table-striped table-bordered dt-responsive nowrap" id="table-ranting" style="width:100%">
@@ -37,10 +39,7 @@
                                 <th></th>
                                 <th>No</th>
                                 <th>Nama Ranting</th>
-                                <th>Nama Ketua Ranting</th>
-                                <th>Jumlah Anggota</th>
                                 <th>Status Ranting</th>
-                                <th>Cabang</th>
                                 <th>Aksi</th>
 
                             </tr>
@@ -162,7 +161,7 @@
 
 
  <!-- MULAI MODAL FORM INFO-->
- {{-- <div class="modal fade" id="tampilkan-info" aria-hidden="true">
+ <div class="modal fade" id="tampilkan-info" aria-hidden="true">
     <div class="modal-dialog modal-lg ">
         <div class="modal-content">
             <div class="modal-header">
@@ -185,9 +184,19 @@
                             <td><label for="unit_info" class="control-label" id="anggota_id_info"></label></td>
                         </tr>
                         <tr>
+                            <td style="vertical-align: top;"><label for="jmlh_anggota" class="control-label">Jumlah Anggota</label></td>
+                            <td style="vertical-align: top;"><label for="jmlh_anggota" class="control-label">:</label></td>
+                            <td><label for="jmlh_anggota" class="control-label" id="jmlh_anggota" ></label></td>
+                        </tr>
+                        <tr>
                             <td style="vertical-align: top;"><label for="status_ranting_info" class="control-label">Status Ranting</label></td>
                             <td style="vertical-align: top;"><label for="status_ranting_info" class="control-label">:</label></td>
                             <td><label for="rencana_info" class="control-label" id="status_ranting_info" ></label></td>
+                        </tr>
+                        <tr>
+                            <td style="vertical-align: top;"><label for="cabang_id_info" class="control-label">Lokasi Cabang</label></td>
+                            <td style="vertical-align: top;"><label for="cabang_id_info" class="control-label">:</label></td>
+                            <td><label for="cabang_id_info" class="control-label" id="cabang_id_info" ></label></td>
                         </tr>
                       </table>
                     </div>
@@ -200,7 +209,7 @@
             </div>
         </div>
     </div>
-   </div> --}}
+   </div>
 <!-- AKHIR MODAL -->
 
 <script>
@@ -261,24 +270,13 @@
                         name: 'nama_ranting' 
                     },
                     {
-                        data: 'anggota[0].nama_anggota', 
-                        name: 'anggota[0].nama_anggota', 
-                    },
-                    {
-                        data: 'jmlh_anggota', 
-                        name: 'jmlh_anggota' 
-                    },
-                    {
                         data: 'status_ranting', 
                         name: 'status_ranting' 
                     },
                     {
-                        data: 'cabang.nama_cabang', 
-                        name: 'cabang.nama_cabang' 
-                    },
-                    {
                         data: 'action',
-                        name: 'action'
+                        name: 'action',
+                        orderable: false,searchable: false
                     },
   
                 ],
@@ -371,22 +369,34 @@
 
 
         //TOMBOL INFO DAN TAMPIKAN DATA BERDASARKAN ID kegiatan KE MODAL
-    //   $(document).on("click", ".open-info", function () {
-    //     var info_id = $(this).data('id');
-    //     $.get('ranting/' + info_id, function(data){
-    //         // alert("Data "+data[0]);
-    //         $(".modal-body #id_info").val(data[0].id);
-    //         $(".modal-body #ranting_info").text(data[0].nama_ranting);
-    //         $(".modal-body #anggota_id_info").text(data[0].anggota_id);
+      $(document).on("click", ".open-info", function () {
+        var info_id = $(this).data('id');
+        $.get('ranting/' + info_id, function(data){
+            // alert("Data "+data[0]);
+            if (data[0].anggota[0] == null) {
+                $(".modal-body #anggota_id_info").text("-");
+            }else {
+                $(".modal-body #anggota_id_info").text(data[0].anggota[0].nama_anggota);
+            }
 
-    //         // As pointed out in comments, 
-    //         // it is unnecessary to have to manually call the modal.
-    //         $('#tampilkan-info').modal('show');
-    //         $('#modal-judul-info').html("Info Ranting");
-    //         // $("#bodyModal").html(html);
+            if (data[0].jmlh_anggota == null) {
+                $(".modal-body #jmlh_anggota").text("-");
+            }else {
+                $(".modal-body #jmlh_anggota").text(data[0].jmlh_anggota);
+            }
+            $(".modal-body #id_info").val(data[0].id);
+            $(".modal-body #ranting_info").text(data[0].nama_ranting);
+            $(".modal-body #status_ranting_info").text(data[0].status_ranting);
+            $(".modal-body #cabang_id_info").text(data[0].cabang.nama_cabang);
+
+            // As pointed out in comments, 
+            // it is unnecessary to have to manually call the modal.
+            $('#tampilkan-info').modal('show');
+            $('#modal-judul-info').html("Info Ranting");
+            // $("#bodyModal").html(html);
             
-    //         });
-    //     });
+            });
+        });
 
 
 
