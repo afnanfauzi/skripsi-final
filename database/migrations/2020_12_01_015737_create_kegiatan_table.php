@@ -16,8 +16,8 @@ class CreateKegiatanTable extends Migration
         Schema::create('kegiatan', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('kpi');
-            $table->text('rencana_kegiatan')->nullable();
-            $table->string('catatan')->nullable();
+            $table->mediumText('rencana_kegiatan')->nullable();
+            $table->text('catatan')->nullable();
             $table->foreignId('unit_id');
             $table->string('target')->nullable();
             $table->string('tahun')->nullable();

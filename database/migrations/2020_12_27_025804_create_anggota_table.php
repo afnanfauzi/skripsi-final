@@ -16,7 +16,7 @@ class CreateAnggotaTable extends Migration
         Schema::create('anggota', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nama_anggota');
-            $table->string('nik');
+            $table->string('nik')->unique();
             $table->foreignId('akun_id')->nullable();
             $table->foreignId('cabang_id')->nullable();
             $table->foreignId('ranting_id')->nullable();

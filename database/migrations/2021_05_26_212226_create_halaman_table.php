@@ -15,9 +15,9 @@ class CreateHalamanTable extends Migration
     {
         Schema::create('halaman', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('judul');
-            $table->string('slug');
-            $table->text('isi')->nullable();
+            $table->text('judul');
+            $table->text('slug');
+            $table->longText('isi')->nullable();
             $table->string('statuspublikasi');
             $table->string('menu');
             $table->string('penulis');

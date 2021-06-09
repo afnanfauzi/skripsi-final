@@ -15,9 +15,9 @@ class CreateArtikelTable extends Migration
     {
         Schema::create('artikel', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('judul');
-            $table->string('slug');
-            $table->text('isi');
+            $table->text('judul');
+            $table->text('slug');
+            $table->longText('isi');
             $table->string('thumbnail')->nullable();
             $table->string('statuspublikasi');
             $table->string('sematkan')->nullable();

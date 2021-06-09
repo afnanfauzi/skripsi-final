@@ -21,7 +21,7 @@
 
             <div class="x_title">
                 <div class="col-md-8 col-sm-8">
-                    <h2 class="text-uppercase">Edit Postingan</h2>
+                    <h2 class="text-uppercase">Edit Halaman</h2>
                 </div>
                 <div class="col-md-4 col-sm-4" style="text-align: right;">
                     <button type="submit" class="btn btn-success btn-sm">Simpan</button>
