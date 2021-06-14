@@ -4,13 +4,13 @@
 @section('csrf')
 <meta name="csrf-token" content="{{ csrf_token() }}">    
 @endsection
-@section('title', 'List Jabatan - Pimpinan Daerah Muhammadiyah Sragen')
+@section('title', 'Daftar Jabatan - Pimpinan Daerah Muhammadiyah Sragen')
 @section('content')
 <div class="row">
   <div class="col-md-12 col-sm-12 ">
             <div class="x_panel">
             <div class="x_title">
-                <h2 class="text-uppercase">List Jabatan</h2>
+                <h2 class="text-uppercase">Daftar Jabatan</h2>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">

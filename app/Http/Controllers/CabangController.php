@@ -31,10 +31,11 @@ class CabangController extends Controller
             if(auth()->user()->hasrole('admin')){
                 return datatables()->of($cabang)
                         ->addColumn('action', function($data){
-                            $button = '<a href="javascript:void(0)" data-toggle="modal" data-id="'.$data->id.'" title="Lihat Detail Cabang" class="open-info btn btn-info"><i class="fa fa-info fa-sm"></i></a>';
+                            $button = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$data->id.'" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post" title="Edit Data"><i class="fa fa-edit fa-sm" style="padding:6px"></i></a>';
                             $button .= '&nbsp;&nbsp;';
-                            $button .= '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$data->id.'" data-original-title="Edit" class="edit btn btn-warning btn-sm edit-post" title="Edit Data"><i class="fa fa-edit fa-sm" style="padding:6px"></i></a>';
+                            $button .= '<a href="javascript:void(0)" data-toggle="modal" data-id="'.$data->id.'" title="Lihat Detail Cabang" class="open-info btn btn-info"><i class="fa fa-info fa-sm"></i></a>';
                             // $button .= '&nbsp;&nbsp;';
+                            
                             // $button .= '<button type="button" name="delete" id="'.$data->id.'" class="delete btn btn-danger btn-sm" title="Hapus Data"><i class="fa fa-trash fa-sm" style="padding:6px"></i></button>';                               
                             return $button;
                         })
