@@ -21,7 +21,7 @@ class ArtikelController extends Controller
     public function index(Request $request)
     {
         
-        $artikel = Artikel::with('kategori','anggota')->get();
+        $artikel = Artikel::with('kategori')->get();
        
         if($request->ajax()){
             return datatables()->of($artikel)

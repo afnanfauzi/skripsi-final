@@ -24,10 +24,10 @@ class Anggota extends Model
         return $this->belongsTo('App\Unit', 'unit_id', 'id');
     }
 
-    public function berita()
-    {
-        return $this->belongsTo('App\Berita');
-    }
+    // public function berita()
+    // {
+    //     return $this->belongsTo('App\Berita');
+    // }
 
     public function jabatan()
     {

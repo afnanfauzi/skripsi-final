@@ -24,11 +24,11 @@ class Artikel extends Model
       
     }
 
-    public function anggota()
-    {
-        return $this->belongsTo('App\Anggota', 'anggota_id', 'id');
+    // public function anggota()
+    // {
+    //     return $this->belongsTo('App\Anggota', 'anggota_id', 'id');
       
-    }
+    // }
 
     public function label()
     {
