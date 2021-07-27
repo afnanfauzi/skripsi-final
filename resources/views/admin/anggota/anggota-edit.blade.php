@@ -52,7 +52,7 @@
                         <label class="col-form-label col-md-3 col-sm-3 label-align" for="nik">Nomor Induk Kependudukan <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 ">
-                            <input type="text" id="nik" name="nik" required="required" class="form-control" value="{{ $post->nik }}">
+                            <input type="text" id="nik" name="nik" required="required" class="form-control" value="{{ $post->nik }}" data-parsley-type="digits">
                         </div>
                     </div>
                     <div class="item form-group">
@@ -188,7 +188,7 @@
                         <label class="col-form-label col-md-3 col-sm-3 label-align" for="no_telp">No Telepon <span class="required">*</span> 
                         </label>
                         <div class="col-md-6 col-sm-6 ">
-                            <input type="text" id="no_telp" name="no_telp" class="form-control" value="{{ $post->no_telp }}" required="required">
+                            <input type="text" id="no_telp" name="no_telp" class="form-control" value="{{ $post->no_telp }}" required="required" data-parsley-type="digits">
                         </div>
                     </div>
                     <div class="item form-group">

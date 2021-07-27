@@ -67,13 +67,13 @@
                             <label class="col-form-label col-md-3 col-sm-3 label-align">Tahun<span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 ">
-                                <input type="text" class="form-control" id="tahun" name="tahun" placeholder="" value="" maxlength="50" required="required">
+                                <input type="text" class="form-control" id="tahun" name="tahun" placeholder="" value=""  required="required" data-parsley-min="1">
                             </div>
                         </div>
                         <div class="item form-group">
                             <label class="col-form-label col-md-3 col-sm-3 label-align">Target</label>
                             <div class="col-md-6 col-sm-6 ">
-                                <input type="text" class="form-control" id="target" name="target" placeholder="" value="" maxlength="50">
+                                <input type="text" class="form-control" id="target" name="target" placeholder="" value="" >
                             </div>
                         </div>
                         <div class="item form-group">

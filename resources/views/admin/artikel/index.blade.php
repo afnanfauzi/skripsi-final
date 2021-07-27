@@ -10,7 +10,7 @@
   <div class="col-md-12 col-sm-12 ">
     <div class="x_panel">
       <div class="x_title">
-        <h2 class="text-uppercase">Postingan</h2>
+        <h2 class="text-uppercase">Publikasi Artikel</h2>
         <div class="clearfix"></div>
       </div>
       <div class="x_content">
@@ -18,7 +18,7 @@
               <div class="col-sm-12">
                 <div class="card-box table-responsive">
                   <div class="col-md-12">
-                    <a href="{{ route('artikel.create') }}" class="btn btn-success btn-sm" id="tambah-artikel"><i class="fa fa-plus"></i> Postingan Baru</a>
+                    <a href="{{ route('artikel.create') }}" class="btn btn-success btn-sm" id="tambah-artikel"><i class="fa fa-plus"></i> Artikel Baru</a>
                   </div>
   
                   <table class="table table-striped table-bordered dt-responsive" id="table-artikel" style="width:100%">

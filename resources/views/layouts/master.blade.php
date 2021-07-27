@@ -114,7 +114,7 @@
                       <ul class="nav child_menu">
                           <li><a>Artikel<span class="fa fa-chevron-down"></span></a>
                             <ul class="nav child_menu">
-                              <li class="sub_menu"><a href="{{route('artikel.index')}}">Postingan</a></li>
+                              <li class="sub_menu"><a href="{{route('artikel.index')}}">Publikasi</a></li>
                               <li><a href="{{route('artikel-kategori.index')}}">Kategori</a></li>
                               <li><a href="{{route('artikel-label.index')}}">Label</a></li>
                             </ul>

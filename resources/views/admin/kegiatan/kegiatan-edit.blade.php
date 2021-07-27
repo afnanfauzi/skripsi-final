@@ -72,13 +72,13 @@
                             <label class="col-form-label col-md-3 col-sm-3 label-align">Tahun<span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 ">
-                                <input type="text" class="form-control" id="tahun" name="tahun" placeholder=""  maxlength="50" required="required" value="{{ $post->tahun }}">
+                                <input type="text" class="form-control" id="tahun" name="tahun" placeholder=""  required="required" value="{{ $post->tahun }}" data-parsley-min="1">
                             </div>
                         </div>
                         <div class="item form-group">
                             <label class="col-form-label col-md-3 col-sm-3 label-align">Target</label>
                             <div class="col-md-6 col-sm-6 ">
-                                <input type="text" class="form-control" id="target" name="target" placeholder="" maxlength="50" value="{{ $post->target }}">
+                                <input type="text" class="form-control" id="target" name="target" placeholder="" value="{{ $post->target }}">
                             </div>
                         </div>
                         <div class="item form-group">

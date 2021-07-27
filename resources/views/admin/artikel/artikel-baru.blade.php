@@ -29,14 +29,14 @@
 
             <div class="x_title">
                 <div class="col-md-7 col-sm-7">
-                    <h2 class="text-uppercase">Buat Postingan Baru</h2>
+                    <h2 class="text-uppercase">Buat Artikel Baru</h2>
                 </div>
                 <div class="col-md-3 col-sm-3" style="text-align: right;">
                     <label style="padding-top:10px;">
                         <input type="checkbox" name="nama_status" id="nama_status" value="Ya" class="flat" checked="checked"> Publikasikan
                     </label>
                     <label style="padding-left: 12px; padding-top:10px;">
-                        <input type="checkbox" name="sematkan" id="sematkan" value="Ya" class="flat"> Sematkan Postingan
+                        <input type="checkbox" name="sematkan" id="sematkan" value="Ya" class="flat"> Sematkan Artikel
                     </label>
                 </div>
                 <div class="col-md-2 col-sm-2" style="text-align: right;">
@@ -109,7 +109,7 @@
                             <input type="checkbox" name="nama_status" id="nama_status" value="Ya" class="flat" checked="checked"> Publikasikan
                         </label>
                         <label style="padding-left: 12px;">
-                            <input type="checkbox" name="sematkan" id="sematkan" value="Ya" class="flat"> Sematkan Postingan
+                            <input type="checkbox" name="sematkan" id="sematkan" value="Ya" class="flat"> Sematkan Artikel
                         </label>
                     </div> --}}
                 </div>
