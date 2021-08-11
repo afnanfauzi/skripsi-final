@@ -146,6 +146,11 @@
                     <div class="column">
                       <table>
                         <tr>
+                            <td><label for="status_anggota" class="control-label">Status Keanggotaan</label></td>
+                            <td> <label for="status_anggota" class="control-label">:</label></td>
+                            <td><label for="status_anggota" class="control-label" id="status_anggota"></label></td>
+                        </tr>
+                        <tr>
                             <td><label for="jenkel" class="control-label">Jenis Kelamin</label></td>
                             <td> <label for="jenkel" class="control-label">:</label></td>
                             <td><label for="jenkel" class="control-label" id="jenkel"></label></td>
@@ -337,7 +342,7 @@
             $(".modal-body #email").text( data.result[0].email );
             $(".modal-body #alamat").text( data.result[0].alamat );
             $(".modal-body #gambar").attr("src", data.result[0].gambar);
-            
+            $(".modal-body #status_anggota").text( data.result[0].status_anggota );
             
             $('#tampilkan-info').modal('show');
             $('#modal-judul-info').html("Info Anggota");

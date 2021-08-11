@@ -17,17 +17,19 @@ class DashboardController extends Controller
         $b = Kegiatan::get();
         $c = Cabang::get();
         $d = Ranting::get();
-        $e = Unit::get();
+        // $e = Unit::get();
+        $e = Anggota::where('status_anggota', 'Aktif')->get();
         $f = Artikel::get();
+        
 
         $anggota = $a->count();
         $kegiatan = $b->count();
         $cabang = $c->count();
         $ranting = $d->count();
-        $unit = $e->count();
+        $anggota_aktif = $e->count();
         $artikel = $f->count();
 
         // return dd($cabang);
-        return view('admin.dashboard.index', compact('anggota','kegiatan','cabang','ranting','unit','artikel'));
+        return view('admin.dashboard.index', compact('anggota','kegiatan','cabang','ranting','anggota_aktif','artikel'));
     }
 }

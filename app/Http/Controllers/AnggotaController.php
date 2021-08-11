@@ -104,6 +104,7 @@ class AnggotaController extends Controller
                 'no_telp' => $request->no_telp,
                 'email' => $request->email,
                 'alamat' => $request->alamat,
+                'status_anggota' => $request->status_anggota,
                 
             ]);
         
@@ -182,7 +183,8 @@ class AnggotaController extends Controller
                 'pekerjaan' => $request->pekerjaan,
                 'no_telp' => $request->no_telp,
                 'email' => $request->email,
-                'alamat' => $request->alamat,            
+                'alamat' => $request->alamat,  
+                'status_anggota' => $request->status_anggota,          
             ]);
 
             

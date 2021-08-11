@@ -32,6 +32,7 @@ class CreateAnggotaTable extends Migration
             $table->string('email')->nullable();
             $table->text('alamat')->nullable();
             $table->string('gambar')->nullable();
+            $table->string('status_anggota');
             $table->timestamps();
         });
     }

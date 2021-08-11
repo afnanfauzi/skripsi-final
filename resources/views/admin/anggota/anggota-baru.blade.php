@@ -131,6 +131,16 @@
                             </div>
                         </div>
                         <div class="item form-group">
+                            <label for="level_kepengurusan" class="col-form-label col-md-3 col-sm-3 label-align">Status Keanggotaan <span class="required">*</span></label>
+                            <div class="col-md-6 col-sm-6 ">
+                                <select name="status_anggota" id="status_anggota" class="custom-select" style="width: 100%;" required="required">
+                                    <option value="" holder>Pilih Status</option>
+                                    <option value="Aktif">Aktif</option>
+                                    <option value="Nonaktif">Nonaktif</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="item form-group">
                             <label class="col-form-label col-md-3 col-sm-3 label-align">Tempat, Tanggal Lahir <span class="required">*</span>
                             </label>
                             <div class="col-md-4 col-sm-4 ">

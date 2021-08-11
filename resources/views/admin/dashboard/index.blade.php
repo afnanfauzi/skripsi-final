@@ -63,11 +63,11 @@
                 <div class="card-body">
                   <div class="media d-flex">
                     <div class="media-body text-left">
-                      <h3 class="warning">{{ $unit }}</h3>
-                      <span>Total Unit</span>
+                      <h3 class="warning">{{ $anggota_aktif }}</h3>
+                      <span>Anggota Aktif</span>
                     </div>
                     <div class="align-self-center">
-                      <i class="icon-star warning font-large-2 float-right"></i>
+                      <i class="icon-user warning font-large-2 float-right"></i>
                     </div>
                   </div>
                 </div>
@@ -80,11 +80,11 @@
                 <div class="card-body">
                   <div class="media d-flex">
                     <div class="media-body text-left">
-                      <h3 class="primary">{{ $cabang }}</h3>
-                      <span>Total Cabang</span>
+                      <h3 class="primary">{{ $artikel }}</h3>
+                      <span>Total Artikel</span>
                     </div>
                     <div class="align-self-center">
-                      <i class="icon-home primary font-large-2 float-right"></i>
+                      <i class="icon-globe primary font-large-2 float-right"></i>
                     </div>
                   </div>
                 </div>
